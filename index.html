@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dandu Manohar Reddy - Family Legacy & Memories</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>Dandu Manohar Reddy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#memorial" class="nav-link">Memorial</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Dandu</span>
+                    <span class="title-line">Manohar</span>
+                    <span class="title-line">Reddy</span>
+                </h1>
+                <p class="hero-subtitle">A tribute to a remarkable farmer, father, and family patriarch whose hard work, integrity, and moral values have shaped our family's legacy for generations.</p>
+                <div class="hero-buttons">
+                    <a href="#gallery" class="btn btn-primary">View Gallery</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <!-- Left side floating elements -->
+                    <div class="floating-element element-1">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="floating-element element-2">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <div class="floating-element element-3">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="floating-element element-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    
+                    <!-- Center and right side floating elements -->
+                    <div class="floating-element element-5">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="floating-element element-6">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="floating-element element-7">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="floating-element element-8">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="floating-element element-9">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Family Legacy Gallery</h2>
+                <p class="section-subtitle">A visual journey through the life and times of Dandu Manohar Reddy - capturing moments of hard work in the fields, family love, and the values that made him an exceptional father</p>
+                <div class="photo-counter">
+                    <span id="total-photos">5</span> precious moments captured
+                </div>
+            </div>
+            
+            <div class="gallery-controls">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="family">Family</button>
+                    <button class="filter-btn" data-filter="memories">Memories</button>
+                    <button class="filter-btn" data-filter="love">Love</button>
+                </div>
+                <div class="gallery-actions">
+                    <div class="crop-controls">
+                        <span>Crop:</span>
+                        <button class="crop-btn" data-crop="center">Center</button>
+                        <button class="crop-btn active" data-crop="top">Top</button>
+                        <button class="crop-btn" data-crop="bottom">Bottom</button>
+                        <button class="crop-btn" data-crop="left">Left</button>
+                        <button class="crop-btn" data-crop="right">Right</button>
+                    </div>
+                    <button class="refresh-btn" onclick="refreshGallery()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Photos will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Memorial Card Section -->
+    <section id="memorial" class="memorial">
+        <div class="container">
+            <div class="memorial-card">
+                <div class="memorial-header">
+                    <div class="memorial-symbol">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="memorial-dates">
+                        <span class="birth-date">1970</span>
+                        <div class="date-separator">~</div>
+                        <span class="passing-date">20 August 2025</span>
+                    </div>
+                </div>
+                
+                <div class="memorial-content">
+                    <h2 class="memorial-name">Dandu Manohar Reddy</h2>
+                    <div class="memorial-age">Aged 55 Years</div>
+                    <div class="memorial-tribute">
+                        <p class="tribute-text">
+                            "A devoted farmer, loving father, and man of unwavering integrity who touched countless lives 
+                            through his kindness, hard work, and moral values. His legacy of honesty and dedication 
+                            will forever remain in our hearts."
+                        </p>
+                    </div>
+                    
+                    <div class="ceremony-invitation">
+                        <div class="invitation-header">
+                            <i class="fas fa-heart"></i>
+                            <h3>Death Ceremony Invitation</h3>
+                        </div>
+                        <div class="ceremony-details">
+                            <div class="ceremony-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>4th September 2025</span>
+                            </div>
+                            <div class="ceremony-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Sri Ram Nagar colony, Akkampeta<br>Manubolu (M), Nellore (D), Andhra Pradesh</span>
+                            </div>
+                                            <div class="ceremony-message">
+                    <p>We humbly invite you to join us in honoring the life and legacy of our beloved father. 
+                    Your presence would bring comfort to our family during this time of remembrance.</p>
+                    <div class="invitation-actions" style="margin-top: 1.5rem;">
+                        <a href="invitation-card.html" target="_blank" class="btn btn-primary" style="margin-right: 1rem;">
+                            <i class="fas fa-print"></i> View Invitation Card
+                        </a>
+                        <a href="invitation-card.html" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Download Card
+                        </a>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="memorial-footer">
+                        <div class="family-signature">
+                            <p>With deep respect and love,</p>
+                            <p class="signature-name">The Dandu Family</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="memorial-decoration">
+                    <div class="decoration-element decoration-1"></div>
+                    <div class="decoration-element decoration-2"></div>
+                    <div class="decoration-element decoration-3"></div>
+                    <div class="decoration-element decoration-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-header">
+                        <div class="about-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h2 class="section-title">About Dandu Manohar Reddy</h2>
+                        <div class="about-divider"></div>
+                    </div>
+                    
+                    <p class="about-description">
+                        Dandu Manohar Reddy is the cornerstone of our family - a hardworking farmer who tilled the soil with his own hands 
+                        to provide for us. His life story is a testament to the values of honesty, integrity, and unwavering dedication 
+                        that he has instilled in all of us through his example.
+                    </p>
+                    
+                    <p class="about-description">
+                        As a father, he raised us with high moral values, never compromising on honesty and truth. He taught us that 
+                        success comes from hard work, not from shortcuts or cheating. His simple yet profound wisdom continues to guide 
+                        our family's path forward.
+                    </p>
+                    
+                
+                </div>
+                <!-- <div class="about-image">
+                    <div class="image-container">
+                        <div class="quote-container">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <blockquote class="family-quote">
+                                "The soil teaches us patience, the seasons teach us timing, and hard work teaches us success. 
+                                But above all, honesty and integrity are the seeds that grow the strongest family trees."
+                            </blockquote>
+                            <div class="quote-author">
+                                <span>- Dandu Manohar Reddy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Connect With Our Family</h2>
+                <p class="section-subtitle">We welcome you to reach out and learn more about the legacy of our beloved farmer father, Dandu Manohar Reddy</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>contact@maheshreddy.in</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+91 9550924802</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Sri Ram Nagar colony, Akkampeta, Manubolu (M), Nellore (D), Andhra Pradesh</p>
+                            <a href="https://maps.app.goo.gl/PJGgtgaYt7D5pVjH9?g_st=ipc" target="_blank" class="location-link">
+                                <i class="fas fa-external-link-alt"></i> View on Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        
+                        <span>Dandu Mahesh Reddy</span>
+                    </div>
+                    <!-- <p>Preserving our family's beautiful moments, one memory at a time.</p> -->
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#memorial">Memorial</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dandu Manohar Reddy & Family. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="close-lightbox">&times;</span>
+            <img src="" alt="" class="lightbox-image">
+            <div class="lightbox-caption">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

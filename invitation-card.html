@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>శ్రద్ధాంజలి ఆహ్వాన పత్రిక - Dandu Manohar Reddy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Telugu', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .print-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .print-btn, .download-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #2c3e50;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .print-btn:hover, .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Traditional Telugu Invitation Card - Portrait Orientation */
+        .invitation-card {
+            width: 600px;
+            height: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+            border: 4px solid #D4AF37;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Golden Border Pattern */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 8px solid transparent;
+            background: linear-gradient(45deg, #D4AF37, #FFD700, #D4AF37) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            border-radius: 16px;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #2c3e50;
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-symbols {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lamp-symbol {
+            font-size: 1.5rem;
+            color: #FFD700;
+            animation: deepamGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes deepamGlow {
+            0% { 
+                filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+                color: #FFD700;
+            }
+            100% { 
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+                color: #FFA500;
+            }
+        }
+
+        .reference-number {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #8B4513;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-section {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid #D4AF37;
+            position: relative;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+            font-size: 3rem;
+        }
+
+        .photo-placeholder i {
+            opacity: 0.8;
+        }
+
+        .upload-btn {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            width: 40px;
+            height: 40px;
+            background: #D4AF37;
+            border: 3px solid white;
+            border-radius: 50%;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .upload-btn:hover {
+            background: #FFD700;
+            transform: scale(1.1);
+        }
+
+        .deceased-dates {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .deceased-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .deceased-dates-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+
+        .right-section {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .deceased-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #D4AF37;
+            padding-bottom: 0.5rem;
+        }
+
+        .content-paragraph {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .ceremony-details {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ceremony-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .ceremony-time {
+            font-size: 1rem;
+            color: #6c757d;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .ceremony-venue {
+            font-size: 1rem;
+            color: #2c3e50;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .invitation-message {
+            font-style: italic;
+            color: #495057;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .closing-section {
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .closing-text {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .family-signature {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .event-location {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.4;
+            margin-top: 1rem;
+        }
+
+        .decoration-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .decoration-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            animation: decorationFloat 8s ease-in-out infinite;
+        }
+
+        .decoration-1 {
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoration-2 {
+            top: 25%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        .decoration-3 {
+            bottom: 20%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+
+        .decoration-4 {
+            bottom: 30%;
+            right: 8%;
+            animation-delay: 6s;
+        }
+
+        @keyframes decorationFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(0.8);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-15px) scale(1);
+                opacity: 0.6;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0.5in;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-family: 'Noto Sans Telugu', 'Arial', sans-serif !important;
+            }
+            
+            .print-controls {
+                display: none !important;
+            }
+            
+            .upload-btn {
+                display: none !important;
+            }
+            
+            .invitation-card {
+                box-shadow: none !important;
+                border: 4px solid #D4AF37 !important;
+                border-radius: 20px !important;
+                width: 100% !important;
+                max-width: 7in !important;
+                height: auto !important;
+                min-height: 9in !important;
+                page-break-inside: avoid !important;
+                margin: 0 auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: visible !important;
+            }
+            
+            .invitation-card::before {
+                display: none !important;
+            }
+            
+            .card-header {
+                background: #D4AF37 !important;
+                color: #2c3e50 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 1.5rem !important;
+                text-align: center !important;
+            }
+            
+            .header-title {
+                font-family: 'Playfair Display', serif !important;
+                font-size: 2rem !important;
+                font-weight: 700 !important;
+                color: #2c3e50 !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .header-symbols {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 2rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .lamp-symbol {
+                font-size: 1.5rem !important;
+                color: #FFD700 !important;
+            }
+            
+            .card-content {
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                padding: 1.5rem !important;
+                gap: 1.5rem !important;
+                overflow: visible !important;
+            }
+            
+            .left-section {
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+            }
+            
+            .photo-section {
+                width: 180px !important;
+                height: 180px !important;
+                border-radius: 50% !important;
+                overflow: hidden !important;
+                border: 6px solid #D4AF37 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .photo-placeholder {
+                width: 100% !important;
+                height: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .photo-placeholder img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+            
+            .deceased-dates {
+                text-align: center !important;
+                margin-top: 1rem !important;
+            }
+            
+            .deceased-name {
+                font-size: 1rem !important;
+                font-weight: 600 !important;
+                color: #2c3e50 !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .deceased-dates-text {
+                font-size: 0.85rem !important;
+                color: #6c757d !important;
+                line-height: 1.4 !important;
+            }
+            
+            .right-section {
+                flex: 1.5 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+            }
+            
+            .main-content {
+                flex: 1 !important;
+                display: block !important;
+            }
+            
+            .deceased-title {
+                font-size: 1.3rem !important;
+                font-weight: 700 !important;
+                color: #2c3e50 !important;
+                margin-bottom: 1.2rem !important;
+                text-align: center !important;
+                border-bottom: 2px solid #D4AF37 !important;
+                padding-bottom: 0.5rem !important;
+            }
+            
+            .content-paragraph {
+                margin-bottom: 1.2rem !important;
+                line-height: 1.6 !important;
+                color: #2c3e50 !important;
+                font-size: 0.95rem !important;
+                text-align: justify !important;
+            }
+            
+            .ceremony-details {
+                background: rgba(212, 175, 55, 0.1) !important;
+                border: 2px solid #D4AF37 !important;
+                border-radius: 10px !important;
+                padding: 1.2rem !important;
+                margin-bottom: 1.2rem !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .ceremony-date {
+                font-size: 1rem !important;
+                font-weight: 600 !important;
+                color: #2c3e50 !important;
+                margin-bottom: 0.5rem !important;
+                text-align: center !important;
+            }
+            
+            .ceremony-time {
+                font-size: 0.95rem !important;
+                color: #6c757d !important;
+                text-align: center !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .ceremony-venue {
+                font-size: 0.95rem !important;
+                color: #2c3e50 !important;
+                text-align: center !important;
+                line-height: 1.4 !important;
+            }
+            
+            .invitation-message {
+                font-style: italic !important;
+                color: #495057 !important;
+                text-align: center !important;
+                line-height: 1.5 !important;
+                margin-bottom: 1.2rem !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .closing-section {
+                text-align: center !important;
+                margin-top: auto !important;
+            }
+            
+            .closing-text {
+                font-size: 0.95rem !important;
+                color: #6c757d !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .family-signature {
+                font-size: 1rem !important;
+                font-weight: 600 !important;
+                color: #2c3e50 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .event-location {
+                font-size: 0.85rem !important;
+                color: #6c757d !important;
+                line-height: 1.4 !important;
+                margin-top: 1rem !important;
+            }
+            
+            .decoration-elements {
+                display: none !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .invitation-card {
+                width: 350px;
+                height: 600px;
+                margin: 0 10px;
+            }
+            
+            .card-content {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            .photo-section {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .header-title {
+                font-size: 2rem;
+            }
+            
+            .deceased-title {
+                font-size: 1.2rem;
+            }
+            
+            .content-paragraph {
+                font-size: 0.9rem;
+            }
+            
+            .ceremony-details {
+                padding: 1rem;
+            }
+            
+            .print-controls {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-controls">
+        <button class="print-btn" onclick="window.print()">
+            <i class="fas fa-print"></i> ప్రింట్ చేయండి
+        </button>
+        <button class="download-btn" onclick="downloadCard()">
+            <i class="fas fa-download"></i> డౌన్‌లోడ్ చేయండి
+        </button>
+    </div>
+
+    <div class="invitation-card">
+        <div class="card-header">
+            <div class="header-symbols">
+                <div class="lamp-symbol">
+                    <i class="fas fa-fire-flame-simple"></i>
+                </div>
+                <h1 class="header-title">శ్రద్ధాంజలి</h1>
+                <div class="lamp-symbol">
+                    <i class="fas fa-fire-flame-simple"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-content">
+            <!-- Left Section - Photo -->
+            <div class="left-section">
+                <div class="photo-section">
+                    <div class="photo-placeholder" id="photo-placeholder">
+                        <img src="assets/photos/31206909-F1F9-4374-B24D-1AB4647F0D70_1_201_a.jpeg" alt="Dandu Manohar Reddy" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <input type="file" id="photo-upload" accept="image/*" style="display: none;" onchange="uploadPhoto(event)">
+                    <button class="upload-btn" onclick="document.getElementById('photo-upload').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                
+                <div class="deceased-dates">
+                    <div class="deceased-name">కీ॥శే॥ శ్రీ డండు మనోహర్ రెడ్డి గారు</div>
+                    <div class="deceased-dates-text">
+                        జననం : 1970<br>
+                        మరణం : 20-08-2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Text Content -->
+            <div class="right-section">
+                <div class="main-content">
+                    <div class="deceased-title">
+                        శ్రీ డండు మనోహర్ రెడ్డి గారు
+                    </div>
+                    
+                    <div class="content-paragraph">
+                        తేది : 20-08-2025 శనివారం రోజున స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.
+                    </div>
+                    
+                    <div class="ceremony-details">
+                        <div class="ceremony-date">
+                            తేది 04-09-2025 గురువారం రోజున
+                        </div>
+                        <div class="ceremony-time">
+                            ఉదయం 9:00 గంటలకు
+                        </div>
+                        <div class="ceremony-venue">
+                            వారి పెద్దకర్మ జరుపబడును
+                        </div>
+                    </div>
+                    
+                    <div class="invitation-message">
+                        కావున తామెల్లరూ విచ్చేసి వారి ఆత్మకు శాంతి చేకూర్చాలని తెలియజేయడమైనది.
+                    </div>
+                </div>
+                
+                <div class="closing-section">
+                    <div class="closing-text">ఇట్లు</div>
+                    <div class="family-signature">డండు కుటుంబ సభ్యులు</div>
+                    <div class="event-location">
+                        కార్య స్థలము : శ్రీ రామ్ నగర్ కాలనీ, అక్కంపేట, మనుబోలు (మండలం), నెల్లూరు జిల్లా, ఆంధ్రప్రదేశ్
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="decoration-elements">
+            <div class="decoration-element decoration-1"></div>
+            <div class="decoration-element decoration-2"></div>
+            <div class="decoration-element decoration-3"></div>
+            <div class="decoration-element decoration-4"></div>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        // Function to upload and display photo
+        function uploadPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoPlaceholder = document.getElementById('photo-placeholder');
+                    photoPlaceholder.innerHTML = `<img src="${e.target.result}" alt="Memorial Photo" style="width: 100%; height: 100%; object-fit: cover;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function downloadCard() {
+            const card = document.querySelector('.invitation-card');
+            const printControls = document.querySelector('.print-controls');
+            
+            // Hide controls temporarily
+            printControls.style.display = 'none';
+            
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                width: card.offsetWidth,
+                height: card.offsetHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'pedda-karma-invitation.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                // Show controls again
+                printControls.style.display = 'flex';
+            }).catch(err => {
+                console.error('Error generating image:', err);
+                alert('Download failed. Please use the print option instead.');
+                printControls.style.display = 'flex';
+            });
+        }
+
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.invitation-card');
+            
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.01)';
+                this.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
+            });
+        });
+    </script>
+</body>
+</html>
