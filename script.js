@@ -859,3 +859,80 @@ document.addEventListener('DOMContentLoaded', () => {
         addMemorialHoverEffects();
     }, 2000); // Add after initial animations complete
 });
+
+// Enhanced Button Functionality
+function initializeInvitationButtons() {
+    const buttons = document.querySelectorAll('.invitation-btn');
+    
+    buttons.forEach(button => {
+        // Add ripple effect on click
+        button.addEventListener('click', function(e) {
+            createRippleEffect(e, this);
+        });
+        
+        // Add loading state for download button
+        if (button.classList.contains('secondary')) {
+            button.addEventListener('click', function() {
+                this.classList.add('loading');
+                setTimeout(() => {
+                    this.classList.remove('loading');
+                }, 2000);
+            });
+        }
+    });
+}
+
+// Create ripple effect for buttons
+function createRippleEffect(event, button) {
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// Add ripple effect CSS
+function addRippleStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .invitation-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize enhanced buttons when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize enhanced invitation buttons
+    initializeInvitationButtons();
+    addRippleStyles();
+});

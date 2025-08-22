@@ -607,44 +607,185 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .invitation-card {
-                width: 350px;
-                height: 600px;
-                margin: 0 10px;
+                width: 95%;
+                max-width: 400px;
+                height: auto;
+                min-height: 700px;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .card-header {
+                padding: 1rem;
+            }
+            
+            .header-title {
+                font-size: 1.8rem;
             }
             
             .card-content {
                 flex-direction: column;
                 padding: 1.5rem;
                 gap: 1.5rem;
+                min-height: 0;
+            }
+            
+            .left-section {
+                order: 1;
+            }
+            
+            .right-section {
+                order: 2;
+                flex: 1;
             }
             
             .photo-section {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .header-title {
-                font-size: 2rem;
+                width: 140px;
+                height: 140px;
             }
             
             .deceased-title {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
             }
             
             .content-paragraph {
                 font-size: 0.9rem;
+                margin-bottom: 1rem;
             }
             
             .ceremony-details {
                 padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .ceremony-date, .ceremony-time, .ceremony-venue {
+                font-size: 0.9rem;
+            }
+            
+            .invitation-message {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            
+            .closing-section {
+                margin-top: 1rem;
+            }
+            
+            .family-signature {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .event-location {
+                font-size: 0.8rem;
+                line-height: 1.3;
             }
             
             .print-controls {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin-bottom: 20px;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                top: auto;
+                right: auto;
+                margin-bottom: 0;
                 justify-content: center;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 25px;
+                padding: 10px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            }
+            
+            .print-btn, .download-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+        
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .invitation-card {
+                width: 98%;
+                margin: 5px;
+                border-radius: 12px;
+            }
+            
+            .card-header {
+                padding: 0.8rem;
+            }
+            
+            .header-title {
+                font-size: 1.6rem;
+            }
+            
+            .header-symbols {
+                gap: 1.5rem;
+            }
+            
+            .lamp-symbol {
+                font-size: 1.2rem;
+            }
+            
+            .card-content {
+                padding: 1.2rem;
+                gap: 1.2rem;
+            }
+            
+            .photo-section {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .deceased-name {
+                font-size: 0.9rem;
+            }
+            
+            .deceased-dates-text {
+                font-size: 0.8rem;
+            }
+            
+            .deceased-title {
+                font-size: 1rem;
+            }
+            
+            .content-paragraph {
+                font-size: 0.85rem;
+            }
+            
+            .ceremony-details {
+                padding: 0.8rem;
+            }
+            
+            .ceremony-date, .ceremony-time, .ceremony-venue {
+                font-size: 0.85rem;
+            }
+            
+            .invitation-message {
+                font-size: 0.8rem;
+            }
+            
+            .closing-text {
+                font-size: 0.9rem;
+            }
+            
+            .family-signature {
+                font-size: 0.9rem;
+            }
+            
+            .event-location {
+                font-size: 0.75rem;
+            }
+            
+            .print-controls {
+                bottom: 15px;
+                padding: 8px;
+            }
+            
+            .print-btn, .download-btn {
+                padding: 8px 16px;
+                font-size: 12px;
             }
         }
     </style>
@@ -689,7 +830,8 @@
                     <div class="deceased-name">కీ॥శే॥ శ్రీ డండు మనోహర్ రెడ్డి గారు</div>
                     <div class="deceased-dates-text">
                         జననం : 1970<br>
-                        మరణం : 20-08-2025
+                        మరణం : 19-08-2025<br>
+                        సమయం : సాయంత్రం 6:25 గంటలు
                     </div>
                 </div>
             </div>
@@ -702,7 +844,7 @@
                     </div>
                     
                     <div class="content-paragraph">
-                        తేది : 20-08-2025 శనివారం రోజున స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.
+                        తేది : 19-08-2025 సోమవారం రోజున సాయంత్రం 6:25 గంటలకు స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.
                     </div>
                     
                     <div class="ceremony-details">
