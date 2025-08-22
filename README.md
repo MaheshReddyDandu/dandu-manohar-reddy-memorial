@@ -84,17 +84,17 @@ myfather/
 - **PNG Format**: Professional image export
 - **Photo Included**: Downloaded images include uploaded photos
 
-## �� Deployment
+## 📄 Deployment
 
 ### **Custom Domain**
-- **Live Website**: [https://dandu-maheshreddy.com](https://dandu-maheshreddy.com)
+- **Live Website**: [https://dandu-manoharreddy.com](https://dandu-manoharreddy.com)
 - **Domain Provider**: Hostinger
 - **Hosting**: GitHub Pages
 
 ### **GitHub Pages**
 1. Push to GitHub repository
 2. Enable GitHub Pages in repository settings
-3. Add custom domain: `dandu-maheshreddy.com`
+3. Add custom domain: `dandu-manoharreddy.com`
 4. Configure DNS records at Hostinger
 5. Website will be available at your custom domain
 
