@@ -50,10 +50,10 @@
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
-        /* Traditional Telugu Invitation Card - Portrait Orientation */
+        /* Traditional Telugu Invitation Card - Horizontal Rectangle Orientation */
         .invitation-card {
-            width: 600px;
-            height: 800px;
+            width: 900px;
+            height: 500px;
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -62,6 +62,8 @@
             border: 4px solid #D4AF37;
             display: flex;
             flex-direction: column;
+            transition: all 0.3s ease;
+            transform-origin: center;
         }
 
         /* Golden Border Pattern */
@@ -89,28 +91,45 @@
             padding: 1.5rem;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
         }
 
         .header-title {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin: 0;
             color: #2c3e50;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1;
+            text-align: center;
         }
 
         .header-symbols {
             display: flex;
+            flex-direction: row;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
+            align-items: center;
+            gap: 3rem;
+            margin: 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
         }
 
         .lamp-symbol {
             font-size: 1.5rem;
             color: #FFD700;
             animation: deepamGlow 2s ease-in-out infinite alternate;
+            pointer-events: none;
         }
 
         @keyframes deepamGlow {
@@ -126,29 +145,32 @@
 
         .reference-number {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 0.5rem;
+            left: 0.5rem;
             background: #8B4513;
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
             font-weight: 600;
         }
 
         .card-content {
             flex: 1;
             display: flex;
-            padding: 2rem;
-            gap: 2rem;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            flex-direction: row;
         }
 
         .left-section {
-            flex: 1;
+            flex: 0 0 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding-right: 1.5rem;
+            text-align: center;
         }
 
         .photo-section {
@@ -162,7 +184,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            transform-origin: center;
         }
 
         .photo-placeholder {
@@ -173,7 +197,7 @@
             align-items: center;
             justify-content: center;
             color: #2c3e50;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .photo-placeholder i {
@@ -184,8 +208,8 @@
             position: absolute;
             bottom: -5px;
             right: -5px;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: #D4AF37;
             border: 3px solid white;
             border-radius: 50%;
@@ -194,7 +218,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             z-index: 3;
         }
@@ -206,27 +230,29 @@
 
         .deceased-dates {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
 
         .deceased-name {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .deceased-dates-text {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #6c757d;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .right-section {
-            flex: 1.5;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            gap: 1.5rem;
         }
 
         .main-content {
@@ -239,8 +265,10 @@
             color: #2c3e50;
             margin-bottom: 1.5rem;
             text-align: center;
-            border-bottom: 2px solid #D4AF37;
-            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #D4AF37;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .content-paragraph {
@@ -248,44 +276,55 @@
             line-height: 1.8;
             color: #2c3e50;
             font-size: 1rem;
+            text-align: justify;
+            padding: 0.5rem;
+        }
+
+        .highlighted-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a252f;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .ceremony-details {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #D4AF37;
-            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 3px solid #D4AF37;
+            border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
         .ceremony-date {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             text-align: center;
         }
 
         .ceremony-time {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #6c757d;
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .ceremony-venue {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #2c3e50;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .invitation-message {
             font-style: italic;
             color: #495057;
             text-align: center;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
         }
 
         .closing-section {
@@ -294,23 +333,23 @@
         }
 
         .closing-text {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #6c757d;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .family-signature {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .event-location {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #6c757d;
-            line-height: 1.4;
-            margin-top: 1rem;
+            line-height: 1.3;
+            margin-top: 0.8rem;
         }
 
         .decoration-elements {
@@ -370,7 +409,7 @@
         /* Print Styles */
         @media print {
             @page {
-                size: A4 portrait;
+                size: A4 landscape;
                 margin: 0.5in;
             }
             
@@ -400,9 +439,9 @@
                 border: 4px solid #D4AF37 !important;
                 border-radius: 20px !important;
                 width: 100% !important;
-                max-width: 7in !important;
+                max-width: 11in !important;
                 height: auto !important;
-                min-height: 9in !important;
+                min-height: 7in !important;
                 page-break-inside: avoid !important;
                 margin: 0 auto !important;
                 display: flex !important;
@@ -422,25 +461,41 @@
                 print-color-adjust: exact !important;
                 padding: 1.5rem !important;
                 text-align: center !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: center !important;
+                align-items: center !important;
+                min-height: 80px !important;
             }
             
             .header-title {
                 font-family: 'Playfair Display', serif !important;
-                font-size: 2rem !important;
+                font-size: 2.5rem !important;
                 font-weight: 700 !important;
                 color: #2c3e50 !important;
-                margin-bottom: 0.5rem !important;
+                margin: 0 !important;
+                flex: 1 !important;
+                text-align: center !important;
             }
             
             .header-symbols {
                 display: flex !important;
+                flex-direction: row !important;
                 justify-content: center !important;
-                gap: 2rem !important;
-                margin-bottom: 1rem !important;
+                align-items: center !important;
+                gap: 3rem !important;
+                margin: 0 !important;
+                position: absolute !important;
+                left: 0 !important;
+                right: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                pointer-events: none !important;
             }
             
             .lamp-symbol {
-                font-size: 1.5rem !important;
+                font-size: 1.2rem !important;
                 color: #FFD700 !important;
             }
             
@@ -454,20 +509,22 @@
             }
             
             .left-section {
-                flex: 1 !important;
+                flex: 0 0 280px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
-                justify-content: flex-start !important;
+                justify-content: center !important;
+                padding-right: 1.5rem !important;
+                text-align: center !important;
             }
             
             .photo-section {
-                width: 180px !important;
-                height: 180px !important;
+                width: 200px !important;
+                height: 200px !important;
                 border-radius: 50% !important;
                 overflow: hidden !important;
                 border: 6px solid #D4AF37 !important;
-                margin-bottom: 1rem !important;
+                margin-bottom: 1.5rem !important;
             }
             
             .photo-placeholder {
@@ -486,27 +543,29 @@
             
             .deceased-dates {
                 text-align: center !important;
-                margin-top: 1rem !important;
+                margin-top: 0.8rem !important;
             }
             
             .deceased-name {
-                font-size: 1rem !important;
-                font-weight: 600 !important;
+                font-size: 1.2rem !important;
+                font-weight: 700 !important;
                 color: #2c3e50 !important;
-                margin-bottom: 0.5rem !important;
+                margin-bottom: 0.6rem !important;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
             }
             
             .deceased-dates-text {
-                font-size: 0.85rem !important;
+                font-size: 0.75rem !important;
                 color: #6c757d !important;
-                line-height: 1.4 !important;
+                line-height: 1.3 !important;
             }
             
             .right-section {
-                flex: 1.5 !important;
+                flex: 1 !important;
                 display: flex !important;
                 flex-direction: column !important;
                 justify-content: space-between !important;
+                gap: 1.5rem !important;
             }
             
             .main-content {
@@ -515,63 +574,69 @@
             }
             
             .deceased-title {
-                font-size: 1.3rem !important;
+                font-size: 1.2rem !important;
                 font-weight: 700 !important;
                 color: #2c3e50 !important;
-                margin-bottom: 1.2rem !important;
+                margin-bottom: 1rem !important;
                 text-align: center !important;
                 border-bottom: 2px solid #D4AF37 !important;
-                padding-bottom: 0.5rem !important;
+                padding-bottom: 0.4rem !important;
             }
             
             .content-paragraph {
-                margin-bottom: 1.2rem !important;
+                margin-bottom: 1rem !important;
                 line-height: 1.6 !important;
                 color: #2c3e50 !important;
-                font-size: 0.95rem !important;
+                font-size: 0.9rem !important;
                 text-align: justify !important;
+            }
+
+            .highlighted-name {
+                font-size: 1.1rem !important;
+                font-weight: 700 !important;
+                color: #1a252f !important;
             }
             
             .ceremony-details {
                 background: rgba(212, 175, 55, 0.1) !important;
                 border: 2px solid #D4AF37 !important;
-                border-radius: 10px !important;
-                padding: 1.2rem !important;
-                margin-bottom: 1.2rem !important;
+                border-radius: 8px !important;
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
             
             .ceremony-date {
-                font-size: 1rem !important;
+                font-size: 0.95rem !important;
                 font-weight: 600 !important;
                 color: #2c3e50 !important;
-                margin-bottom: 0.5rem !important;
+                margin-bottom: 0.4rem !important;
                 text-align: center !important;
             }
             
             .ceremony-time {
-                font-size: 0.95rem !important;
+                font-size: 0.85rem !important;
                 color: #6c757d !important;
                 text-align: center !important;
-                margin-bottom: 1rem !important;
+                margin-bottom: 0.8rem !important;
             }
             
             .ceremony-venue {
-                font-size: 0.95rem !important;
+                font-size: 0.85rem !important;
                 color: #2c3e50 !important;
                 text-align: center !important;
-                line-height: 1.4 !important;
+                line-height: 1.3 !important;
             }
             
             .invitation-message {
                 font-style: italic !important;
                 color: #495057 !important;
                 text-align: center !important;
-                line-height: 1.5 !important;
-                margin-bottom: 1.2rem !important;
-                font-size: 0.95rem !important;
+                line-height: 1.4 !important;
+                margin-bottom: 1rem !important;
+                font-size: 0.85rem !important;
             }
             
             .closing-section {
@@ -580,23 +645,23 @@
             }
             
             .closing-text {
-                font-size: 0.95rem !important;
+                font-size: 0.85rem !important;
                 color: #6c757d !important;
-                margin-bottom: 0.5rem !important;
+                margin-bottom: 0.4rem !important;
             }
             
             .family-signature {
-                font-size: 1rem !important;
+                font-size: 0.95rem !important;
                 font-weight: 600 !important;
                 color: #2c3e50 !important;
-                margin-bottom: 1rem !important;
+                margin-bottom: 0.8rem !important;
             }
             
             .event-location {
-                font-size: 0.85rem !important;
+                font-size: 0.75rem !important;
                 color: #6c757d !important;
-                line-height: 1.4 !important;
-                margin-top: 1rem !important;
+                line-height: 1.3 !important;
+                margin-top: 0.8rem !important;
             }
             
             .decoration-elements {
@@ -608,19 +673,31 @@
         @media (max-width: 768px) {
             .invitation-card {
                 width: 95%;
-                max-width: 400px;
+                max-width: 600px;
                 height: auto;
-                min-height: 700px;
+                min-height: 400px;
                 margin: 10px;
                 border-radius: 15px;
+                flex-direction: column;
             }
             
             .card-header {
                 padding: 1rem;
+                width: 100%;
+                flex-direction: row;
+                min-height: 60px;
             }
             
             .header-title {
                 font-size: 1.8rem;
+                flex: 1;
+            }
+            
+            .header-symbols {
+                flex-direction: row;
+                gap: 2rem;
+                position: static;
+                pointer-events: auto;
             }
             
             .card-content {
@@ -640,8 +717,8 @@
             }
             
             .photo-section {
-                width: 140px;
-                height: 140px;
+                width: 160px;
+                height: 160px;
             }
             
             .deceased-title {
@@ -652,6 +729,11 @@
             .content-paragraph {
                 font-size: 0.9rem;
                 margin-bottom: 1rem;
+            }
+
+            .highlighted-name {
+                font-size: 1.1rem;
+                font-weight: 700;
             }
             
             .ceremony-details {
@@ -710,10 +792,13 @@
                 width: 98%;
                 margin: 5px;
                 border-radius: 12px;
+                flex-direction: column;
             }
             
             .card-header {
                 padding: 0.8rem;
+                width: 100%;
+                flex-direction: row;
             }
             
             .header-title {
@@ -722,6 +807,7 @@
             
             .header-symbols {
                 gap: 1.5rem;
+                flex-direction: row;
             }
             
             .lamp-symbol {
@@ -734,12 +820,12 @@
             }
             
             .photo-section {
-                width: 120px;
-                height: 120px;
+                width: 140px;
+                height: 140px;
             }
             
             .deceased-name {
-                font-size: 0.9rem;
+                font-size: 1.1rem;
             }
             
             .deceased-dates-text {
@@ -752,6 +838,11 @@
             
             .content-paragraph {
                 font-size: 0.85rem;
+            }
+
+            .highlighted-name {
+                font-size: 1rem;
+                font-weight: 700;
             }
             
             .ceremony-details {
@@ -786,6 +877,77 @@
             .print-btn, .download-btn {
                 padding: 8px 16px;
                 font-size: 12px;
+            }
+        }
+
+        /* Medium screens - maintain header at top */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .invitation-card {
+                width: 95%;
+                max-width: 800px;
+                height: 450px;
+            }
+            
+            .card-header {
+                width: 100%;
+                padding: 1.2rem;
+                min-height: 70px;
+            }
+            
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .photo-section {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .deceased-name {
+                font-size: 1rem;
+            }
+            
+            .deceased-dates-text {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Large screens - optimize for header at top layout */
+        @media (min-width: 1025px) {
+            .invitation-card {
+                width: 900px;
+                height: 500px;
+            }
+        }
+
+        /* Ultra-wide screens */
+        @media (min-width: 1400px) {
+            .invitation-card {
+                width: 1000px;
+                height: 550px;
+            }
+            
+            .card-header {
+                width: 100%;
+                padding: 2rem;
+                min-height: 100px;
+            }
+            
+            .header-title {
+                font-size: 3rem;
+            }
+            
+            .photo-section {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .deceased-name {
+                font-size: 1.3rem;
+            }
+            
+            .deceased-dates-text {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -839,21 +1001,21 @@
             <!-- Right Section - Text Content -->
             <div class="right-section">
                 <div class="main-content">
-                    <div class="deceased-title">
-                        శ్రీ డండు మనోహర్ రెడ్డి గారు
-                    </div>
+                    
+                       
+                    
                     
                     <div class="content-paragraph">
-                        తేది : 19-08-2025 మంగళవారం రోజున సాయంత్రం 6:25 గంటలకు స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.
+                        తేది : 19-08-2025 మంగళవారం రోజున సాయంత్రం 6:25 గంటలకు మా తండ్రి గారు
+                            <span class="highlighted-name">శ్రీ డండు మనోహర్ రెడ్డి గారు</span>
+                         స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.
                     </div>
                     
                     <div class="ceremony-details">
                         <div class="ceremony-date">
-                            తేది 19-08-2025 మంగళవారం రోజున
+                            తేది 04-09-2025 గురువారం రోజున
                         </div>
-                        <div class="ceremony-time">
-                            సాయంత్రం 6:25 గంటలకు
-                        </div>
+                       
                         <div class="ceremony-venue">
                             వారి పెద్దకర్మ జరుపబడును
                         </div>
@@ -866,7 +1028,7 @@
                 
                 <div class="closing-section">
                     <div class="closing-text">ఇట్లు</div>
-                    <div class="family-signature">డండు కుటుంబ సభ్యులు</div>
+                    <div class="family-signature">వారి కుమారులు</div>
                     <div class="event-location">
                         కార్య స్థలము : శ్రీ రామ్ నగర్ కాలనీ, అక్కంపేట, మనుబోలు (మండలం), నెల్లూరు జిల్లా, ఆంధ్రప్రదేశ్
                     </div>
@@ -926,7 +1088,7 @@
             });
         }
 
-        // Add interactive effects
+        // Add interactive effects and dynamic resizing
         document.addEventListener('DOMContentLoaded', function() {
             const card = document.querySelector('.invitation-card');
             
@@ -938,6 +1100,53 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
                 this.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
+            });
+
+            // Dynamic resizing based on viewport
+            function adjustCardSize() {
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                if (viewportWidth <= 768) {
+                    // Mobile - switch to vertical layout
+                    card.style.flexDirection = 'column';
+                    card.style.width = '95%';
+                    card.style.maxWidth = '600px';
+                    card.style.height = 'auto';
+                    card.style.minHeight = '400px';
+                } else if (viewportWidth <= 1024) {
+                    // Tablet - medium horizontal layout
+                    card.style.flexDirection = 'column';
+                    card.style.width = '95%';
+                    card.style.maxWidth = '800px';
+                    card.style.height = '450px';
+                } else if (viewportWidth <= 1400) {
+                    // Desktop - standard horizontal layout
+                    card.style.flexDirection = 'column';
+                    card.style.width = '900px';
+                    card.style.height = '500px';
+                } else {
+                    // Ultra-wide - large horizontal layout
+                    card.style.flexDirection = 'column';
+                    card.style.width = '1000px';
+                    card.style.height = '550px';
+                }
+            }
+
+            // Initial adjustment
+            adjustCardSize();
+
+            // Adjust on window resize
+            window.addEventListener('resize', adjustCardSize);
+
+            // Add smooth scaling for photo section
+            const photoSection = document.querySelector('.photo-section');
+            photoSection.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            photoSection.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
             });
         });
     </script>
