@@ -343,26 +343,67 @@ notificationStyles.textContent = `
 
 document.head.appendChild(notificationStyles);
 
+// Loading System
+let loadingStartTime = Date.now();
+let totalPhotosToLoad = 0;
+let photosLoaded = 0;
+let loadingProgress = 0;
+
+// Loading screen elements
+const loadingScreen = document.getElementById('loading-screen');
+const progressFill = document.getElementById('progress-fill');
+const progressText = document.getElementById('progress-text');
+const photosLoadedElement = document.getElementById('photos-loaded');
+const loadingTimeElement = document.getElementById('loading-time-element');
+
 // Dynamic Photo Loader - Automatically detects available photos from assets folder
 let photoData = [];
 
 // Function to dynamically scan and load photos from assets folder
 async function loadAvailablePhotos() {
     try {
+        // Start loading process
+        startLoading();
+        
+        // Set a timeout for the entire loading process
+        const loadingTimeout = setTimeout(() => {
+            console.log('Loading timeout reached, proceeding with available photos');
+            if (photoData.length === 0) {
+                // If no photos loaded, try fallback method
+                loadFallbackPhotos();
+            } else {
+                completeLoading();
+            }
+        }, 15000); // 15 second timeout
+        
         // Dynamic photo detection - automatically finds all photos in assets/photos
         const photoFiles = await scanAssetsFolder();
         
         console.log(`Found ${photoFiles.length} photos in assets folder:`, photoFiles);
         
+        // Set total photos to load
+        totalPhotosToLoad = photoFiles.length;
+        updateLoadingProgress(0, 'Preparing photos...');
+        
         // Check which photos actually exist and load them
         const availablePhotos = [];
         
-        for (const photoPath of photoFiles) {
+        for (let i = 0; i < photoFiles.length; i++) {
+            const photoPath = photoFiles[i];
             try {
+                // Update progress
+                const progress = ((i + 1) / totalPhotosToLoad) * 100;
+                updateLoadingProgress(progress, `Loading photo ${i + 1} of ${totalPhotosToLoad}...`);
+                
                 // Create a test image to check if the file exists
                 const testImg = new Image();
                 await new Promise((resolve, reject) => {
+                    const imageTimeout = setTimeout(() => {
+                        reject(new Error('Image load timeout'));
+                    }, 5000); // 5 second timeout per image
+                    
                     testImg.onload = () => {
+                        clearTimeout(imageTimeout);
                         availablePhotos.push({
                             src: photoPath,
                             alt: getPhotoAlt(photoPath),
@@ -371,10 +412,15 @@ async function loadAvailablePhotos() {
                             category: 'family',
                             crop: 'top'
                         });
+                        photosLoaded++;
+                        updatePhotosLoaded();
                         resolve();
                     };
                     testImg.onerror = () => {
+                        clearTimeout(imageTimeout);
                         console.log(`Photo not available: ${photoPath}`);
+                        photosLoaded++;
+                        updatePhotosLoaded();
                         reject();
                     };
                     testImg.src = photoPath;
@@ -384,13 +430,22 @@ async function loadAvailablePhotos() {
             }
         }
 
+        // Clear the main loading timeout
+        clearTimeout(loadingTimeout);
+
         // Update the global photoData array
         photoData = availablePhotos;
+        
+        // Final progress update
+        updateLoadingProgress(100, 'Finalizing gallery...');
         
         // Load photos into gallery
         loadPhotos();
         
         console.log(`Successfully loaded ${photoData.length} photos`);
+        
+        // Complete loading
+        completeLoading();
         
         // Show notification of how many photos were found
         if (photoData.length > 0) {
@@ -405,7 +460,36 @@ async function loadAvailablePhotos() {
         photoData = [];
         loadPhotos();
         showNotification('Error loading photos. Please check the assets folder.', 'error');
+        completeLoading();
     }
+}
+
+// Fallback function to load photos if main method fails
+function loadFallbackPhotos() {
+    console.log('Loading fallback photos...');
+    updateLoadingProgress(50, 'Loading fallback photos...');
+    
+    // Try to load known photos directly
+    const fallbackPhotos = [
+        'assets/photos/manohar.jpeg',
+        'assets/photos/photo1.jpeg',
+        'assets/photos/photo2.jpeg',
+        'assets/photos/photo3.jpeg',
+        'assets/photos/photo4.jpeg',
+        'assets/photos/photo5.jpeg'
+    ];
+    
+    photoData = fallbackPhotos.map(photoPath => ({
+        src: photoPath,
+        alt: getPhotoAlt(photoPath),
+        title: getPhotoTitle(photoPath),
+        description: getPhotoDescription(photoPath),
+        category: 'family',
+        crop: 'top'
+    }));
+    
+    loadPhotos();
+    completeLoading();
 }
 
 // Function to dynamically scan the assets/photos folder
@@ -538,6 +622,20 @@ async function scanAssetsFolder() {
     }
 }
 
+// Function to preload images with better caching
+function preloadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+        
+        // Add cache-busting for GitHub Pages
+        const timestamp = Date.now();
+        const separator = src.includes('?') ? '&' : '?';
+        img.src = `${src}${separator}v=${timestamp}`;
+    });
+}
+
 // Helper function to generate alt text for photos
 function getPhotoAlt(photoPath) {
     const fileName = photoPath.split('/').pop().split('.')[0];
@@ -589,16 +687,16 @@ function loadPhotos() {
                 </div>
             `;
         } else {
-            galleryGrid.innerHTML = photoData.map(createGalleryItem).join('');
-            
-            // Reinitialize lightbox functionality for new items
-            initializeLightbox();
-            
-            // Add staggered animation to gallery items
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            galleryItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-            });
+        galleryGrid.innerHTML = photoData.map(createGalleryItem).join('');
+        
+        // Reinitialize lightbox functionality for new items
+        initializeLightbox();
+        
+        // Add staggered animation to gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
         }
         
         // Update photo counter
@@ -738,6 +836,91 @@ function addSpecificPhoto(photoPath) {
     }
 }
 
+// Loading utility functions
+function startLoading() {
+    loadingStartTime = Date.now();
+    photosLoaded = 0;
+    loadingProgress = 0;
+    updateLoadingProgress(0, 'Initializing...');
+    updatePhotosLoaded();
+    updateLoadingTime();
+}
+
+function updateLoadingProgress(progress, text) {
+    loadingProgress = progress;
+    if (progressFill) progressFill.style.width = `${progress}%`;
+    if (progressText) progressText.textContent = text;
+}
+
+function updatePhotosLoaded() {
+    if (photosLoadedElement) {
+        photosLoadedElement.textContent = photosLoaded;
+    }
+}
+
+function updateLoadingTime() {
+    const elapsed = Math.floor((Date.now() - loadingStartTime) / 1000);
+    if (loadingTimeElement) {
+        loadingTimeElement.textContent = elapsed;
+    }
+}
+
+function completeLoading() {
+    // Update final stats
+    updateLoadingProgress(100, 'Ready!');
+    updateLoadingTime();
+    
+    // Show main content
+    document.body.style.opacity = '1';
+    
+    // Hide loading screen after a short delay
+    setTimeout(() => {
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            // Remove loading screen from DOM after animation
+            setTimeout(() => {
+                if (loadingScreen) {
+                    loadingScreen.remove();
+                }
+            }, 500);
+        }
+    }, 1000);
+}
+
+// Update loading time every second
+setInterval(updateLoadingTime, 1000);
+
+// Performance optimization for GitHub Pages
+function optimizeForGitHubPages() {
+    // Add preload hints for critical resources
+    const preloadLinks = [
+        'assets/photos/manohar.jpeg',
+        'assets/photos/photo1.jpeg',
+        'assets/photos/photo2.jpeg',
+        'assets/photos/photo3.jpeg',
+        'assets/photos/photo4.jpeg',
+        'assets/photos/photo5.jpeg'
+    ];
+    
+    preloadLinks.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+    });
+    
+    // Add service worker for better caching (if supported)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('Service Worker registration failed:', err);
+        });
+    }
+}
+
+// Call optimization function
+optimizeForGitHubPages();
+
 // Function to easily add new photos (for manual updates)
 function addNewPhotoToGallery(photoPath, title, description, category = 'family') {
     // Add the new photo path to the photoFiles array in loadAvailablePhotos function
@@ -843,12 +1026,14 @@ function setDefaultCrop() {
 
 // Initialize page with fade-in effect
 document.addEventListener('DOMContentLoaded', () => {
+    // Hide the main content initially
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
     
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
+    // Show loading screen
+    if (loadingScreen) {
+        loadingScreen.style.display = 'flex';
+    }
     
     // Load photos dynamically with debug info
     console.log('🚀 Starting dynamic photo detection...');
