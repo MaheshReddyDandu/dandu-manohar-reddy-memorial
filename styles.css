@@ -189,11 +189,8 @@ body {
 .about .section-title {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 25%, #FFD700 50%, #FF9800 75%, #E91E63 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: #ffffff;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
     animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
@@ -204,12 +201,13 @@ body {
 
 .section-subtitle {
     font-size: 1.1rem;
-    color: #666;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 1rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.9;
 }
 
 .photo-counter {
@@ -1221,9 +1219,21 @@ body {
 /* About Section */
 .about {
     padding: 100px 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
     position: relative;
     overflow: visible;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="about-grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23about-grain)"/></svg>');
+    opacity: 0.1;
+    animation: float 20s ease-in-out infinite;
 }
 
 .about::before {
@@ -1258,10 +1268,10 @@ body {
 
 .about-card {
     position: relative;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 25px;
     padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: visible;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1276,7 +1286,7 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A, #FFD700, #FF9800);
+    background: linear-gradient(90deg, #FFD700, #FFA500, #667eea, #764ba2);
     transform: scaleX(0);
     transition: transform 0.6s ease;
 }
@@ -1292,7 +1302,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    background: linear-gradient(90deg, #FFD700, #667eea);
     transform: scaleX(0);
     transition: transform 0.4s ease 0.2s;
 }
@@ -1303,12 +1313,13 @@ body {
 
 .about-card:hover {
     transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .about-card:hover .card-badge {
     transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
 }
 
 .about-card:hover .card-decoration .decoration-dot {
@@ -1325,7 +1336,7 @@ body {
     position: absolute;
     top: -10px;
     left: 20px;
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    background: linear-gradient(135deg, #FFD700, #FFA500);
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
@@ -1334,7 +1345,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
     z-index: 10;
 }
 
@@ -1352,19 +1363,19 @@ body {
 .card-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
     transition: all 0.3s ease;
 }
 
 .about-card:hover .card-icon {
     transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
 }
 
 .card-icon i {
@@ -1375,17 +1386,14 @@ body {
 .card-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .card-description {
     font-size: 1rem;
-    color: #666;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
@@ -1401,7 +1409,7 @@ body {
 .decoration-dot {
     width: 8px;
     height: 8px;
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    background: linear-gradient(135deg, #FFD700, #FFA500);
     border-radius: 50%;
     animation: dotPulse 2s ease-in-out infinite;
 }
@@ -1455,15 +1463,17 @@ body {
 /* Quote Card */
 .about-quote-card {
     position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding: 3rem;
-    box-shadow: 0 25px 70px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
     animation: fadeInUp 1s ease-out 0.5s both;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .about-quote-card::before {
@@ -1510,9 +1520,10 @@ body {
 }
 
 .quote-author {
-    color: rgba(255, 255, 255, 0.9);
+    color: #FFD700;
     font-weight: 600;
     font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 /* Responsive Design */
@@ -1687,9 +1698,10 @@ body {
 
 .about-icon {
     font-size: 4rem;
-    color: #4CAF50;
+    color: #FFD700;
     margin-bottom: 1rem;
     animation: iconFloat 3s ease-in-out infinite;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 @keyframes iconFloat {
@@ -1700,10 +1712,11 @@ body {
 .about-divider {
     width: 100px;
     height: 4px;
-    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #FFD700 100%);
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #667eea 100%);
     margin: 1.5rem auto;
     border-radius: 2px;
     animation: dividerGrow 2s ease-out;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
 }
 
 @keyframes dividerGrow {
