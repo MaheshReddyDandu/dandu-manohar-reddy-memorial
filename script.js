@@ -365,21 +365,32 @@ async function loadAvailablePhotos() {
         // Start loading process
         startLoading();
         
-        // Set a timeout for the entire loading process
+        // Set a timeout for the entire loading process (shorter for mobile)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const timeoutDuration = isMobile ? 8000 : 15000; // 8s for mobile, 15s for desktop
+        
         const loadingTimeout = setTimeout(() => {
-            console.log('Loading timeout reached, proceeding with available photos');
+            console.log(`Loading timeout reached (${timeoutDuration}ms), proceeding with available photos`);
             if (photoData.length === 0) {
                 // If no photos loaded, try fallback method
                 loadFallbackPhotos();
             } else {
                 completeLoading();
             }
-        }, 15000); // 15 second timeout
+        }, timeoutDuration);
         
         // Dynamic photo detection - automatically finds all photos in assets/photos
         const photoFiles = await scanAssetsFolder();
         
         console.log(`Found ${photoFiles.length} photos in assets folder:`, photoFiles);
+        
+        // If no photos found, use fallback immediately
+        if (photoFiles.length === 0) {
+            console.log('No photos detected, using fallback immediately');
+            clearTimeout(loadingTimeout);
+            loadFallbackPhotos();
+            return;
+        }
         
         // Set total photos to load
         totalPhotosToLoad = photoFiles.length;
@@ -400,7 +411,7 @@ async function loadAvailablePhotos() {
                 await new Promise((resolve, reject) => {
                     const imageTimeout = setTimeout(() => {
                         reject(new Error('Image load timeout'));
-                    }, 5000); // 5 second timeout per image
+                    }, isMobile ? 3000 : 5000); // 3s for mobile, 5s for desktop
                     
                     testImg.onload = () => {
                         clearTimeout(imageTimeout);
@@ -488,8 +499,16 @@ function loadFallbackPhotos() {
         crop: 'top'
     }));
     
+    // Update progress
+    updateLoadingProgress(100, 'Fallback photos loaded');
+    
+    // Load photos into gallery
     loadPhotos();
-    completeLoading();
+    
+    // Complete loading with a small delay to show progress
+    setTimeout(() => {
+        completeLoading();
+    }, 500);
 }
 
 // Function to dynamically scan the assets/photos folder
@@ -887,6 +906,27 @@ function completeLoading() {
     }, 1000);
 }
 
+// Force complete loading for mobile safety
+function forceCompleteLoading() {
+    console.log('🚨 Force completing loading due to timeout');
+    
+    // Ensure we have some photos or use fallback
+    if (photoData.length === 0) {
+        loadFallbackPhotos();
+    } else {
+        // Just complete with what we have
+        updateLoadingProgress(100, 'Ready!');
+        updateLoadingTime();
+        document.body.style.opacity = '1';
+        
+        // Force hide loading screen
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+            loadingScreen.remove();
+        }
+    }
+}
+
 // Update loading time every second
 setInterval(updateLoadingTime, 1000);
 
@@ -1043,6 +1083,28 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('✅ Loading screen initialized and displayed');
     } else {
         console.error('❌ Loading screen element not found!');
+    }
+    
+    // Add mobile-specific safety timeout and skip button
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Show skip button after 5 seconds on mobile
+        setTimeout(() => {
+            const skipButton = document.getElementById('loading-skip');
+            if (skipButton) {
+                skipButton.style.display = 'block';
+                console.log('📱 Skip button shown for mobile users');
+            }
+        }, 5000);
+        
+        // Mobile safety timeout
+        const mobileSafetyTimeout = setTimeout(() => {
+            console.log('🔄 Mobile safety timeout triggered - forcing completion');
+            if (loadingScreen && loadingScreen.style.display !== 'none') {
+                forceCompleteLoading();
+            }
+        }, 10000); // 10 second safety timeout for mobile
     }
     
     // Load photos dynamically with debug info
