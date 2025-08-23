@@ -365,9 +365,9 @@ async function loadAvailablePhotos() {
         // Start loading process
         startLoading();
         
-        // Set a timeout for the entire loading process (shorter for mobile)
+        // Set a shorter timeout for mobile users
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const timeoutDuration = isMobile ? 8000 : 15000; // 8s for mobile, 15s for desktop
+        const timeoutDuration = isMobile ? 8000 : 12000; // 8s for mobile, 12s for desktop
         
         const loadingTimeout = setTimeout(() => {
             console.log(`Loading timeout reached (${timeoutDuration}ms), proceeding with available photos`);
@@ -379,32 +379,28 @@ async function loadAvailablePhotos() {
             }
         }, timeoutDuration);
         
-        // Dynamic photo detection - automatically finds all photos in assets/photos
-        const photoFiles = await scanAssetsFolder();
+        // First, try to load known photos immediately for faster experience
+        const knownPhotos = [
+            'assets/photos/photo1.jpeg',
+            'assets/photos/photo2.jpeg', 
+            'assets/photos/photo3.jpeg',
+            'assets/photos/photo4.jpeg',
+            'assets/photos/photo5.jpeg'
+        ];
         
-        console.log(`Found ${photoFiles.length} photos in assets folder:`, photoFiles);
+        console.log('🚀 Loading known photos immediately...');
+        updateLoadingProgress(10, 'Loading known photos...');
         
-        // If no photos found, use fallback immediately
-        if (photoFiles.length === 0) {
-            console.log('No photos detected, using fallback immediately');
-            clearTimeout(loadingTimeout);
-            loadFallbackPhotos();
-            return;
-        }
-        
-        // Set total photos to load
-        totalPhotosToLoad = photoFiles.length;
-        updateLoadingProgress(0, 'Preparing photos...');
-        
-        // Check which photos actually exist and load them
+        // Try to load known photos first
         const availablePhotos = [];
+        let loadedCount = 0;
         
-        for (let i = 0; i < photoFiles.length; i++) {
-            const photoPath = photoFiles[i];
+        for (let i = 0; i < knownPhotos.length; i++) {
+            const photoPath = knownPhotos[i];
             try {
                 // Update progress
-                const progress = ((i + 1) / totalPhotosToLoad) * 100;
-                updateLoadingProgress(progress, `Loading photo ${i + 1} of ${totalPhotosToLoad}...`);
+                const progress = 10 + ((i + 1) / knownPhotos.length) * 40; // 10% to 50%
+                updateLoadingProgress(progress, `Loading photo ${i + 1} of ${knownPhotos.length}...`);
                 
                 // Create a test image to check if the file exists
                 const testImg = new Image();
@@ -423,6 +419,7 @@ async function loadAvailablePhotos() {
                             category: 'family',
                             crop: 'top'
                         });
+                        loadedCount++;
                         photosLoaded++;
                         updatePhotosLoaded();
                         resolve();
@@ -440,10 +437,82 @@ async function loadAvailablePhotos() {
                 console.log(`Failed to load photo: ${photoPath}`);
             }
         }
-
+        
+        // If we have photos, proceed immediately
+        if (availablePhotos.length > 0) {
+            console.log(`✅ Loaded ${availablePhotos.length} photos immediately`);
+            
+            // Clear the main loading timeout
+            clearTimeout(loadingTimeout);
+            
+            // Update the global photoData array
+            photoData = availablePhotos;
+            
+            // Final progress update
+            updateLoadingProgress(100, 'Finalizing gallery...');
+            
+            // Load photos into gallery
+            loadPhotos();
+            
+            console.log(`Successfully loaded ${photoData.length} photos`);
+            
+            // Complete loading
+            completeLoading();
+            
+            // Show notification
+            showNotification(`Gallery loaded! Found ${photoData.length} photos`, 'success');
+            return;
+        }
+        
+        // If no known photos loaded, try dynamic detection
+        console.log('🔄 No known photos found, trying dynamic detection...');
+        updateLoadingProgress(60, 'Scanning for photos...');
+        
+        const photoFiles = await scanAssetsFolder();
+        console.log(`Found ${photoFiles.length} photos in assets folder:`, photoFiles);
+        
+        if (photoFiles.length > 0) {
+            // Load detected photos
+            for (let i = 0; i < photoFiles.length; i++) {
+                const photoPath = photoFiles[i];
+                if (!availablePhotos.some(p => p.src === photoPath)) {
+                    try {
+                        const progress = 60 + ((i + 1) / photoFiles.length) * 30; // 60% to 90%
+                        updateLoadingProgress(progress, `Loading detected photo ${i + 1}...`);
+                        
+                        const testImg = new Image();
+                        await new Promise((resolve, reject) => {
+                            const imageTimeout = setTimeout(() => reject(new Error('Timeout')), 3000);
+                            testImg.onload = () => {
+                                clearTimeout(imageTimeout);
+                                availablePhotos.push({
+                                    src: photoPath,
+                                    alt: getPhotoAlt(photoPath),
+                                    title: getPhotoTitle(photoPath),
+                                    description: getPhotoDescription(photoPath),
+                                    category: 'family',
+                                    crop: 'top'
+                                });
+                                photosLoaded++;
+                                updatePhotosLoaded();
+                                resolve();
+                            };
+                            testImg.onerror = () => {
+                                clearTimeout(imageTimeout);
+                                reject();
+                            };
+                            testImg.src = photoPath;
+                        });
+                    } catch (error) {
+                        console.log(`Failed to load detected photo: ${photoPath}`);
+                    }
+                }
+            }
+        }
+        
         // Clear the main loading timeout
         clearTimeout(loadingTimeout);
-
+        
         // Update the global photoData array
         photoData = availablePhotos;
         
@@ -458,11 +527,12 @@ async function loadAvailablePhotos() {
         // Complete loading
         completeLoading();
         
-        // Show notification of how many photos were found
+        // Show notification
         if (photoData.length > 0) {
-            showNotification(`Gallery updated! Found ${photoData.length} photos`, 'success');
+            showNotification(`Gallery loaded! Found ${photoData.length} photos`, 'success');
         } else {
-            showNotification('No photos found in assets folder', 'warning');
+            showNotification('No photos found, using fallback', 'warning');
+            loadFallbackPhotos();
         }
         
     } catch (error) {
@@ -470,19 +540,18 @@ async function loadAvailablePhotos() {
         // Fallback to empty gallery
         photoData = [];
         loadPhotos();
-        showNotification('Error loading photos. Please check the assets folder.', 'error');
-        completeLoading();
+        showNotification('Error loading photos. Using fallback.', 'error');
+        loadFallbackPhotos();
     }
 }
 
 // Fallback function to load photos if main method fails
 function loadFallbackPhotos() {
-    console.log('Loading fallback photos...');
-    updateLoadingProgress(50, 'Loading fallback photos...');
+    console.log('🚨 Loading fallback photos...');
+    updateLoadingProgress(80, 'Loading fallback photos...');
     
-    // Try to load known photos directly
+    // Use the photos we know exist in the assets folder
     const fallbackPhotos = [
-        'assets/photos/manohar.jpeg',
         'assets/photos/photo1.jpeg',
         'assets/photos/photo2.jpeg',
         'assets/photos/photo3.jpeg',
@@ -499,8 +568,7 @@ function loadFallbackPhotos() {
         crop: 'top'
     }));
     
-    // Update progress
-    updateLoadingProgress(100, 'Fallback photos loaded');
+    updateLoadingProgress(100, 'Fallback photos loaded!');
     
     // Load photos into gallery
     loadPhotos();
@@ -906,9 +974,12 @@ function completeLoading() {
     }, 1000);
 }
 
-// Force complete loading for mobile safety
+// Update loading time every second
+setInterval(updateLoadingTime, 1000);
+
+// Safety mechanism: Force complete loading if it takes too long
 function forceCompleteLoading() {
-    console.log('🚨 Force completing loading due to timeout');
+    console.log('🚨 Force completing loading due to safety timeout');
     
     // Ensure we have some photos or use fallback
     if (photoData.length === 0) {
@@ -927,8 +998,13 @@ function forceCompleteLoading() {
     }
 }
 
-// Update loading time every second
-setInterval(updateLoadingTime, 1000);
+// Set a global safety timeout
+setTimeout(() => {
+    if (loadingScreen && loadingScreen.style.display !== 'none') {
+        console.log('⚠️ Global safety timeout triggered');
+        forceCompleteLoading();
+    }
+}, 20000); // 20 second global safety timeout
 
 // Performance optimization for GitHub Pages
 function optimizeForGitHubPages() {
@@ -1085,26 +1161,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('❌ Loading screen element not found!');
     }
     
-    // Add mobile-specific safety timeout and skip button
+    // Detect mobile and optimize loading
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
     if (isMobile) {
-        // Show skip button after 5 seconds on mobile
-        setTimeout(() => {
-            const skipButton = document.getElementById('loading-skip');
-            if (skipButton) {
-                skipButton.style.display = 'block';
-                console.log('📱 Skip button shown for mobile users');
-            }
-        }, 5000);
-        
-        // Mobile safety timeout
-        const mobileSafetyTimeout = setTimeout(() => {
-            console.log('🔄 Mobile safety timeout triggered - forcing completion');
-            if (loadingScreen && loadingScreen.style.display !== 'none') {
-                forceCompleteLoading();
-            }
-        }, 10000); // 10 second safety timeout for mobile
+        console.log('📱 Mobile device detected - optimizing loading experience');
+        // Add mobile-specific loading optimizations
+        updateLoadingProgress(5, 'Mobile optimization...');
     }
     
     // Load photos dynamically with debug info

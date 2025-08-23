@@ -121,38 +121,6 @@
     color: #FFD700;
 }
 
-/* Skip button for mobile */
-.loading-skip {
-    margin-top: 2rem;
-    opacity: 0;
-    animation: fadeIn 0.5s ease 5s forwards;
-}
-
-.skip-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    padding: 12px 24px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    backdrop-filter: blur(10px);
-}
-
-.skip-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
 /* Loading screen responsive */
 @media (max-width: 768px) {
     .loading-container {
