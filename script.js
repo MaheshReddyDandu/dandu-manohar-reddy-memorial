@@ -462,15 +462,6 @@ async function loadAvailablePhotos() {
         showNotification('Error loading photos. Please check the assets folder.', 'error');
         completeLoading();
     }
-    
-    // Safety mechanism: ensure scrolling is restored after a timeout
-    setTimeout(() => {
-        if (document.body.classList.contains('loading')) {
-            console.log('🔄 Safety timeout: restoring scrolling...');
-            document.body.classList.remove('loading');
-            document.body.style.overflow = 'auto';
-        }
-    }, 20000); // 20 second safety timeout
 }
 
 // Fallback function to load photos if main method fails
@@ -879,9 +870,8 @@ function completeLoading() {
     updateLoadingProgress(100, 'Ready!');
     updateLoadingTime();
     
-    // Show main content and restore scrolling
+    // Show main content
     document.body.style.opacity = '1';
-    document.body.classList.remove('loading'); // Remove loading class to restore scrolling
     
     // Hide loading screen after a short delay
     setTimeout(() => {
@@ -1036,22 +1026,14 @@ function setDefaultCrop() {
 
 // Initialize page with fade-in effect
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 DOM Content Loaded - Initializing loading system...');
-    
-    // Ensure loading screen is visible
-    if (loadingScreen) {
-        loadingScreen.style.display = 'flex';
-        loadingScreen.style.opacity = '1';
-        loadingScreen.style.visibility = 'visible';
-        console.log('✅ Loading screen displayed');
-    } else {
-        console.error('❌ Loading screen element not found!');
-    }
-    
-    // Hide the main content initially but keep loading screen visible
+    // Hide the main content initially
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
-    document.body.classList.add('loading'); // Add loading class for overflow control
+    
+    // Show loading screen
+    if (loadingScreen) {
+        loadingScreen.style.display = 'flex';
+    }
     
     // Load photos dynamically with debug info
     console.log('🚀 Starting dynamic photo detection...');

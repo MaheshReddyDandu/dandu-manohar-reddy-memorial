@@ -9,40 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Immediate Loading Script -->
-    <script>
-        // Show loading screen immediately to prevent white flash
-        (function() {
-            // Immediate execution to prevent white flash
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.style.display = 'flex';
-                loadingScreen.style.opacity = '1';
-                loadingScreen.style.visibility = 'visible';
-                console.log('🚀 Loading screen shown immediately');
-            }
-            
-            // Additional safety: ensure loading screen shows on DOM ready
-            document.addEventListener('DOMContentLoaded', function() {
-                if (loadingScreen) {
-                    loadingScreen.style.display = 'flex';
-                    loadingScreen.style.opacity = '1';
-                    loadingScreen.style.visibility = 'visible';
-                    console.log('✅ Loading screen confirmed on DOM ready');
-                }
-            });
-            
-            // Fallback for very early execution
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', function() {
-                    if (loadingScreen) {
-                        loadingScreen.style.display = 'flex';
-                    }
-                });
-            }
-        })();
-    </script>
-    
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-container">

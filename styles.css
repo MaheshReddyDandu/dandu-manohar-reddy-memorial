@@ -11,9 +11,6 @@
     justify-content: center;
     z-index: 9999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    /* Ensure immediate visibility */
-    opacity: 1;
-    visibility: visible;
 }
 
 .loading-screen.hidden {
@@ -139,45 +136,6 @@
         flex-direction: column;
         gap: 1rem;
     }
-}
-
-/* Critical Loading Styles - Prevent White Flash */
-html, body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    margin: 0;
-    padding: 0;
-}
-
-/* Only hide overflow during initial loading */
-body.loading {
-    overflow: hidden;
-}
-
-/* Ensure scrolling is always available after loading */
-body:not(.loading) {
-    overflow: auto;
-}
-
-/* Fallback: ensure scrolling works */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Ensure loading screen is always visible initially */
-.loading-screen {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Hide main content during loading */
-body.loading {
-    overflow: hidden;
-}
-
-/* Prevent any white flash during page load */
-* {
-    background-color: transparent;
 }
 
 /* Reset and Base Styles */
