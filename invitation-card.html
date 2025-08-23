@@ -16,7 +16,7 @@
         body {
             font-family: 'Noto Sans Telugu', 'Arial', sans-serif;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            min-height: 100vh;
+            min-height: 120vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,7 +66,7 @@
             transform-origin: center;
         }
 
-        /* Golden Border Pattern */
+        /* Ornate Decorative Border - Exact Design from Image */
         .invitation-card::before {
             content: '';
             position: absolute;
@@ -84,6 +84,480 @@
             border-radius: 16px;
         }
 
+        /* Corner Decorative Motifs */
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .corner-decoration::before,
+        .corner-decoration::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            border-radius: 50%;
+        }
+
+        .corner-decoration::before {
+            width: 12px;
+            height: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+
+        .corner-decoration::after {
+            width: 6px;
+            height: 6px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Top-Left Corner */
+        .corner-tl {
+            top: 15px;
+            left: 15px;
+        }
+
+        .corner-tl .swirl {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid #D4AF37;
+            border-left: 3px solid #D4AF37;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            animation: swirlRotate 8s linear infinite;
+        }
+
+        .corner-tl .swirl::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-top: 2px solid #FFD700;
+            border-left: 2px solid #FFD700;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            animation: swirlRotate 6s linear infinite reverse;
+        }
+
+        .corner-tl .swirl::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #D4AF37;
+            border-left: 2px solid #D4AF37;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            animation: swirlRotate 4s linear infinite;
+        }
+
+        /* Top-Right Corner */
+        .corner-tr {
+            top: 15px;
+            right: 15px;
+            transform: scaleX(-1);
+        }
+
+        .corner-tr .swirl {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid #D4AF37;
+            border-left: 3px solid #D4AF37;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            animation: swirlRotate 8s linear infinite;
+        }
+
+        .corner-tr .swirl::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-top: 2px solid #FFD700;
+            border-left: 2px solid #FFD700;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            animation: swirlRotate 6s linear infinite reverse;
+        }
+
+        .corner-tr .swirl::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #D4AF37;
+            border-left: 2px solid #D4AF37;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            animation: swirlRotate 4s linear infinite;
+        }
+
+        /* Bottom-Left Corner */
+        .corner-bl {
+            bottom: 15px;
+            left: 15px;
+            transform: scaleY(-1);
+        }
+
+        .corner-bl .swirl {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid #D4AF37;
+            border-left: 3px solid #D4AF37;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            animation: swirlRotate 8s linear infinite;
+        }
+
+        .corner-bl .swirl::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-top: 2px solid #FFD700;
+            border-left: 2px solid #FFD700;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            animation: swirlRotate 6s linear infinite reverse;
+        }
+
+        .corner-bl .swirl::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #D4AF37;
+            border-left: 2px solid #D4AF37;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            animation: swirlRotate 4s linear infinite;
+        }
+
+        /* Bottom-Right Corner */
+        .corner-br {
+            bottom: 15px;
+            right: 15px;
+            transform: scale(-1);
+        }
+
+        .corner-br .swirl {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid #D4AF37;
+            border-left: 3px solid #D4AF37;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            animation: swirlRotate 8s linear infinite;
+        }
+
+        .corner-br .swirl::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-top: 2px solid #FFD700;
+            border-left: 2px solid #FFD700;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            animation: swirlRotate 6s linear infinite reverse;
+        }
+
+        .corner-br .swirl::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #D4AF37;
+            border-left: 2px solid #D4AF37;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            animation: swirlRotate 4s linear infinite;
+        }
+
+        /* Connecting Border Lines */
+        .border-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent 0%, #D4AF37 20%, #FFD700 50%, #D4AF37 80%, transparent 100%);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+        }
+
+        .border-line.top {
+            top: 25px;
+            left: 95px;
+            right: 95px;
+            height: 2px;
+        }
+
+        .border-line.bottom {
+            bottom: 25px;
+            left: 95px;
+            right: 95px;
+            height: 2px;
+        }
+
+        .border-line.left {
+            left: 25px;
+            top: 95px;
+            bottom: 95px;
+            width: 2px;
+        }
+
+        .border-line.right {
+            right: 25px;
+            top: 95px;
+            bottom: 95px;
+            width: 2px;
+        }
+
+        /* Swirl Animation */
+        @keyframes swirlRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Additional Decorative Elements */
+        .decorative-dots {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+        }
+
+        .decorative-dots.top-left { top: 35px; left: 85px; }
+        .decorative-dots.top-right { top: 35px; right: 85px; }
+        .decorative-dots.bottom-left { bottom: 35px; left: 85px; }
+        .decorative-dots.bottom-right { bottom: 35px; right: 85px; }
+
+        .decorative-dots.mid-top { top: 35px; left: 50%; transform: translateX(-50%); }
+        .decorative-dots.mid-bottom { bottom: 35px; left: 50%; transform: translateX(-50%); }
+        .decorative-dots.mid-left { left: 35px; top: 50%; transform: translateY(-50%); }
+        .decorative-dots.mid-right { right: 35px; top: 50%; transform: translateY(-50%); }
+
+        /* Enhanced Corner Motifs with More Intricate Patterns */
+        .corner-decoration::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #FFD700 0%, #D4AF37 70%, transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 15px rgba(255, 215, 0, 0.8),
+                inset 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Additional Swirling Elements */
+        .corner-decoration .swirl-extra {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid transparent;
+            border-top: 2px solid #FFD700;
+            border-right: 2px solid #FFD700;
+            border-radius: 50%;
+            top: 25px;
+            left: 25px;
+            animation: swirlRotate 5s linear infinite reverse;
+        }
+
+        .corner-decoration .swirl-extra::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 1px solid transparent;
+            border-top: 1px solid #D4AF37;
+            border-right: 1px solid #D4AF37;
+            border-radius: 50%;
+            top: 7px;
+            left: 7px;
+            animation: swirlRotate 3s linear infinite;
+        }
+
+        /* Enhanced Border Lines with Patterns */
+        .border-line::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 8px,
+                #FFD700 8px,
+                #FFD700 10px,
+                transparent 10px,
+                transparent 18px
+            );
+            animation: borderShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes borderShimmer {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Corner Leaf Motifs */
+        .corner-leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #D4AF37 0%, #FFD700 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: leafSway 4s ease-in-out infinite;
+        }
+
+        .corner-leaf.top-left { top: 45px; left: 45px; transform: rotate(-45deg); }
+        .corner-leaf.top-right { top: 45px; right: 45px; transform: rotate(45deg); }
+        .corner-leaf.bottom-left { bottom: 45px; left: 45px; transform: rotate(-135deg); }
+        .corner-leaf.bottom-right { bottom: 45px; right: 45px; transform: rotate(135deg); }
+
+        @keyframes leafSway {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.1); }
+        }
+
+        .corner-leaf.top-right {
+            animation: leafSwayRight 4s ease-in-out infinite;
+        }
+
+        @keyframes leafSwayRight {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        .corner-leaf.bottom-left {
+            animation: leafSwayBottomLeft 4s ease-in-out infinite;
+        }
+
+        @keyframes leafSwayBottomLeft {
+            0%, 100% { transform: rotate(-135deg) scale(1); }
+            50% { transform: rotate(-135deg) scale(1.1); }
+        }
+
+        .corner-leaf.bottom-right {
+            animation: leafSwayBottomRight 4s ease-in-out infinite;
+        }
+
+        @keyframes leafSwayBottomRight {
+            0%, 100% { transform: rotate(135deg) scale(1); }
+            50% { transform: rotate(135deg) scale(1.1); }
+        }
+
+        /* Subtle Background Pattern */
+        .invitation-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px, 60px 60px, 40px 40px;
+            background-position: 0 0, 30px 30px, 15px 15px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Enhanced Corner Glow Effects */
+        .corner-decoration {
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+        }
+
+        .corner-decoration:hover {
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+        }
+
+        /* Border Line Glow */
+        .border-line {
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
+
+        /* Responsive Adjustments for Decorative Elements */
+        @media (max-width: 768px) {
+            .corner-decoration {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .corner-decoration .swirl {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .corner-decoration .swirl-extra {
+                width: 22px;
+                height: 22px;
+                top: 19px;
+                left: 19px;
+            }
+            
+            .corner-leaf {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .corner-leaf.top-left { top: 35px; left: 35px; }
+            .corner-leaf.top-right { top: 35px; right: 35px; }
+            .corner-leaf.bottom-left { bottom: 35px; left: 35px; }
+            .corner-leaf.bottom-right { bottom: 35px; right: 35px; }
+            
+            .border-line.top { top: 20px; left: 75px; right: 75px; }
+            .border-line.bottom { bottom: 20px; left: 75px; right: 75px; }
+            .border-line.left { left: 20px; top: 75px; bottom: 75px; }
+            .border-line.right { right: 20px; top: 75px; bottom: 75px; }
+            
+            .decorative-dots.top-left { top: 30px; left: 65px; }
+            .decorative-dots.top-right { top: 30px; right: 65px; }
+            .decorative-dots.bottom-left { bottom: 30px; left: 65px; }
+            .decorative-dots.bottom-right { bottom: 30px; right: 65px; }
+        }
+
         .card-header {
             background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
             color: #2c3e50;
@@ -96,7 +570,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            min-height: 80px;
+            min-height: 100px;
         }
 
         .header-title {
@@ -161,6 +635,8 @@
             padding: 1.5rem;
             gap: 1.5rem;
             flex-direction: row;
+            justify-content: center;
+            align-items: center;
         }
 
         .left-section {
@@ -171,6 +647,7 @@
             justify-content: center;
             padding-right: 1.5rem;
             text-align: center;
+            margin: 0 auto;
         }
 
         .photo-section {
@@ -251,12 +728,19 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             gap: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .main-content {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .deceased-title {
@@ -329,7 +813,11 @@
 
         .closing-section {
             text-align: center;
-            margin-top: auto;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .closing-text {
@@ -447,6 +935,8 @@
                 display: flex !important;
                 flex-direction: column !important;
                 overflow: visible !important;
+                justify-content: center !important;
+                align-items: center !important;
             }
             
             .invitation-card::before {
@@ -506,6 +996,8 @@
                 padding: 1.5rem !important;
                 gap: 1.5rem !important;
                 overflow: visible !important;
+                justify-content: center !important;
+                align-items: center !important;
             }
             
             .left-section {
@@ -516,6 +1008,7 @@
                 justify-content: center !important;
                 padding-right: 1.5rem !important;
                 text-align: center !important;
+                margin: 0 auto !important;
             }
             
             .photo-section {
@@ -564,13 +1057,19 @@
                 flex: 1 !important;
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: space-between !important;
+                justify-content: center !important;
                 gap: 1.5rem !important;
+                max-width: 400px !important;
+                margin: 0 auto !important;
             }
             
             .main-content {
                 flex: 1 !important;
-                display: block !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
             }
             
             .deceased-title {
@@ -641,7 +1140,11 @@
             
             .closing-section {
                 text-align: center !important;
-                margin-top: auto !important;
+                margin-top: 1rem !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
             
             .closing-text {
@@ -667,6 +1170,24 @@
             .decoration-elements {
                 display: none !important;
             }
+        }
+
+        /* Content Centering and Spacing */
+        .invitation-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-content {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .left-section, .right-section {
+            flex-shrink: 0;
         }
 
         /* Mobile Responsive */
@@ -957,12 +1478,52 @@
         <button class="print-btn" onclick="window.print()">
             <i class="fas fa-print"></i> ప్రింట్ చేయండి
         </button>
-        <button class="download-btn" onclick="downloadCard()">
+        <!-- <button class="download-btn" onclick="downloadCard()">
             <i class="fas fa-download"></i> డౌన్‌లోడ్ చేయండి
-        </button>
+        </button> -->
     </div>
 
     <div class="invitation-card">
+        <!-- Ornate Decorative Border Elements -->
+        <div class="corner-decoration corner-tl">
+            <div class="swirl"></div>
+            <div class="swirl-extra"></div>
+        </div>
+        <div class="corner-decoration corner-tr">
+            <div class="swirl"></div>
+            <div class="swirl-extra"></div>
+        </div>
+        <div class="corner-decoration corner-bl">
+            <div class="swirl"></div>
+            <div class="swirl-extra"></div>
+        </div>
+        <div class="corner-decoration corner-br">
+            <div class="swirl"></div>
+            <div class="swirl-extra"></div>
+        </div>
+        
+        <!-- Corner Leaf Motifs -->
+        <div class="corner-leaf top-left"></div>
+        <div class="corner-leaf top-right"></div>
+        <div class="corner-leaf bottom-left"></div>
+        <div class="corner-leaf bottom-right"></div>
+        
+        <!-- Connecting Border Lines -->
+        <div class="border-line top"></div>
+        <div class="border-line bottom"></div>
+        <div class="border-line left"></div>
+        <div class="border-line right"></div>
+        
+        <!-- Decorative Dots -->
+        <div class="decorative-dots top-left"></div>
+        <div class="decorative-dots top-right"></div>
+        <div class="decorative-dots bottom-left"></div>
+        <div class="decorative-dots bottom-right"></div>
+        <div class="decorative-dots mid-top"></div>
+        <div class="decorative-dots mid-bottom"></div>
+        <div class="decorative-dots mid-left"></div>
+        <div class="decorative-dots mid-right"></div>
+        
         <div class="card-header">
             <div class="header-symbols">
                 <div class="lamp-symbol">
@@ -991,7 +1552,7 @@
                 <div class="deceased-dates">
                     <div class="deceased-name">కీ॥శే॥ శ్రీ డండు మనోహర్ రెడ్డి గారు</div>
                     <div class="deceased-dates-text">
-                        జననం : 1970<br>
+                        జననం : 13-05-1971<br>
                         మరణం : 19-08-2025<br>
                         సమయం : సాయంత్రం 6:25 గంటలు
                     </div>
