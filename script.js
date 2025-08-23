@@ -1,3 +1,19 @@
+/*
+ * DYNAMIC PHOTO GALLERY SYSTEM
+ * 
+ * To add new photos:
+ * 1. Place your photo files in the assets/photos/ folder
+ * 2. Update the photoFiles array in the loadAvailablePhotos() function below
+ * 3. The gallery will automatically detect and display only available photos
+ * 4. Use the refresh button to reload the gallery
+ * 
+ * The system automatically:
+ * - Checks which photos actually exist
+ * - Updates the photo counter
+ * - Shows a message when no photos are available
+ * - Handles missing photos gracefully
+ */
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -327,49 +343,87 @@ notificationStyles.textContent = `
 
 document.head.appendChild(notificationStyles);
 
-// Dynamic Photo Loader - All your photos are included here
-const photoData = [
-    {
-        src: 'assets/photos/20BCD3A6-E208-4B4A-A9F5-C4E7E213AC19_1_105_c.jpeg',
-        alt: 'Family Photo 1',
-        title: 'Family Memories',
-        description: 'Precious family moments with our farmer father',
-        category: 'family',
-        crop: 'top' // Options: top, bottom, left, right, center
-    },
-    {
-        src: 'assets/photos/56781745-48B3-4688-8AA2-16D8B80D5117_1_105_c.jpeg',
-        alt: 'Family Photo 2',
-        title: 'Family Portrait',
-        description: 'Beautiful family togetherness built on hard work',
-        category: 'family',
-        crop: 'top'
-    },
-    {
-        src: 'assets/photos/4EBE2B21-F290-4FAE-8469-0EDAD7AC5C2F_1_105_c 2.jpeg',
-        alt: 'Family Photo 3',
-        title: 'Family Bond',
-        description: 'Unbreakable family connections through honest values',
-        category: 'family',
-        crop: 'top'
-    },
-    {
-        src: 'assets/photos/4EF15CBC-ADC7-4577-8EBC-00C0351B49D0 2.jpeg',
-        alt: 'Family Photo 4',
-        title: 'Family Love',
-        description: 'Love and warmth nurtured in our family home',
-        category: 'family',
-        crop: 'top'
-    },
-    {
-        src: 'assets/photos/31206909-F1F9-4374-B24D-1AB4647F0D70_1_201_a.jpeg',
-        alt: 'Family Photo 5',
-        title: 'New Family Memory',
-        description: 'Another beautiful moment in our family story',
-        category: 'memories',
-        crop: 'top'
+// Dynamic Photo Loader - Automatically detects available photos from assets folder
+let photoData = [];
+
+// Function to dynamically load photos from assets folder
+async function loadAvailablePhotos() {
+    try {
+        // Get all image files from the assets/photos directory
+        // This array can be updated manually or automatically scanned
+        const photoFiles = [
+            'assets/photos/20BCD3A6-E208-4B4A-A9F5-C4E7E213AC19_1_105_c.jpeg',
+            'assets/photos/4EBE2B21-F290-4FAE-8469-0EDAD7AC5C2F_1_105_c 2.jpeg',
+            'assets/photos/4EF15CBC-ADC7-4577-8EBC-00C0351B49D0 2.jpeg',
+            'assets/photos/31206909-F1F9-4374-B24D-1AB4647F0D70_1_201_a.jpeg'
+        ];
+
+        // Future enhancement: Auto-scan the assets folder
+        // const photoFiles = await scanAssetsFolder();
+
+        // Check which photos actually exist and load them
+        const availablePhotos = [];
+        
+        for (const photoPath of photoFiles) {
+            try {
+                // Create a test image to check if the file exists
+                const testImg = new Image();
+                await new Promise((resolve, reject) => {
+                    testImg.onload = () => {
+                        availablePhotos.push({
+                            src: photoPath,
+                            alt: getPhotoAlt(photoPath),
+                            title: getPhotoTitle(photoPath),
+                            description: getPhotoDescription(photoPath),
+                            category: 'family',
+                            crop: 'top'
+                        });
+                        resolve();
+                    };
+                    testImg.onerror = () => {
+                        console.log(`Photo not available: ${photoPath}`);
+                        reject();
+                    };
+                    testImg.src = photoPath;
+                });
+            } catch (error) {
+                console.log(`Failed to load photo: ${photoPath}`);
+            }
+        }
+
+        // Update the global photoData array
+        photoData = availablePhotos;
+        
+        // Load photos into gallery
+        loadPhotos();
+        
+        console.log(`Successfully loaded ${photoData.length} photos`);
+        
+    } catch (error) {
+        console.error('Error loading photos:', error);
+        // Fallback to empty gallery
+        photoData = [];
+        loadPhotos();
     }
-];
+}
+
+// Helper function to generate alt text for photos
+function getPhotoAlt(photoPath) {
+    const fileName = photoPath.split('/').pop().split('.')[0];
+    return `Family Photo - ${fileName}`;
+}
+
+// Helper function to generate title for photos
+function getPhotoTitle(photoPath) {
+    const fileName = photoPath.split('/').pop().split('.')[0];
+    return `Family Memory - ${fileName}`;
+}
+
+// Helper function to generate description for photos
+function getPhotoDescription(photoPath) {
+    const fileName = photoPath.split('/').pop().split('.')[0];
+    return `Precious family moment captured in ${fileName}`;
+}
 
 // Function to create gallery items dynamically
 function createGalleryItem(photo) {
@@ -394,19 +448,30 @@ function createGalleryItem(photo) {
 function loadPhotos() {
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
-        galleryGrid.innerHTML = photoData.map(createGalleryItem).join('');
+        if (photoData.length === 0) {
+            // Show message when no photos are available
+            galleryGrid.innerHTML = `
+                <div class="no-photos-message">
+                    <i class="fas fa-image"></i>
+                    <h3>No Photos Available</h3>
+                    <p>Photos will appear here once they are added to the assets folder.</p>
+                </div>
+            `;
+        } else {
+            galleryGrid.innerHTML = photoData.map(createGalleryItem).join('');
+            
+            // Reinitialize lightbox functionality for new items
+            initializeLightbox();
+            
+            // Add staggered animation to gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
         
         // Update photo counter
         updatePhotoCounter();
-        
-        // Reinitialize lightbox functionality for new items
-        initializeLightbox();
-        
-        // Add staggered animation to gallery items
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        galleryItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.1}s`;
-        });
     }
 }
 
@@ -512,14 +577,26 @@ function scanForNewPhotos() {
 
 // Function to refresh gallery and check for new photos
 function refreshGallery() {
-    // Reload all photos
-    loadPhotos();
+    // Reload all photos dynamically
+    loadAvailablePhotos();
     
     // Show notification
-    showNotification('Gallery refreshed!', 'success');
+    showNotification(`Gallery refreshed! Found ${photoData.length} photos.`, 'success');
     
     // Reinitialize all event listeners
     initializeEventListeners();
+}
+
+// Function to easily add new photos (for manual updates)
+function addNewPhotoToGallery(photoPath, title, description, category = 'family') {
+    // Add the new photo path to the photoFiles array in loadAvailablePhotos function
+    // Then call refreshGallery() to reload the gallery
+    console.log('To add a new photo:');
+    console.log('1. Place the photo in assets/photos/ folder');
+    console.log('2. Update the photoFiles array in loadAvailablePhotos function');
+    console.log('3. Call refreshGallery() or reload the page');
+    
+    showNotification('Please update the photoFiles array in the code to add new photos', 'info');
 }
 
 // Function to initialize all event listeners
@@ -616,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
     
     // Load photos dynamically
-    loadPhotos();
+    loadAvailablePhotos(); // Changed to loadAvailablePhotos
     
     // Set default crop to 'top'
     setTimeout(() => {
