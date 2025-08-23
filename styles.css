@@ -541,6 +541,30 @@ body {
     font-size: 0.9rem;
 }
 
+.scan-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.scan-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.scan-btn i {
+    font-size: 0.9rem;
+}
+
 .filter-btn {
     padding: 10px 20px;
     border: 2px solid #667eea;
@@ -1049,7 +1073,7 @@ body {
     padding: 100px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about::before {
@@ -1089,9 +1113,10 @@ body {
     padding: 2.5rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
+    min-height: 200px;
 }
 
 .about-card::before {
@@ -1346,6 +1371,7 @@ body {
         grid-template-columns: 1fr;
         gap: 2rem;
         padding: 0 1rem;
+        width: 100%;
     }
     
     .about-card {
@@ -1353,18 +1379,23 @@ body {
         transform: none !important;
         margin: 0 auto;
         max-width: 500px;
+        width: 100%;
+        opacity: 1 !important;
+        animation: none !important;
     }
     
     .about-card-left,
     .about-card-right {
-        transform: none;
-        animation: fadeInUp 0.8s ease-out;
+        transform: none !important;
+        animation: fadeInUp 0.8s ease-out !important;
+        opacity: 1 !important;
     }
     
     .about-quote-card {
         padding: 2rem;
         margin: 0 1rem;
         border-radius: 20px;
+        width: calc(100% - 2rem);
     }
     
     .family-quote {
@@ -1376,11 +1407,25 @@ body {
         transform: translateX(-50%);
         top: -12px;
     }
+    
+    /* Ensure cards are visible on mobile */
+    .about-card {
+        display: block !important;
+        visibility: visible !important;
+    }
 }
 
 @media (max-width: 480px) {
+    .about-cards {
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
     .about-card {
         padding: 1.5rem;
+        margin: 0 auto;
+        max-width: 100%;
+        width: 100%;
     }
     
     .card-icon {
@@ -1396,12 +1441,91 @@ body {
         font-size: 1.3rem;
     }
     
+    .card-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
     .about-quote-card {
         padding: 1.5rem;
+        margin: 0 0.5rem;
+        width: calc(100% - 1rem);
     }
     
     .family-quote {
         font-size: 1.1rem;
+    }
+    
+    .card-badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Additional mobile fixes to ensure cards are always visible */
+@media (max-width: 768px) {
+    .about-content {
+        padding: 0 1rem;
+    }
+    
+    .about-header {
+        margin-bottom: 2rem;
+    }
+    
+    .about-icon {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    /* Force cards to be visible */
+    .about-card {
+        position: relative !important;
+        z-index: 1 !important;
+        overflow: visible !important;
+    }
+    
+    /* Ensure proper spacing */
+    .about-cards {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .about-card {
+        padding: 1rem;
+        margin: 0;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-description {
+        font-size: 0.9rem;
+    }
+    
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+    
+    .card-icon i {
+        font-size: 1.2rem;
+    }
+    
+    .about-quote-card {
+        padding: 1rem;
+        margin: 0;
+    }
+    
+    .family-quote {
+        font-size: 1rem;
     }
 }
 

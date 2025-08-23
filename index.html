@@ -116,6 +116,9 @@
                     <button class="refresh-btn" onclick="refreshGallery()">
                         <i class="fas fa-sync-alt"></i> Refresh
                     </button>
+                    <button class="scan-btn" onclick="loadAvailablePhotos()" title="Scan for new photos">
+                        <i class="fas fa-search"></i> Scan Photos
+                    </button>
                 </div>
             </div>
 
@@ -125,80 +128,7 @@
         </div>
     </section>
 
-    <!-- Memorial Card Section -->
-    <section id="memorial" class="memorial">
-        <div class="container">
-            <div class="memorial-card">
-                <div class="memorial-header">
-                    <div class="memorial-symbol">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="memorial-dates">
-                        <span class="birth-date">13 May 1971</span>
-                        <div class="date-separator">~</div>
-                        <span class="passing-date">19 August 2025</span>
-                    </div>
-                </div>
-                
-                <div class="memorial-content">
-                    <h2 class="memorial-name">Dandu Manohar Reddy</h2>
-                    <div class="memorial-age">Aged 54 Years</div>
-                    <div class="memorial-tribute">
-                        <p class="tribute-text">
-                            "A devoted farmer, loving father, and man of unwavering integrity who touched countless lives 
-                            through his kindness, hard work, and moral values. His legacy of honesty and dedication 
-                            will forever remain in our hearts."
-                        </p>
-                    </div>
-                    
-                    <div class="ceremony-invitation">
-                        <div class="invitation-header">
-                            <i class="fas fa-heart"></i>
-                            <h3>Death Ceremony Invitation</h3>
-                        </div>
-                        <div class="ceremony-details">
-                            <div class="ceremony-date">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>4th September 2025</span>
-                            </div>
-                            <div class="ceremony-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Sri Ram Nagar colony, Akkampeta<br>Manubolu (M), Nellore (D), Andhra Pradesh</span>
-                            </div>
-                                            <div class="ceremony-message">
-                    <p>We humbly invite you to join us in honoring the life and legacy of our beloved father. 
-                    Your presence would bring comfort to our family during this time of remembrance.</p>
-                    <div class="invitation-buttons">
-                        <a href="invitation-card.html" target="_blank" class="invitation-btn primary">
-                            <i class="fas fa-eye"></i>
-                            <span>View Invitation Card</span>
-                        </a>
-                        <a href="invitation-card.html" target="_blank" class="invitation-btn secondary">
-                            <i class="fas fa-download"></i>
-                            <span>Download Card</span>
-                        </a>
-                    </div>
-                </div>
-                        </div>
-                    </div>
-                    
-                    <div class="memorial-footer">
-                        <div class="family-signature">
-                            <p>With deep respect and love,</p>
-                            <p class="signature-name">The Dandu Family</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="memorial-decoration">
-                    <div class="decoration-element decoration-1"></div>
-                    <div class="decoration-element decoration-2"></div>
-                    <div class="decoration-element decoration-3"></div>
-                    <div class="decoration-element decoration-4"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -260,6 +190,76 @@
                 
                 <!-- Quote Card - Centered Below -->
                
+            </div>
+        </div>
+    </section>
+
+     <!-- Memorial Card Section -->
+     <section id="memorial" class="memorial">
+        <div class="container">
+            <div class="memorial-card">
+                <div class="memorial-header">
+                    <div class="memorial-symbol">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="memorial-dates">
+                        <span class="birth-date">13 May 1971</span>
+                        <div class="date-separator">~</div>
+                        <span class="passing-date">19 August 2025</span>
+                    </div>
+                </div>
+                
+                <div class="memorial-content">
+                    <h2 class="memorial-name">Dandu Manohar Reddy</h2>
+                    <div class="memorial-age">Aged 54 Years</div>
+                    <div class="memorial-tribute">
+                        <p class="tribute-text">
+                            "A devoted farmer, loving father, and man of unwavering integrity who touched countless lives 
+                            through his kindness, hard work, and moral values. His legacy of honesty and dedication 
+                            will forever remain in our hearts."
+                        </p>
+                    </div>
+                    
+                    <div class="ceremony-invitation">
+                        <div class="invitation-header">
+                            <i class="fas fa-heart"></i>
+                            <h3>Death Ceremony Invitation</h3>
+                        </div>
+                        <div class="ceremony-details">
+                            <div class="ceremony-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>4th September 2025</span>
+                            </div>
+                            <div class="ceremony-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Sri Ram Nagar colony, Akkampeta<br>Manubolu (M), Nellore (D), Andhra Pradesh</span>
+                            </div>
+                                            <div class="ceremony-message">
+                    <p>We humbly invite you to join us in honoring the life and legacy of our beloved father. 
+                    Your presence would bring comfort to our family during this time of remembrance.</p>
+                    <div class="invitation-buttons">
+                        <a href="invitation-card.html" target="_blank" class="invitation-btn primary">
+                            <i class="fas fa-eye"></i>
+                            <span>View Invitation Card</span>
+                        </a>
+                        <a href="invitation-card.html" target="_blank" class="invitation-btn secondary">
+                            <i class="fas fa-download"></i>
+                            <span>Download Card</span>
+                        </a>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+                
+                <div class="memorial-decoration">
+                    <div class="decoration-element decoration-1"></div>
+                    <div class="decoration-element decoration-2"></div>
+                    <div class="decoration-element decoration-3"></div>
+                    <div class="decoration-element decoration-4"></div>
+                </div>
             </div>
         </div>
     </section>

@@ -1,31 +1,17 @@
 /*
- * DYNAMIC PHOTO GALLERY SYSTEM - NOW FULLY AUTOMATIC! 🎉
- * 
- * 🚀 NEW: The system now automatically detects photos from the assets/photos/ folder!
+ * DYNAMIC PHOTO GALLERY SYSTEM
  * 
  * To add new photos:
- * 1. Simply place your photo files in the assets/photos/ folder
- * 2. Click the refresh button or reload the page
- * 3. The system will automatically detect and display all available photos
- * 
- * 🎯 Advanced Features:
- * - Automatic photo detection using intelligent pattern matching
- * - Smart scanning for common naming conventions
- * - Fallback to manual list if auto-scan fails
- * - Real-time photo counting and updates
- * 
- * 🛠️ Console Commands (for developers):
- * - addPhotoByFilename('filename.jpg') - Add a specific photo
- * - listLoadedPhotos() - Show all currently loaded photos
- * - fullRescanPhotos() - Force a complete rescan
+ * 1. Place your photo files in the assets/photos/ folder
+ * 2. Update the photoFiles array in the loadAvailablePhotos() function below
+ * 3. The gallery will automatically detect and display only available photos
+ * 4. Use the refresh button to reload the gallery
  * 
  * The system automatically:
- * - Scans for new photos using multiple detection methods
  * - Checks which photos actually exist
- * - Updates the photo counter in real-time
- * - Shows helpful messages when no photos are available
+ * - Updates the photo counter
+ * - Shows a message when no photos are available
  * - Handles missing photos gracefully
- * - Provides fallback methods for reliability
  */
 
 // Mobile Navigation Toggle
@@ -360,11 +346,13 @@ document.head.appendChild(notificationStyles);
 // Dynamic Photo Loader - Automatically detects available photos from assets folder
 let photoData = [];
 
-// Function to dynamically load photos from assets folder
+// Function to dynamically scan and load photos from assets folder
 async function loadAvailablePhotos() {
     try {
-        // Auto-scan the assets folder for all available photos
+        // Dynamic photo detection - automatically finds all photos in assets/photos
         const photoFiles = await scanAssetsFolder();
+        
+        console.log(`Found ${photoFiles.length} photos in assets folder:`, photoFiles);
         
         // Check which photos actually exist and load them
         const availablePhotos = [];
@@ -402,270 +390,152 @@ async function loadAvailablePhotos() {
         // Load photos into gallery
         loadPhotos();
         
-        console.log(`Successfully loaded ${photoData.length} photos automatically`);
+        console.log(`Successfully loaded ${photoData.length} photos`);
+        
+        // Show notification of how many photos were found
+        if (photoData.length > 0) {
+            showNotification(`Gallery updated! Found ${photoData.length} photos`, 'success');
+        } else {
+            showNotification('No photos found in assets folder', 'warning');
+        }
         
     } catch (error) {
         console.error('Error loading photos:', error);
-        // Fallback to manual list if auto-scan fails
-        fallbackToManualPhotoList();
+        // Fallback to empty gallery
+        photoData = [];
+        loadPhotos();
+        showNotification('Error loading photos. Please check the assets folder.', 'error');
     }
 }
 
-// Function to automatically scan the assets folder
+// Function to dynamically scan the assets/photos folder
 async function scanAssetsFolder() {
     try {
+        // Common image extensions to look for
+        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+        
+        // Try to detect photos using multiple methods
+        const detectedPhotos = [];
+        
         // Method 1: Try to fetch a directory listing (if server supports it)
         try {
-            const response = await fetch('assets/photos/', { method: 'HEAD' });
+            const response = await fetch('assets/photos/');
             if (response.ok) {
-                console.log('Server supports directory access');
+                const text = await response.text();
+                // Parse directory listing if available
+                const photoMatches = text.match(/href="([^"]*\.(jpg|jpeg|png|gif|webp|svg))"/gi);
+                if (photoMatches) {
+                    photoMatches.forEach(match => {
+                        const filename = match.match(/href="([^"]*)"/)[1];
+                        if (filename && !filename.includes('..')) {
+                            detectedPhotos.push(`assets/photos/${filename}`);
+                        }
+                    });
+                }
             }
         } catch (e) {
-            console.log('Directory listing not supported, using pattern detection');
+            console.log('Directory listing not available, using fallback method');
         }
         
-        // Method 2: Try to detect photos by attempting to load common patterns
-        // This is more reliable across different server configurations
-        const detectedPhotos = await detectPhotosByPattern();
-        
-        // Method 3: Try to detect photos by scanning for common naming conventions
-        // This will help catch photos that might have been added recently
-        const scannedPhotos = await scanForRecentPhotos();
-        detectedPhotos.push(...scannedPhotos);
-        
-        // Remove duplicates
-        const uniquePhotos = [...new Set(detectedPhotos)];
-        
-        console.log(`Auto-scan completed. Found ${uniquePhotos.length} photos.`);
-        return uniquePhotos;
-        
-    } catch (error) {
-        console.log('Auto-scan failed, using fallback method');
-        throw error;
-    }
-}
-
-// Function to scan for recently added photos using intelligent pattern matching
-async function scanForRecentPhotos() {
-    const recentPhotos = [];
-    const basePath = 'assets/photos/';
-    const extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-    
-    // Try to detect photos that might have been added recently
-    // This includes common naming patterns and variations
-    const recentPatterns = [
-        // Common photo naming patterns
-        'photo', 'image', 'img', 'pic', 'snapshot',
-        // Family-related names
-        'family', 'portrait', 'memory', 'moment', 'legacy', 'tribute',
-        // Time-based names
-        'today', 'recent', 'latest', 'new', 'added', 'uploaded',
-        // Event-based names
-        'event', 'celebration', 'gathering', 'reunion', 'ceremony',
-        // Generic names that might be used
-        'capture', 'shot', 'frame', 'picture', 'photograph'
-    ];
-    
-    for (const pattern of recentPatterns) {
-        for (const ext of extensions) {
-            // Try variations of the pattern
-            const variations = [
-                `${pattern}.${ext}`,
-                `${pattern}1.${ext}`,
-                `${pattern}2.${ext}`,
-                `${pattern}3.${ext}`,
-                `new-${pattern}.${ext}`,
-                `recent-${pattern}.${ext}`,
-                `${pattern}-new.${ext}`,
-                `${pattern}-recent.${ext}`
+        // Method 2: Try common naming patterns and extensions
+        if (detectedPhotos.length === 0) {
+            // Try to detect photos by attempting to load them with common patterns
+            const commonPatterns = [
+                'photo1', 'photo2', 'photo3', 'photo4', 'photo5', 'photo6', 'photo7', 'photo8', 'photo9', 'photo10',
+                'image1', 'image2', 'image3', 'image4', 'image5',
+                'img1', 'img2', 'img3', 'img4', 'img5',
+                'manohar', 'family', 'memories', 'legacy'
             ];
             
-            for (const variation of variations) {
-                const photoPath = basePath + variation;
-                
-                try {
-                    const exists = await checkPhotoExists(photoPath);
-                    if (exists) {
-                        recentPhotos.push(photoPath);
-                        console.log(`Detected recent photo: ${photoPath}`);
+            for (const pattern of commonPatterns) {
+                for (const ext of imageExtensions) {
+                    const photoPath = `assets/photos/${pattern}${ext}`;
+                    try {
+                        const testImg = new Image();
+                        await new Promise((resolve, reject) => {
+                            testImg.onload = () => {
+                                if (!detectedPhotos.includes(photoPath)) {
+                                    detectedPhotos.push(photoPath);
+                                }
+                                resolve();
+                            };
+                            testImg.onerror = () => reject();
+                            testImg.src = photoPath;
+                        });
+                    } catch (e) {
+                        // Photo doesn't exist, continue to next
                     }
-                } catch (error) {
+                }
+            }
+        }
+        
+        // Method 3: Fallback to known photos (for backward compatibility)
+        if (detectedPhotos.length === 0) {
+            const fallbackPhotos = [
+                'assets/photos/20BCD3A6-E208-4B4A-A9F5-C4E7E213AC19_1_105_c.jpeg',
+                'assets/photos/4EBE2B21-F290-4FAE-8469-0EDAD7AC5C2F_1_105_c 2.jpeg',
+                'assets/photos/4EF15CBC-ADC7-4577-8EBC-00C0351B49D0 2.jpeg',
+                'assets/photos/31206909-F1F9-4374-B24D-1AB4647F0D70_1_201_a.jpeg'
+            ];
+            
+            // Test each fallback photo
+            for (const photoPath of fallbackPhotos) {
+                try {
+                    const testImg = new Image();
+                    await new Promise((resolve, reject) => {
+                        testImg.onload = () => {
+                            if (!detectedPhotos.includes(photoPath)) {
+                                detectedPhotos.push(photoPath);
+                            }
+                            resolve();
+                        };
+                        testImg.onerror = () => reject();
+                        testImg.src = photoPath;
+                    });
+                } catch (e) {
                     // Photo doesn't exist, continue to next
                 }
             }
         }
-    }
-    
-    return recentPhotos;
-}
-
-// Function to detect photos by attempting to load them
-async function detectPhotosByPattern() {
-    const detectedPhotos = [];
-    
-    // Common photo extensions
-    const extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-    
-    // Try to detect photos by attempting to load them
-    // We'll start with a broader search pattern
-    const basePath = 'assets/photos/';
-    
-    // First, try the photos we know exist
-    const knownPhotos = [
-        '20BCD3A6-E208-4B4A-A9F5-C4E7E213AC19_1_105_c.jpeg',
-        '4EBE2B21-F290-4FAE-8469-0EDAD7AC5C2F_1_105_c 2.jpeg',
-        '4EF15CBC-ADC7-4577-8EBC-00C0351B49D0 2.jpeg',
-        '31206909-F1F9-4374-B24D-1AB4647F0D70_1_201_a.jpeg'
-    ];
-    
-    // Add known photos to detected list
-    for (const photo of knownPhotos) {
-        detectedPhotos.push(basePath + photo);
-    }
-    
-    // Now try to detect additional photos by attempting to load them
-    // This is a more sophisticated approach that tries common naming patterns
-    const additionalPhotos = await detectAdditionalPhotos(basePath, extensions);
-    detectedPhotos.push(...additionalPhotos);
-    
-    return detectedPhotos;
-}
-
-// Function to detect additional photos using common naming patterns
-async function detectAdditionalPhotos(basePath, extensions) {
-    const additionalPhotos = [];
-    
-    // Try common naming patterns for photos
-    const patterns = [
-        // Try numbered patterns
-        'photo1', 'photo2', 'photo3', 'photo4', 'photo5',
-        'image1', 'image2', 'image3', 'image4', 'image5',
-        'img1', 'img2', 'img3', 'img4', 'img5',
-        // Try descriptive names
-        'family', 'portrait', 'memory', 'moment', 'legacy',
-        // Try date-based patterns
-        '2025', '2024', '2023', 'jan', 'feb', 'mar', 'apr', 'may', 'jun',
-        'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
-    ];
-    
-    for (const pattern of patterns) {
-        for (const ext of extensions) {
-            const photoPath = `${basePath}${pattern}.${ext}`;
-            
-            try {
-                // Quick check if photo exists
-                const exists = await checkPhotoExists(photoPath);
-                if (exists) {
-                    additionalPhotos.push(photoPath);
-                    console.log(`Detected additional photo: ${photoPath}`);
-                }
-            } catch (error) {
-                // Photo doesn't exist, continue to next
-            }
-        }
-    }
-    
-    // Now try to detect photos by scanning for common filename patterns
-    // This will help catch photos with UUIDs or other naming conventions
-    const uuidPatterns = await detectUUIDPhotos(basePath, extensions);
-    additionalPhotos.push(...uuidPatterns);
-    
-    return additionalPhotos;
-}
-
-// Function to detect photos with UUID-like names (common in modern systems)
-async function detectUUIDPhotos(basePath, extensions) {
-    const uuidPhotos = [];
-    
-    // Common UUID patterns and variations
-    const uuidPatterns = [
-        // Try common UUID formats
-        'new-photo', 'new-image', 'new-family', 'new-memory',
-        // Try to detect photos that might have been added recently
-        'recent', 'latest', 'new', 'added', 'uploaded'
-    ];
-    
-    for (const pattern of uuidPatterns) {
-        for (const ext of extensions) {
-            const photoPath = `${basePath}${pattern}.${ext}`;
-            
-            try {
-                const exists = await checkPhotoExists(photoPath);
-                if (exists) {
-                    uuidPhotos.push(photoPath);
-                    console.log(`Detected UUID photo: ${photoPath}`);
-                }
-            } catch (error) {
-                // Photo doesn't exist, continue to next
-            }
-        }
-    }
-    
-    return uuidPhotos;
-}
-
-// Function to check if a photo exists
-async function checkPhotoExists(photoPath) {
-    return new Promise((resolve) => {
-        const testImg = new Image();
-        testImg.onload = () => resolve(true);
-        testImg.onerror = () => resolve(false);
-        testImg.src = photoPath;
         
-        // Set a timeout to avoid hanging
-        setTimeout(() => resolve(false), 1000);
-    });
-}
-
-// Fallback function to manual photo list
-function fallbackToManualPhotoList() {
-    console.log('Using fallback manual photo list');
-    const manualPhotos = [
-        'assets/photos/20BCD3A6-E208-4B4A-A9F5-C4E7E213AC19_1_105_c.jpeg',
-        'assets/photos/4EBE2B21-F290-4FAE-8469-0EDAD7AC5C2F_1_105_c 2.jpeg',
-        'assets/photos/4EF15CBC-ADC7-4577-8EBC-00C0351B49D0 2.jpeg',
-        'assets/photos/31206909-F1F9-4374-B24D-1AB4647F0D70_1_201_a.jpeg'
-    ];
-    
-    // Load photos manually
-    loadPhotosFromList(manualPhotos);
-}
-
-// Function to load photos from a list
-async function loadPhotosFromList(photoList) {
-    const availablePhotos = [];
-    
-    for (const photoPath of photoList) {
-        try {
-            const testImg = new Image();
-            await new Promise((resolve, reject) => {
-                testImg.onload = () => {
-                    availablePhotos.push({
-                        src: photoPath,
-                        alt: getPhotoAlt(photoPath),
-                        title: getPhotoTitle(photoPath),
-                        description: getPhotoDescription(photoPath),
-                        category: 'family',
-                        crop: 'top'
-                    });
-                    resolve();
-                };
-                testImg.onerror = () => {
-                    console.log(`Photo not available: ${photoPath}`);
-                    reject();
-                };
-                testImg.src = photoPath;
-                // Set a timeout to avoid hanging
-                setTimeout(() => reject(), 1000);
-            });
-        } catch (error) {
-            console.log(`Failed to load photo: ${photoPath}`);
+        // Method 4: Try to detect by file size and common patterns
+        if (detectedPhotos.length === 0) {
+            // This is a more aggressive approach - try to detect photos by attempting to load them
+            // with various combinations of names and extensions
+            const aggressivePatterns = [
+                'manohar', 'family', 'memories', 'legacy', 'photo', 'image', 'img',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'
+            ];
+            
+            for (const pattern of aggressivePatterns) {
+                for (const ext of imageExtensions) {
+                    const photoPath = `assets/photos/${pattern}${ext}`;
+                    try {
+                        const testImg = new Image();
+                        await new Promise((resolve, reject) => {
+                            testImg.onload = () => {
+                                if (!detectedPhotos.includes(photoPath)) {
+                                    detectedPhotos.push(photoPath);
+                                }
+                                resolve();
+                            };
+                            testImg.onerror = () => reject();
+                            testImg.src = photoPath;
+                        });
+                    } catch (e) {
+                        // Photo doesn't exist, continue to next
+                    }
+                }
+            }
         }
+        
+        console.log(`Detected ${detectedPhotos.length} photos using dynamic scanning`);
+        return detectedPhotos;
+        
+    } catch (error) {
+        console.error('Error scanning assets folder:', error);
+        return [];
     }
-    
-    photoData = availablePhotos;
-    loadPhotos();
-    console.log(`Loaded ${photoData.length} photos from manual list`);
 }
 
 // Helper function to generate alt text for photos
@@ -838,96 +708,53 @@ function scanForNewPhotos() {
 
 // Function to refresh gallery and check for new photos
 function refreshGallery() {
-    // Reload all photos dynamically with full rescan
-    fullRescanPhotos();
+    // Show loading notification
+    showNotification('Scanning for new photos...', 'info');
     
-    // Show notification
-    showNotification(`Gallery refreshed! Scanning for new photos...`, 'info');
+    // Reload all photos dynamically
+    loadAvailablePhotos();
     
     // Reinitialize all event listeners
     initializeEventListeners();
 }
 
-// Function to perform a full rescan of all photos
-async function fullRescanPhotos() {
-    try {
-        console.log('Starting full photo rescan...');
+// Function to manually add a specific photo (for testing)
+function addSpecificPhoto(photoPath) {
+    if (!photoData.some(photo => photo.src === photoPath)) {
+        const newPhoto = {
+            src: photoPath,
+            alt: getPhotoAlt(photoPath),
+            title: getPhotoTitle(photoPath),
+            description: getPhotoDescription(photoPath),
+            category: 'family',
+            crop: 'top'
+        };
         
-        // Clear existing photos
-        photoData = [];
-        
-        // Perform a complete scan
-        const allPhotos = await scanAssetsFolder();
-        
-        // Update photoData
-        photoData = allPhotos;
-        
-        // Reload gallery
+        photoData.push(newPhoto);
         loadPhotos();
-        
-        // Show success notification
-        showNotification(`Rescan complete! Found ${photoData.length} photos.`, 'success');
-        
-        console.log(`Full rescan completed. Total photos: ${photoData.length}`);
-        
-    } catch (error) {
-        console.error('Full rescan failed:', error);
-        showNotification('Rescan failed. Using fallback method.', 'error');
-        
-        // Fallback to manual list
-        fallbackToManualPhotoList();
+        showNotification(`Added new photo: ${photoPath}`, 'success');
+    } else {
+        showNotification('Photo already exists in gallery', 'info');
     }
 }
 
 // Function to easily add new photos (for manual updates)
 function addNewPhotoToGallery(photoPath, title, description, category = 'family') {
-    console.log('New photo detection is now automatic!');
-    console.log('Simply place your photo in the assets/photos/ folder and refresh the gallery.');
+    // Add the new photo path to the photoFiles array in loadAvailablePhotos function
+    // Then call refreshGallery() to reload the gallery
+    console.log('To add a new photo:');
+    console.log('1. Place the photo in assets/photos/ folder');
+    console.log('2. Call refreshGallery() or reload the page');
+    console.log('3. The system will automatically detect new photos');
     
-    showNotification('Photo detection is now automatic! Just refresh the gallery after adding new photos.', 'success');
+    showNotification('Photos are now automatically detected! Use refresh button to scan for new photos.', 'info');
 }
 
-// Function to manually add a photo to the gallery (for immediate display)
-function manuallyAddPhoto(photoPath, title, description, category = 'family') {
-    const newPhoto = {
-        src: photoPath,
-        alt: title,
-        title: title,
-        description: description,
-        category: category,
-        crop: 'top'
-    };
-    
-    // Add to photoData array
-    photoData.push(newPhoto);
-    
-    // Reload the gallery
-    loadPhotos();
-    
-    // Show notification
-    showNotification(`Photo "${title}" added to gallery!`, 'success');
-}
-
-// Function to manually add a photo by filename (useful for testing)
-function addPhotoByFilename(filename, title = null, description = null) {
-    const photoPath = `assets/photos/${filename}`;
-    const photoTitle = title || `Family Photo - ${filename.split('.')[0]}`;
-    const photoDescription = description || `Precious family moment captured in ${filename.split('.')[0]}`;
-    
-    manuallyAddPhoto(photoPath, photoTitle, photoDescription, 'family');
-    
-    console.log(`Added photo: ${photoPath}`);
-    console.log(`Title: ${photoTitle}`);
-    console.log(`Description: ${photoDescription}`);
-}
-
-// Function to list all currently loaded photos
-function listLoadedPhotos() {
-    console.log('Currently loaded photos:');
-    photoData.forEach((photo, index) => {
-        console.log(`${index + 1}. ${photo.src} - ${photo.title}`);
-    });
-    console.log(`Total: ${photoData.length} photos`);
+// Debug function to see current photos
+function debugPhotos() {
+    console.log('Current photoData:', photoData);
+    console.log('Photo count:', photoData.length);
+    console.log('Photo sources:', photoData.map(p => p.src));
 }
 
 // Function to initialize all event listeners
@@ -1023,13 +850,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.opacity = '1';
     }, 100);
     
-            // Load photos dynamically with automatic detection
-        loadAvailablePhotos(); // Now fully automatic!
-        
-        // Show helpful notification about the automatic system
-        setTimeout(() => {
-            showNotification('🎉 Photo gallery now automatically detects new photos! Just refresh to see updates.', 'success');
-        }, 2000);
+    // Load photos dynamically with debug info
+    console.log('🚀 Starting dynamic photo detection...');
+    loadAvailablePhotos(); // Changed to loadAvailablePhotos
     
     // Set default crop to 'top'
     setTimeout(() => {
@@ -1041,6 +864,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize Memorial section animations
     initializeMemorialAnimations();
+    
+    // Add debug info to console
+    console.log('💡 Debug commands available:');
+    console.log('  - debugPhotos() - Show current photos');
+    console.log('  - loadAvailablePhotos() - Rescan for photos');
+    console.log('  - refreshGallery() - Refresh gallery');
 });
 
 // Function to initialize About section animations
