@@ -1,0 +1,163 @@
+{
+    "Dandu Narasa Reddy": {
+        "son": {
+            "1":{
+                "Dandu Rama subba reddy": {
+                "son": {
+                    "Dandu Narasa reddy": {
+                        "son": {
+                            "Dandu Manohar reddy": {
+                                "son": {
+                                    "1": "Dandu Mahesh reddy",
+                                    "2": "Dandu Karthik reddy"
+                                }
+                            }
+                        },
+                        "daughter": {
+                            "Dandu Sunitha": {
+                            }
+                        }
+                    },
+                    "Dandu Gopal Reddy":{
+                        "son": {
+                            "Dandu Rama subba reddy": {
+                                "son": {
+                                        "1": "Dandu Rahul reddy",
+                                        "2": "Dandu Rishi reddy"
+                                }
+                            },
+                            "Dandu Mallikarjun reddy": {
+                                "son": {
+                                        "1": "Dandu Anirudh reddy",
+                                        "2": "Dandu Anudheep reddy"
+                                }
+                            },
+                            "Dandu Madhusudhan reddy": {
+                                "son": {
+                                    "Dandu Manoj reddy": {}
+                                },
+                                "daughter": {
+                                    "Dandu Manasa Reddy": {
+                                    }
+                                }
+                            }
+                        }
+                        
+                    },
+                    "Dandu Narapa Reddy":{
+                        "son": {
+                            "Dandu Nandh Kumar reddy": {
+                                "son": {
+                                        "1": "Dandu Chersih reddy"
+                                        
+                                },
+                                "daughter": {
+                                    "Dandu Revathi Reddy": {
+                                    }
+                                }
+                            },
+                            "Dandu Amarnadh reddy": {
+                                "son": {
+                                        "1": "Dandu Divyanth reddy"
+                                       
+                                },
+                                "daughter": {
+                                    "Dandu ishitha Reddy": {
+                                    }
+                                }
+                            }
+                           
+                        },
+                        "daughter": {
+                                    "Dandu Haritha Reddy": {
+                                    }
+                                }
+                        
+                    },
+                    "Dandu Srinivas Reddy":{
+                        "son": {
+                            "Dandu Siva kumar reddy": {
+                               
+                                "daughter": {
+                                    "Dandu  Reddy": {
+                                    }
+                                }
+                            }
+                           
+                           
+                        },
+                        "daughter": {
+                            "1": "Dandu Kavitha reddy",
+                            "2": "Dandu Supraja reddy"
+                        }
+                        
+                    },
+                    "Dandu Reddy":{
+                        "son": {
+                            "Dandu Vijay Kumar reddy": {
+                                "son": {
+                                        "1": "Dandu Prudhvi reddy"
+                                      
+                                },
+                                "daughter": {
+                                        "1": "Dandu Krishna charitha reddy",
+                                        "2": "Dandu Krishna Bhargavi reddy"
+                                      
+                                }
+                            },
+                            "Dandu Giridhar reddy": {
+                                "son": {
+                                        "1": "Dandu Vishu vardhan reddy"
+                                        
+                                },
+                                "daughter": {
+                                        "1": "Dandu Pragathi reddy"
+                                        
+                                      
+                                }
+                            },
+                            "Dandu Madhusudhan reddy": {
+                                "son": {
+                                    "Dandu Manoj reddy": {}
+                                },
+                                "daughter": {
+                                    "Dandu Manasa Reddy": {
+                                    }
+                                }
+                            }
+                        }
+                        
+                    },
+                    "Dandu Rami Reddy":{
+                        "son": {
+                            "Dandu Prabhakar reddy": {
+                                "son": {
+                                        "1": "Dandu Akhil reddy",
+                                        "2": "Dandu kalyan reddy"     
+                                }
+                                
+                            },
+                            "Dandu Harikrishna reddy": {
+                                "daughter": {
+                                        "1": "Daughter 1",
+                                        "2": "Daughter 2"     
+                                }
+                                
+                            },
+                            "daughter": {
+                                        "1": "Dandu Geetha reddy"    
+                                }
+                           
+                        }
+                        
+                    }
+                }
+            }
+            },
+            "2":"son 2",
+            "3":"son 3",
+            "4":"son 4",
+            "5":"son 5"
+        }
+    }
+}
