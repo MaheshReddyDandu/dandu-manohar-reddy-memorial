@@ -349,12 +349,12 @@ let totalPhotosToLoad = 0;
 let photosLoaded = 0;
 let loadingProgress = 0;
 
-// Loading screen elements
-const loadingScreen = document.getElementById('loading-screen');
-const progressFill = document.getElementById('progress-fill');
-const progressText = document.getElementById('progress-text');
-const photosLoadedElement = document.getElementById('photos-loaded');
-const loadingTimeElement = document.getElementById('loading-time-element');
+// Loading screen elements - will be initialized when DOM is ready
+let loadingScreen;
+let progressFill;
+let progressText;
+let photosLoadedElement;
+let loadingTimeElement;
 
 // Dynamic Photo Loader - Automatically detects available photos from assets folder
 let photoData = [];
@@ -1026,6 +1026,13 @@ function setDefaultCrop() {
 
 // Initialize page with fade-in effect
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize loading screen elements
+    loadingScreen = document.getElementById('loading-screen');
+    progressFill = document.getElementById('progress-fill');
+    progressText = document.getElementById('progress-text');
+    photosLoadedElement = document.getElementById('photos-loaded');
+    loadingTimeElement = document.getElementById('loading-time-element');
+    
     // Hide the main content initially
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
@@ -1033,6 +1040,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show loading screen
     if (loadingScreen) {
         loadingScreen.style.display = 'flex';
+        console.log('✅ Loading screen initialized and displayed');
+    } else {
+        console.error('❌ Loading screen element not found!');
     }
     
     // Load photos dynamically with debug info
