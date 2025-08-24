@@ -21,6 +21,8 @@ const navMenu = document.querySelector('.nav-menu');
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+    // Add body class for menu open
+    document.body.classList.toggle('menu-open', hamburger.classList.contains('active'));
 });
 
 // Close mobile menu when clicking on a link
@@ -28,6 +30,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
     });
 });
 
@@ -385,31 +388,31 @@ async function loadAvailablePhotos() {
         
         // Try to detect photos dynamically by testing common patterns
         const photoPatterns = [];
-        let maxPhotoNumber = 50; // Try up to 50 photos to be safe
+        let maxPhotoNumber = 10; // Try up to 50 photos to be safe
         
         // First, try to find photos with sequential numbering (most common pattern)
         for (let i = 1; i <= maxPhotoNumber; i++) {
             photoPatterns.push(`assets/photos/photo${i}.jpeg`);
-            photoPatterns.push(`assets/photos/photo${i}.jpg`);
-            photoPatterns.push(`assets/photos/photo${i}.png`);
-            photoPatterns.push(`assets/photos/photo${i}.webp`);
+            // photoPatterns.push(`assets/photos/photo${i}.jpg`);
+            // photoPatterns.push(`assets/photos/photo${i}.png`);
+            // photoPatterns.push(`assets/photos/photo${i}.webp`);
         }
         
         // Also try common variations and alternative naming patterns
         photoPatterns.push('assets/photos/photo.jpeg');
-        photoPatterns.push('assets/photos/photo.jpg');
-        photoPatterns.push('assets/photos/photo.png');
-        photoPatterns.push('assets/photos/photo.webp');
+        // photoPatterns.push('assets/photos/photo.jpg');
+        // photoPatterns.push('assets/photos/photo.png');
+        // photoPatterns.push('assets/photos/photo.webp');
         
         // Try with different naming conventions
-        for (let i = 1; i <= maxPhotoNumber; i++) {
-            photoPatterns.push(`assets/photos/image${i}.jpeg`);
-            photoPatterns.push(`assets/photos/image${i}.jpg`);
-            photoPatterns.push(`assets/photos/image${i}.png`);
-            photoPatterns.push(`assets/photos/img${i}.jpeg`);
-            photoPatterns.push(`assets/photos/img${i}.jpg`);
-            photoPatterns.push(`assets/photos/img${i}.png`);
-        }
+        // for (let i = 1; i <= maxPhotoNumber; i++) {
+        //     photoPatterns.push(`assets/photos/image${i}.jpeg`);
+        //     // photoPatterns.push(`assets/photos/image${i}.jpg`);
+        //     // photoPatterns.push(`assets/photos/image${i}.png`);
+        //     // photoPatterns.push(`assets/photos/img${i}.jpeg`);
+        //     // photoPatterns.push(`assets/photos/img${i}.jpg`);
+        //     // photoPatterns.push(`assets/photos/img${i}.png`);
+        // }
         
         console.log(`🔍 Testing ${photoPatterns.length} possible photo patterns...`);
         
@@ -1239,6 +1242,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize Memorial section animations
     initializeMemorialAnimations();
+    
+    // Add animated class to hero title letters after initial animation
+    setTimeout(() => {
+        const heroLetters = document.querySelectorAll('.hero-title .title-line span');
+        heroLetters.forEach(letter => {
+            letter.classList.add('animated');
+        });
+        console.log('✨ Hero title letters animation completed');
+    }, 1000); // Reduced time to prevent letters from disappearing
     
     // Add debug info to console
     console.log('💡 Debug commands available:');
