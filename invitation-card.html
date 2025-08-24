@@ -114,32 +114,7 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        .print-controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-        }
 
-        .print-btn {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
-            color: #2c3e50;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .print-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
 
         /* Main invitation card - Fixed dimensions and layout */
         .invitation-card {
@@ -552,115 +527,7 @@
             font-size: 1rem;
         }
 
-        /* Print Styles */
-        @media print {
-            @page {
-                size: A4 landscape;
-                margin: 0.5in;
-            }
-            
-            * {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            body {
-                background: white !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-            
-            .print-controls {
-                display: none !important;
-            }
-            
-            .upload-btn {
-                display: none !important;
-            }
-            
-            .invitation-card {
-                box-shadow: none !important;
-                width: 100% !important;
-                max-width: 11in !important;
-                height: auto !important;
-                min-height: 7in !important;
-                page-break-inside: avoid !important;
-                margin: 0 auto !important;
-                background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 50%, #fef5e7 100%) !important;
-                border: 4px solid #D4AF37 !important;
-            }
-            
-            .card-header {
-                background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%) !important;
-                color: #2c3e50 !important;
-            }
-            
-            .left-section {
-                background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%) !important;
-            }
-            
-            .right-section {
-                background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%) !important;
-            }
-            
-            .photo-section {
-                background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%) !important;
-                border: 5px solid #D4AF37 !important;
-                overflow: visible !important;
-            }
-            
-            .photo-section::before {
-                content: '' !important;
-                position: absolute !important;
-                top: -15px !important;
-                left: -15px !important;
-                right: -15px !important;
-                bottom: -15px !important;
-                border: 3px solid #D4AF37 !important;
-                border-radius: 50% !important;
-                background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%) !important;
-                z-index: -1 !important;
-            }
-            
-            .photo-section::after {
-                content: '' !important;
-                position: absolute !important;
-                top: -25px !important;
-                left: -25px !important;
-                right: -25px !important;
-                bottom: -25px !important;
-                border: 2px dashed #D4AF37 !important;
-                border-radius: 50% !important;
-                background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%) !important;
-                z-index: -2 !important;
-            }
-            
 
-            
-            .ceremony-date, .ceremony-venue {
-                background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%) !important;
-                border: 2px solid #FF9800 !important;
-                color: #472503 !important;
-            }
-            
-            .event-location {
-                background-color: #1a252f !important;
-                border: 2px solid #1a252f !important;
-                color: #e4e9ee !important;
-            }
-            
-            .event-location strong {
-                color: #e2e7eb !important;
-            }
-            
-            .deceased-name {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%) !important;
-                -webkit-background-clip: text !important;
-                -webkit-text-fill-color: transparent !important;
-                background-clip: text !important;
-            }
-        }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
@@ -670,6 +537,7 @@
                 height: auto;
                 min-height: 500px;
                 flex-direction: column;
+                padding: 0.5rem;
             }
             
             .card-header {
@@ -683,44 +551,118 @@
             
             .card-content {
                 flex-direction: column;
-                padding: 1rem;
-                gap: 1rem;
+                padding: 0.5rem;
+                gap: 0.8rem;
             }
             
             .left-section {
                 flex: none;
                 order: 1;
+                padding: 0.3rem;
             }
             
             .right-section {
                 flex: none;
                 order: 2;
+                padding: 0.3rem;
             }
             
             .photo-section {
                 width: 140px;
                 height: 140px;
+                margin-top: 15px;
+                margin-bottom: 0.8rem;
             }
             
             .deceased-name {
                 font-size: 1.5rem;
+                margin-top: 0.8rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .deceased-dates-text {
+                font-size: 0.65rem;
+                line-height: 1.2;
             }
             
             .content-paragraph {
                 font-size: 0.8rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .date-line {
+                font-size: 16px !important;
+                margin-bottom: 0.15rem;
+            }
+            
+            .highlighted-name {
+                font-size: 1.3rem !important;
+            }
+            
+            .ceremony-details {
+                padding: 0.6rem;
+                margin: 0.4rem 0;
             }
             
             .ceremony-date, .ceremony-venue {
                 font-size: 0.85rem;
             }
             
-            .print-controls {
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                top: auto;
-                right: auto;
+            .invitation-message {
+                font-size: 0.75rem;
+                margin-top: 0.4rem;
+            }
+            
+            .closing-text {
+                font-size: 0.75rem;
+                margin-top: -1.2rem;
+            }
+            
+            .family-signature {
+                font-size: 0.8rem;
+            }
+            
+            /* Venue Text - Mobile Optimized */
+            .event-location {
+                font-size: 0.8rem !important;
+                line-height: 1.3 !important;
+                padding: 0.6rem !important;
+                margin: 0.4rem 0 !important;
+                margin-right: 0 !important;
+                border-radius: 20px !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            .event-location strong {
+                font-size: 0.9rem !important;
+                display: block !important;
+                margin-bottom: 0.2rem !important;
+            }
+            
+            /* Main content spacing */
+            .main-content {
+                margin-top: 1.2rem;
+                gap: 0.25rem;
+            }
+            
+            /* Decorative elements - smaller on mobile */
+            .corner-decoration {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .border-line.top,
+            .border-line.bottom {
+                left: 75px;
+                right: 75px;
+            }
+            
+            .border-line.left,
+            .border-line.right {
+                top: 75px;
+                bottom: 75px;
             }
         }
 
@@ -729,23 +671,124 @@
             .invitation-card {
                 width: 98%;
                 margin: 5px;
+                padding: 0.3rem;
+            }
+            
+            .card-header {
+                height: 55px;
+                padding: 0.6rem;
             }
             
             .header-title {
                 font-size: 1.5rem;
             }
             
+            .card-content {
+                padding: 0.3rem;
+                gap: 0.6rem;
+            }
+            
+            .left-section,
+            .right-section {
+                padding: 0.2rem;
+            }
+            
             .photo-section {
                 width: 120px;
                 height: 120px;
+                margin-top: 12px;
+                margin-bottom: 0.6rem;
             }
             
             .deceased-name {
                 font-size: 1.2rem;
+                margin-top: 0.6rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .deceased-dates-text {
+                font-size: 0.6rem;
+                line-height: 1.1;
             }
             
             .content-paragraph {
                 font-size: 0.75rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .date-line {
+                font-size: 14px !important;
+                margin-bottom: 0.1rem;
+            }
+            
+            .highlighted-name {
+                font-size: 1.1rem !important;
+            }
+            
+            .ceremony-details {
+                padding: 0.5rem;
+                margin: 0.3rem 0;
+            }
+            
+            .ceremony-date, .ceremony-venue {
+                font-size: 0.8rem;
+            }
+            
+            .invitation-message {
+                font-size: 0.7rem;
+                margin-top: 0.3rem;
+            }
+            
+            .closing-text {
+                font-size: 0.7rem;
+                margin-top: -1rem;
+            }
+            
+            .family-signature {
+                font-size: 0.75rem;
+            }
+            
+            /* Venue Text - Extra Small Mobile */
+            .event-location {
+                font-size: 0.75rem !important;
+                line-height: 1.4 !important;
+                padding: 0.5rem !important;
+                margin: 0.3rem 0 !important;
+                border-radius: 18px !important;
+            }
+            
+            .event-location strong {
+                font-size: 0.85rem !important;
+                margin-bottom: 0.15rem !important;
+            }
+            
+            /* Main content spacing */
+            .main-content {
+                margin-top: 1rem;
+                gap: 0.2rem;
+            }
+            
+            /* Decorative elements - even smaller */
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .corner-tl { top: 10px; left: 10px; }
+            .corner-tr { top: 10px; right: 10px; }
+            .corner-bl { bottom: 10px; left: 10px; }
+            .corner-br { bottom: 10px; right: 10px; }
+            
+            .border-line.top,
+            .border-line.bottom {
+                left: 60px;
+                right: 60px;
+            }
+            
+            .border-line.left,
+            .border-line.right {
+                top: 60px;
+                bottom: 60px;
             }
         }
     </style>
@@ -764,11 +807,7 @@
         <div class="bg-element bg-element-9"><i class="fas fa-tree"></i></div>
     </div>
 
-    <div class="print-controls">
-        <button class="print-btn" onclick="window.print()">
-            <i class="fas fa-print"></i> ప్రింట్ చేయండి
-        </button>
-    </div>
+
 
     <div class="invitation-card">
         <!-- Decorative Border Elements -->
@@ -873,6 +912,8 @@
                 reader.readAsDataURL(file);
             }
         }
+
+
 
         // Add interactive effects
         document.addEventListener('DOMContentLoaded', function() {
