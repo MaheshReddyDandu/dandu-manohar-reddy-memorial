@@ -1009,8 +1009,12 @@ function completeLoading() {
     updateLoadingProgress(100, 'Ready!');
     updateLoadingTime();
     
-    // Show main content
-    document.body.style.opacity = '1';
+    // Clear the global loading flag
+    window.loadingInProgress = false;
+    
+    // Restore body overflow and show main content
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
     
     // Hide loading screen after a short delay
     setTimeout(() => {
@@ -1040,7 +1044,9 @@ function forceCompleteLoading() {
         // Just complete with what we have
         updateLoadingProgress(100, 'Ready!');
         updateLoadingTime();
-        document.body.style.opacity = '1';
+        window.loadingInProgress = false;
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
         
         // Force hide loading screen
         if (loadingScreen) {
@@ -1192,7 +1198,7 @@ function setDefaultCrop() {
 // Example: How to add a new photo programmatically
 // addNewPhoto('assets/photos/new-photo.jpg', 'New Family Memory', 'Another beautiful moment captured', 'family');
 
-// Initialize page with fade-in effect
+// Initialize page with immediate loading screen
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize loading screen elements
     loadingScreen = document.getElementById('loading-screen');
@@ -1201,14 +1207,12 @@ document.addEventListener('DOMContentLoaded', () => {
     photosLoadedElement = document.getElementById('photos-loaded');
     loadingTimeElement = document.getElementById('loading-time-element');
     
-    // Hide the main content initially
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    // Show loading screen
+    // Ensure loading screen is visible (should already be visible from CSS)
     if (loadingScreen) {
         loadingScreen.style.display = 'flex';
-        console.log('✅ Loading screen initialized and displayed');
+        loadingScreen.style.opacity = '1';
+        loadingScreen.style.visibility = 'visible';
+        console.log('✅ Loading screen confirmed visible');
     } else {
         console.error('❌ Loading screen element not found!');
     }

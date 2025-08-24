@@ -1,4 +1,4 @@
-/* Loading Screen Styles */
+/* Loading Screen Styles - Critical: Must be visible immediately */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -6,14 +6,14 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     z-index: 9999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    /* Ensure loading screen is visible immediately */
-    opacity: 1;
-    visibility: visible;
+    /* CRITICAL: Ensure loading screen is visible immediately on page load */
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .loading-screen.hidden {
@@ -143,9 +143,11 @@
 
 /* Critical: Prevent white flash during page load */
 html, body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     margin: 0;
     padding: 0;
+    /* Hide body content initially until loading is complete */
+    overflow: hidden;
 }
 
 /* Reset and Base Styles */
