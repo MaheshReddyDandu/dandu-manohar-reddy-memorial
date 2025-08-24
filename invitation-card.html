@@ -16,7 +16,7 @@
         body {
             font-family: 'Noto Sans Telugu', 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 120vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* Add the same background patterns and effects from index.html */
+        /* Background patterns */
         body::before {
             content: '';
             position: fixed;
@@ -39,14 +39,6 @@
             animation: backgroundFloat 20s ease-in-out infinite;
         }
 
-        @keyframes backgroundFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(1deg); }
-            50% { transform: translateY(-5px) rotate(-1deg); }
-            75% { transform: translateY(-15px) rotate(0.5deg); }
-        }
-
-        /* Add farming theme enhancement like in index.html */
         body::after {
             content: '';
             position: fixed;
@@ -59,12 +51,19 @@
             z-index: -1;
         }
 
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-5px) rotate(-1deg); }
+            75% { transform: translateY(-15px) rotate(0.5deg); }
+        }
+
         @keyframes farmShine {
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
         }
 
-        /* Add floating background elements like in index.html */
+        /* Background elements */
         .background-elements {
             position: fixed;
             top: 0;
@@ -90,123 +89,29 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Enhanced floating elements for farming theme (same as index.html) */
-        .bg-element i.fa-seedling {
-            color: #4CAF50;
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-        }
+        .bg-element i.fa-seedling { color: #4CAF50; text-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
+        .bg-element i.fa-tractor { color: #FF6F00; text-shadow: 0 0 10px rgba(255, 111, 0, 0.5); }
+        .bg-element i.fa-sun { color: #FFC107; text-shadow: 0 0 15px rgba(255, 193, 7, 0.7); }
+        .bg-element i.fa-leaf { color: #8BC34A; text-shadow: 0 0 10px rgba(139, 195, 74, 0.5); }
+        .bg-element i.fa-award { color: #FFD700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        .bg-element i.fa-heart { color: #E91E63; text-shadow: 0 0 10px rgba(233, 30, 99, 0.5); }
+        .bg-element i.fa-home { color: #795548; text-shadow: 0 0 10px rgba(121, 85, 72, 0.5); }
+        .bg-element i.fa-handshake { color: #607D8B; text-shadow: 0 0 10px rgba(96, 125, 139, 0.5); }
+        .bg-element i.fa-tree { color: #2E7D32; text-shadow: 0 0 10px rgba(46, 125, 50, 0.5); }
 
-        .bg-element i.fa-tractor {
-            color: #FF6F00;
-            text-shadow: 0 0 10px rgba(255, 111, 0, 0.5);
-        }
-
-        .bg-element i.fa-sun {
-            color: #FFC107;
-            text-shadow: 0 0 15px rgba(255, 193, 7, 0.7);
-        }
-
-        .bg-element i.fa-leaf {
-            color: #8BC34A;
-            text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
-        }
-
-        .bg-element i.fa-award {
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .bg-element i.fa-heart {
-            color: #E91E63;
-            text-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
-        }
-
-        .bg-element i.fa-home {
-            color: #795548;
-            text-shadow: 0 0 10px rgba(121, 85, 72, 0.5);
-        }
-
-        .bg-element i.fa-handshake {
-            color: #607D8B;
-            text-shadow: 0 0 10px rgba(96, 125, 139, 0.5);
-        }
-
-        .bg-element i.fa-tree {
-            color: #2E7D32;
-            text-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
-        }
-
-        .bg-element-1 {
-            top: 15%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .bg-element-2 {
-            top: 45%;
-            left: 5%;
-            animation-delay: 1s;
-        }
-
-        .bg-element-3 {
-            top: 75%;
-            left: 15%;
-            animation-delay: 2s;
-        }
-
-        .bg-element-4 {
-            top: 30%;
-            left: 25%;
-            animation-delay: 3s;
-        }
-
-        .bg-element-5 {
-            top: 20%;
-            right: 25%;
-            animation-delay: 0.5s;
-        }
-
-        .bg-element-6 {
-            top: 60%;
-            right: 30%;
-            animation-delay: 1.5s;
-        }
-
-        .bg-element-7 {
-            bottom: 20%;
-            right: 10%;
-            animation-delay: 2.5s;
-        }
-
-        .bg-element-8 {
-            top: 50%;
-            right: 5%;
-            animation-delay: 3.5s;
-        }
-
-        .bg-element-9 {
-            bottom: 40%;
-            left: 35%;
-            animation-delay: 4s;
-        }
+        .bg-element-1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .bg-element-2 { top: 45%; left: 5%; animation-delay: 1s; }
+        .bg-element-3 { top: 75%; left: 15%; animation-delay: 2s; }
+        .bg-element-4 { top: 30%; left: 25%; animation-delay: 3s; }
+        .bg-element-5 { top: 20%; right: 25%; animation-delay: 0.5s; }
+        .bg-element-6 { top: 60%; right: 30%; animation-delay: 1.5s; }
+        .bg-element-7 { bottom: 20%; right: 10%; animation-delay: 2.5s; }
+        .bg-element-8 { top: 50%; right: 5%; animation-delay: 3.5s; }
+        .bg-element-9 { bottom: 40%; left: 35%; animation-delay: 4s; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Additional subtle background enhancement */
-        .invitation-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="card-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23card-pattern)"/></svg>');
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: 1;
         }
 
         .print-controls {
@@ -218,7 +123,7 @@
             gap: 10px;
         }
 
-        .print-btn, .download-btn {
+        .print-btn {
             padding: 12px 24px;
             background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
             color: #2c3e50;
@@ -231,12 +136,12 @@
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .print-btn:hover, .download-btn:hover {
+        .print-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
-        /* Traditional Telugu Invitation Card - Horizontal Rectangle Orientation */
+        /* Main invitation card - Fixed dimensions and layout */
         .invitation-card {
             width: 900px;
             height: 500px;
@@ -249,99 +154,9 @@
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;
-            transform-origin: center;
         }
 
-        /* Enhanced content area backgrounds */
-        .ceremony-details {
-            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8) 0%, rgba(255, 245, 238, 0.9) 100%);
-            border: 3px solid #D4AF37;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ceremony-details::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
-        }
-
-        /* Enhanced photo section background */
-        .photo-section {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 6px solid #D4AF37;
-            position: relative;
-            background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            transform-origin: center;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-        }
-
-        /* Enhanced left section background */
-        .left-section {
-            flex: 0 0 320px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding-right: 0.25rem;
-            text-align: center;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%);
-            border-radius: 15px;
-            padding: 0.75rem;
-            border: 1px solid transparent;
-        }
-
-        /* Enhanced right section background */
-        .right-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%);
-            border-radius: 15px;
-            padding: 0.75rem;
-            border: 1px solid transparent;
-        }
-
-        /* Ornate Decorative Border - Exact Design from Image */
-        .invitation-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 8px solid transparent;
-            background: linear-gradient(45deg, #D4AF37, #FFD700, #D4AF37) border-box;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) padding-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            border-radius: 16px;
-        }
-
-        /* Corner Decorative Motifs */
+        /* Decorative border elements */
         .corner-decoration {
             position: absolute;
             width: 80px;
@@ -350,286 +165,6 @@
             z-index: 10;
         }
 
-        .corner-decoration::before,
-        .corner-decoration::after {
-            content: '';
-            position: absolute;
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
-            border-radius: 50%;
-        }
-
-        .corner-decoration::before {
-            width: 12px;
-            height: 12px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-        }
-
-        .corner-decoration::after {
-            width: 6px;
-            height: 6px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #FFD700;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
-        }
-
-        /* Top-Left Corner */
-        .corner-tl {
-            top: 15px;
-            left: 15px;
-        }
-
-        .corner-tl .swirl {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 3px solid transparent;
-            border-top: 3px solid #D4AF37;
-            border-left: 3px solid #D4AF37;
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            animation: swirlRotate 8s linear infinite;
-        }
-
-        .corner-tl .swirl::before {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid transparent;
-            border-top: 2px solid #FFD700;
-            border-left: 2px solid #FFD700;
-            border-radius: 50%;
-            top: 10px;
-            left: 10px;
-            animation: swirlRotate 6s linear infinite reverse;
-        }
-
-        .corner-tl .swirl::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid #D4AF37;
-            border-left: 2px solid #D4AF37;
-            border-radius: 50%;
-            top: 20px;
-            left: 20px;
-            animation: swirlRotate 4s linear infinite;
-        }
-
-        /* Top-Right Corner */
-        .corner-tr {
-            top: 15px;
-            right: 15px;
-            transform: scaleX(-1);
-        }
-
-        .corner-tr .swirl {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 3px solid transparent;
-            border-top: 3px solid #D4AF37;
-            border-left: 3px solid #D4AF37;
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            animation: swirlRotate 8s linear infinite;
-        }
-
-        .corner-tr .swirl::before {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid transparent;
-            border-top: 2px solid #FFD700;
-            border-left: 2px solid #FFD700;
-            border-radius: 50%;
-            top: 10px;
-            left: 10px;
-            animation: swirlRotate 6s linear infinite reverse;
-        }
-
-        .corner-tr .swirl::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid #D4AF37;
-            border-left: 2px solid #D4AF37;
-            border-radius: 50%;
-            top: 20px;
-            left: 20px;
-            animation: swirlRotate 4s linear infinite;
-        }
-
-        /* Bottom-Left Corner */
-        .corner-bl {
-            bottom: 15px;
-            left: 15px;
-            transform: scaleY(-1);
-        }
-
-        .corner-bl .swirl {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 3px solid transparent;
-            border-top: 3px solid #D4AF37;
-            border-left: 3px solid #D4AF37;
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            animation: swirlRotate 8s linear infinite;
-        }
-
-        .corner-bl .swirl::before {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid transparent;
-            border-top: 2px solid #FFD700;
-            border-left: 2px solid #FFD700;
-            border-radius: 50%;
-            top: 10px;
-            left: 10px;
-            animation: swirlRotate 6s linear infinite reverse;
-        }
-
-        .corner-bl .swirl::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid #D4AF37;
-            border-left: 2px solid #D4AF37;
-            border-radius: 50%;
-            top: 20px;
-            left: 20px;
-            animation: swirlRotate 4s linear infinite;
-        }
-
-        /* Bottom-Right Corner */
-        .corner-br {
-            bottom: 15px;
-            right: 15px;
-            transform: scale(-1);
-        }
-
-        .corner-br .swirl {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 3px solid transparent;
-            border-top: 3px solid #D4AF37;
-            border-left: 3px solid #D4AF37;
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            animation: swirlRotate 8s linear infinite;
-        }
-
-        .corner-br .swirl::before {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid transparent;
-            border-top: 2px solid #FFD700;
-            border-left: 2px solid #FFD700;
-            border-radius: 50%;
-            top: 10px;
-            left: 10px;
-            animation: swirlRotate 6s linear infinite reverse;
-        }
-
-        .corner-br .swirl::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid #D4AF37;
-            border-left: 2px solid #D4AF37;
-            border-radius: 50%;
-            top: 20px;
-            left: 20px;
-            animation: swirlRotate 4s linear infinite;
-        }
-
-        /* Connecting Border Lines */
-        .border-line {
-            position: absolute;
-            background: linear-gradient(90deg, transparent 0%, #D4AF37 20%, #FFD700 50%, #D4AF37 80%, transparent 100%);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
-        }
-
-        .border-line.top {
-            top: 25px;
-            left: 95px;
-            right: 95px;
-            height: 2px;
-        }
-
-        .border-line.bottom {
-            bottom: 25px;
-            left: 95px;
-            right: 95px;
-            height: 2px;
-        }
-
-        .border-line.left {
-            left: 25px;
-            top: 95px;
-            bottom: 95px;
-            width: 2px;
-        }
-
-        .border-line.right {
-            right: 25px;
-            top: 95px;
-            bottom: 95px;
-            width: 2px;
-        }
-
-        /* Swirl Animation */
-        @keyframes swirlRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Additional Decorative Elements */
-        .decorative-dots {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFD700;
-            border-radius: 50%;
-            box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
-        }
-
-        .decorative-dots.top-left { top: 35px; left: 85px; }
-        .decorative-dots.top-right { top: 35px; right: 85px; }
-        .decorative-dots.bottom-left { bottom: 35px; left: 85px; }
-        .decorative-dots.bottom-right { bottom: 35px; right: 85px; }
-
-        .decorative-dots.mid-top { top: 35px; left: 50%; transform: translateX(-50%); }
-        .decorative-dots.mid-bottom { bottom: 35px; left: 50%; transform: translateX(-50%); }
-        .decorative-dots.mid-left { left: 35px; top: 50%; transform: translateY(-50%); }
-        .decorative-dots.mid-right { right: 35px; top: 50%; transform: translateY(-50%); }
-
-        /* Enhanced Corner Motifs with More Intricate Patterns */
         .corner-decoration::before {
             content: '';
             position: absolute;
@@ -640,310 +175,72 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 
-                0 0 15px rgba(255, 215, 0, 0.8),
-                inset 0 0 8px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
 
-        /* Additional Swirling Elements */
-        .corner-decoration .swirl-extra {
+        .swirl {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 2px solid transparent;
-            border-top: 2px solid #FFD700;
-            border-right: 2px solid #FFD700;
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid #D4AF37;
+            border-left: 3px solid #D4AF37;
             border-radius: 50%;
-            top: 25px;
-            left: 25px;
-            animation: swirlRotate 5s linear infinite reverse;
-        }
-
-        .corner-decoration .swirl-extra::before {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            border: 1px solid transparent;
-            border-top: 1px solid #D4AF37;
-            border-right: 1px solid #D4AF37;
-            border-radius: 50%;
-            top: 7px;
-            left: 7px;
-            animation: swirlRotate 3s linear infinite;
-        }
-
-        /* Enhanced Border Lines with Patterns */
-        .border-line::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent 0px,
-                transparent 8px,
-                #FFD700 8px,
-                #FFD700 10px,
-                transparent 10px,
-                transparent 18px
-            );
-            animation: borderShimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes borderShimmer {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        /* Corner Leaf Motifs */
-        .corner-leaf {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #D4AF37 0%, #FFD700 100%);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: leafSway 4s ease-in-out infinite;
-        }
-
-        .corner-leaf.top-left { top: 45px; left: 45px; transform: rotate(-45deg); }
-        .corner-leaf.top-right { top: 45px; right: 45px; transform: rotate(45deg); }
-        .corner-leaf.bottom-left { bottom: 45px; left: 45px; transform: rotate(-135deg); }
-        .corner-leaf.bottom-right { bottom: 45px; right: 45px; transform: rotate(135deg); }
-
-        @keyframes leafSway {
-            0%, 100% { transform: rotate(-45deg) scale(1); }
-            50% { transform: rotate(-45deg) scale(1.1); }
-        }
-
-        .corner-leaf.top-right {
-            animation: leafSwayRight 4s ease-in-out infinite;
-        }
-
-        @keyframes leafSwayRight {
-            0%, 100% { transform: rotate(45deg) scale(1); }
-            50% { transform: rotate(45deg) scale(1.1); }
-        }
-
-        .corner-leaf.bottom-left {
-            animation: leafSwayBottomLeft 4s ease-in-out infinite;
-        }
-
-        @keyframes leafSwayBottomLeft {
-            0%, 100% { transform: rotate(-135deg) scale(1); }
-            50% { transform: rotate(-135deg) scale(1.1); }
-        }
-
-        .corner-leaf.bottom-right {
-            animation: leafSwayBottomRight 4s ease-in-out infinite;
-        }
-
-        @keyframes leafSwayBottomRight {
-            0%, 100% { transform: rotate(135deg) scale(1); }
-            50% { transform: rotate(135deg) scale(1.1); }
-        }
-
-        /* Subtle Background Pattern */
-        .invitation-card::after {
-            content: '';
-            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
-                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.03) 1px, transparent 1px),
-                radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px, 60px 60px, 40px 40px;
-            background-position: 0 0, 30px 30px, 15px 15px;
-            pointer-events: none;
-            z-index: 1;
+            animation: swirlRotate 8s linear infinite;
         }
 
-        /* Enhanced Corner Glow Effects */
-        .corner-decoration {
-            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+        .corner-tl { top: 15px; left: 15px; }
+        .corner-tr { top: 15px; right: 15px; transform: scaleX(-1); }
+        .corner-bl { bottom: 15px; left: 15px; transform: scaleY(-1); }
+        .corner-br { bottom: 15px; right: 15px; transform: scale(-1); }
+
+        @keyframes swirlRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .corner-decoration:hover {
-            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-        }
-
-        /* Border Line Glow */
+        /* Border lines */
         .border-line {
-            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+            position: absolute;
+            background: linear-gradient(90deg, transparent 0%, #D4AF37 20%, #FFD700 50%, #D4AF37 80%, transparent 100%);
         }
 
-        /* Responsive Adjustments for Decorative Elements */
-        @media (max-width: 768px) {
-            .corner-decoration {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .corner-decoration .swirl {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .corner-decoration .swirl-extra {
-                width: 22px;
-                height: 22px;
-                top: 19px;
-                left: 19px;
-            }
-            
-            .corner-leaf {
-                width: 15px;
-                height: 15px;
-            }
-            
-            .corner-leaf.top-left { top: 35px; left: 35px; }
-            .corner-leaf.top-right { top: 35px; right: 35px; }
-            .corner-leaf.bottom-left { bottom: 35px; left: 35px; }
-            .corner-leaf.bottom-right { bottom: 35px; right: 35px; }
-            
-            .border-line.top { top: 20px; left: 75px; right: 75px; }
-            .border-line.bottom { bottom: 20px; left: 75px; right: 75px; }
-            .border-line.left { left: 20px; top: 75px; bottom: 75px; }
-            .border-line.right { right: 20px; top: 75px; bottom: 75px; }
-            
-            .decorative-dots.top-left { top: 30px; left: 65px; }
-            .decorative-dots.top-right { top: 30px; right: 65px; }
-            .decorative-dots.bottom-left { bottom: 30px; left: 65px; }
-            .decorative-dots.bottom-right { bottom: 30px; right: 65px; }
-        }
+        .border-line.top { top: 25px; left: 95px; right: 95px; height: 2px; }
+        .border-line.bottom { bottom: 25px; left: 95px; right: 95px; height: 2px; }
+        .border-line.left { left: 25px; top: 95px; bottom: 95px; width: 2px; }
+        .border-line.right { right: 25px; top: 95px; bottom: 95px; width: 2px; }
 
+        /* Header - Fixed height */
         .card-header {
             background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
             color: #2c3e50;
             text-align: center;
-            padding: 1.5rem;
+            padding: 1rem;
             position: relative;
             overflow: hidden;
-            width: 100%;
+            height: 80px;
             display: flex;
-            flex-direction: row;
-            justify-content: center;
             align-items: center;
-            min-height: 100px;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .header-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin: 0;
             color: #2c3e50;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            flex: 1;
-            text-align: center;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF6B35 50%, #FFD700 75%, #FFA500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleShine 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
-        }
-
-        @keyframes titleShine {
-            0%, 100% { 
-                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
-                transform: scale(1);
-            }
-            50% { 
-                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 165, 0, 0.6));
-                transform: scale(1.02);
-            }
-        }
-
-        /* Enhanced deceased name styling */
-        .deceased-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.6rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: nameGlow 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes nameGlow {
-            0%, 100% { 
-                filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
-                transform: scale(1);
-            }
-            50% { 
-                filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.7)) drop-shadow(0 0 25px rgba(118, 75, 162, 0.5));
-                transform: scale(1.01);
-            }
-        }
-
-        /* Enhanced ceremony details styling */
-        .ceremony-date {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.4rem;
-            text-align: center;
-            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 25%, #CDDC39 50%, #4CAF50 75%, #8BC34A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: ceremonyShine 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
-            letter-spacing: 0.3px;
-        }
-
-        @keyframes ceremonyShine {
-            0%, 100% { 
-                filter: drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
-                transform: scale(1);
-            }
-            50% { 
-                filter: drop-shadow(0 0 12px rgba(76, 175, 80, 0.6)) drop-shadow(0 0 20px rgba(139, 195, 74, 0.4));
-                transform: scale(1.01);
-            }
-        }
-
-        .ceremony-venue {
-            font-size: 1rem;
-            color: #2c3e50;
-            text-align: center;
-            line-height: 1.3;
-            background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: venueGlow 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.3));
-            font-weight: 600;
-        }
-
-        @keyframes venueGlow {
-            0%, 100% { 
-                filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.3));
-                transform: scale(1);
-            }
-            50% { 
-                filter: drop-shadow(0 0 10px rgba(255, 152, 0, 0.5)) drop-shadow(0 0 18px rgba(255, 193, 7, 0.4));
-                transform: scale(1.01);
-            }
         }
 
         .header-symbols {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
             align-items: center;
-            gap: 3rem;
-            margin: 0;
+            justify-content: center;
+            gap: 2rem;
             position: absolute;
             left: 0;
             right: 0;
@@ -953,75 +250,55 @@
         }
 
         .lamp-symbol {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #FFD700;
             animation: deepamGlow 2s ease-in-out infinite alternate;
-            pointer-events: none;
         }
 
         @keyframes deepamGlow {
-            0% { 
-                filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
-                color: #FFD700;
-            }
-            100% { 
-                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
-                color: #FFA500;
-            }
+            0% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)); color: #FFD700; }
+            100% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)); color: #FFA500; }
         }
 
-        .reference-number {
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
-            background: #8B4513;
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
+        /* Main content area - Flex layout */
         .card-content {
             flex: 1;
             display: flex;
             padding: 0.25rem;
-            gap: 1.5rem;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+            gap: 1rem;
+            overflow: hidden;
+            min-height: 0;
         }
 
+        /* Left section - Photo and name */
         .left-section {
-            flex: 0 0 320px;
+            flex: 0 0 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding-right: 0.25rem;
+            /* justify-content: flex-start; */
+            padding: 0.5rem;
             text-align: center;
-            margin: 0 auto;
             background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%);
             border-radius: 15px;
-            padding: 0.75rem;
-            border: 1px solid transparent;
+            overflow: hidden;
         }
 
         .photo-section {
-            width: 200px;
-            height: 200px;
+            margin-top: 20px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             overflow: hidden;
-            border: 6px solid #D4AF37;
+            border: 5px solid #D4AF37;
             position: relative;
             background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            transform-origin: center;
+            margin-bottom: 1rem;
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            flex-shrink: 0;
         }
 
         .photo-placeholder {
@@ -1032,28 +309,24 @@
             align-items: center;
             justify-content: center;
             color: #2c3e50;
-            font-size: 2.5rem;
-        }
-
-        .photo-placeholder i {
-            opacity: 0.8;
+            font-size: 2rem;
         }
 
         .upload-btn {
             position: absolute;
             bottom: -5px;
             right: -5px;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             background: #D4AF37;
-            border: 3px solid white;
+            border: 2px solid white;
             border-radius: 50%;
             color: #2c3e50;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
             z-index: 3;
         }
@@ -1065,83 +338,104 @@
 
         .deceased-dates {
             text-align: center;
-            margin-top: 0.8rem;
+            flex-shrink: 0;
         }
 
         .deceased-name {
-            font-size: 1.3rem;
+            font-size: 1.rem;
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: nameGlow 4s ease-in-out infinite;
             filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            margin-top: 1rem;
         }
 
         .deceased-dates-text {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #6c757d;
             line-height: 1.3;
         }
 
+        /* Right section - Main content */
         .right-section {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
+            justify-content: flex-start;
+            gap: 0.9rem;
+            /* padding: 0.5rem; */
             background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%);
             border-radius: 15px;
-            padding: 0.75rem;
-            border: 1px solid transparent;
+            overflow: hidden;
+            min-height: 0;
         }
 
         .main-content {
-            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
-        }
-
-        .deceased-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            text-align: center;
-            border-bottom: 2px solid #D4AF37;
-            padding-bottom: 0.4rem;
+            gap: 0.3rem;
+            flex: 1;
+            margin-top: 1.5rem;
         }
 
         .content-paragraph {
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            line-height: 1.4;
             color: #2c3e50;
-            font-size: 0.9rem;
-            text-align: justify;
+            font-size: 0.85rem;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .date-line {
+            text-align: center;
+            margin-bottom: 0.2rem;
+            font-weight: 700;
+            font-size: 18px;
+            color: #495057;
+        }
+
+        .father-line {
+            text-align: center;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .name-line {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .message-line {
+            text-align: center;
+            font-weight: 500;
+            color: #495057;
+            line-height: 1.4;
         }
 
         .highlighted-name {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #1a252f;
         }
 
         .ceremony-details {
             background: linear-gradient(135deg, rgba(255, 248, 220, 0.8) 0%, rgba(255, 245, 238, 0.9) 100%);
-            border: 3px solid #D4AF37;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            padding: 0.8rem;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
             position: relative;
             overflow: hidden;
@@ -1153,73 +447,93 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
         }
 
-        .ceremony-time {
-            font-size: 0.85rem;
-            color: #6c757d;
+        .ceremony-date {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
             text-align: center;
-            margin-bottom: 0.8rem;
+            letter-spacing: 0.2px;
         }
 
         .ceremony-venue {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #2c3e50;
             text-align: center;
-            line-height: 1.3;
-            background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%);
+            line-height: 1.2;
+            font-weight: 600;
+            background-color: #472503;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            -webkit-print-color-adjust: exact;
-            color-adjust: exact;
-            print-color-adjust: exact;
-            font-size: 1rem;
-            font-weight: 600;
         }
 
         .invitation-message {
             font-style: italic;
             color: #495057;
             text-align: center;
-            line-height: 1.4;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
+            line-height: 1.3;
+            font-size: 0.8rem;
+            margin-bottom: 0rem;
         }
 
         .closing-section {
             text-align: center;
-            margin-top: 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 0.1rem;
+            margin-top: -1rem;
         }
 
         .closing-text {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #6c757d;
-            margin-bottom: 0.4rem;
+            margin-top: -1.5rem; 
         }
 
         .family-signature {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 0.8rem;
         }
 
         .event-location {
-            font-size: 0.75rem;
-            color: #6c757d;
-            line-height: 1.3;
-            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #e4e9ee;
+            line-height: 0.2;
+            text-align: center;
+            /* background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); */
+            background-color: #1a252f;
+            /* border: 2px solid #0a0a0a; */
+            border-radius: 25px;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            margin-right: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .decoration-elements {
-            display: none;
+        .event-location::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700 0%, #D4AF37 50%, #FFD700 100%);
+        }
+
+        .event-location strong {
+            font-weight: 700;
+            color: #e2e7eb;
+            font-size: 1rem;
         }
 
         /* Print Styles */
@@ -1239,7 +553,6 @@
                 background: white !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                font-family: 'Noto Sans Telugu', 'Arial', sans-serif !important;
             }
             
             .print-controls {
@@ -1252,337 +565,56 @@
             
             .invitation-card {
                 box-shadow: none !important;
-                border: 4px solid #D4AF37 !important;
-                border-radius: 20px !important;
                 width: 100% !important;
                 max-width: 11in !important;
                 height: auto !important;
                 min-height: 7in !important;
                 page-break-inside: avoid !important;
                 margin: 0 auto !important;
-                display: flex !important;
-                flex-direction: column !important;
-                overflow: visible !important;
-                justify-content: center !important;
-                align-items: center !important;
                 background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 50%, #fef5e7 100%) !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            .invitation-card::before {
-                display: none !important;
+                border: 4px solid #D4AF37 !important;
             }
             
             .card-header {
-                background: #D4AF37 !important;
+                background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%) !important;
                 color: #2c3e50 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                padding: 1.5rem !important;
-                text-align: center !important;
-                width: 100% !important;
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: center !important;
-                align-items: center !important;
-                min-height: 80px !important;
-            }
-            
-            .header-title {
-                font-family: 'Playfair Display', serif !important;
-                font-size: 2.5rem !important;
-                font-weight: 700 !important;
-                color: #2c3e50 !important;
-                margin: 0 !important;
-                flex: 1 !important;
-                text-align: center !important;
-                background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF6B35 50%, #FFD700 75%, #FFA500 100%) !important;
-                -webkit-background-clip: text !important;
-                -webkit-text-fill-color: transparent !important;
-                background-clip: text !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            .header-symbols {
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: center !important;
-                align-items: center !important;
-                gap: 3rem !important;
-                margin: 0 !important;
-                position: absolute !important;
-                left: 0 !important;
-                right: 0 !important;
-                top: 0 !important;
-                bottom: 0 !important;
-                pointer-events: none !important;
-            }
-            
-            .lamp-symbol {
-                font-size: 1.2rem !important;
-                color: #FFD700 !important;
-            }
-            
-            .card-content {
-                flex: 1 !important;
-                display: flex !important;
-                flex-direction: row !important;
-                padding: 0.25rem !important;
-                gap: 1.5rem !important;
-                overflow: visible !important;
-                justify-content: center !important;
-                align-items: center !important;
             }
             
             .left-section {
-                flex: 0 0 320px !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                padding-right: 0.25rem !important;
-                text-align: center !important;
-                margin: 0 auto !important;
                 background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%) !important;
-                border-radius: 15px !important;
-                padding: 0.75rem !important;
-                border: 1px solid transparent !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
+            }
+            
+            .right-section {
+                background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%) !important;
             }
             
             .photo-section {
-                width: 200px !important;
-                height: 200px !important;
-                border-radius: 50% !important;
-                overflow: hidden !important;
-                border: 6px solid #D4AF37 !important;
-                margin-bottom: 1.5rem !important;
                 background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%) !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                border: 5px solid #D4AF37 !important;
             }
             
-            .photo-placeholder {
-                width: 100% !important;
-                height: 100% !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
+            .ceremony-date, .ceremony-venue {
+                background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%) !important;
+                border: 2px solid #FF9800 !important;
+                color: #472503 !important;
             }
             
-            .photo-placeholder img {
-                width: 100% !important;
-                height: 100% !important;
-                object-fit: cover !important;
+            .event-location {
+                background-color: #1a252f !important;
+                border: 2px solid #1a252f !important;
+                color: #e4e9ee !important;
             }
             
-            .deceased-dates {
-                text-align: center !important;
-                margin-top: 0.8rem !important;
+            .event-location strong {
+                color: #e2e7eb !important;
             }
             
             .deceased-name {
-                font-size: 1.3rem !important;
-                font-weight: 700 !important;
-                color: #2c3e50 !important;
-                margin-bottom: 0.6rem !important;
-                text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%) !important;
                 -webkit-background-clip: text !important;
                 -webkit-text-fill-color: transparent !important;
                 background-clip: text !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                font-size: 1.3rem !important;
-                letter-spacing: 0.5px !important;
             }
-            
-            .deceased-dates-text {
-                font-size: 0.75rem !important;
-                color: #6c757d !important;
-                line-height: 1.3 !important;
-            }
-            
-            .right-section {
-                flex: 1 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: center !important;
-                gap: 1rem !important;
-                max-width: 500px !important;
-                margin: 0 auto !important;
-                background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%) !important;
-                border-radius: 15px !important;
-                padding: 0.75rem !important;
-                border: 1px solid transparent !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            .main-content {
-                flex: 1 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: center !important;
-                align-items: center !important;
-                text-align: center !important;
-            }
-            
-            .deceased-title {
-                font-size: 1.2rem !important;
-                font-weight: 700 !important;
-                color: #2c3e50 !important;
-                margin-bottom: 1rem !important;
-                text-align: center !important;
-                border-bottom: 2px solid #D4AF37 !important;
-                padding-bottom: 0.4rem !important;
-            }
-            
-            .content-paragraph {
-                margin-bottom: 1rem !important;
-                line-height: 1.6 !important;
-                color: #2c3e50 !important;
-                font-size: 0.9rem !important;
-                text-align: justify !important;
-            }
-
-            .highlighted-name {
-                font-size: 1.1rem !important;
-                font-weight: 700 !important;
-                color: #1a252f !important;
-            }
-            
-            .ceremony-details {
-                background: linear-gradient(135deg, rgba(255, 248, 220, 0.8) 0%, rgba(255, 245, 238, 0.9) 100%);
-                border: 3px solid #D4AF37;
-                border-radius: 12px;
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
-                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .ceremony-details::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
-            }
-            
-            .ceremony-date {
-                font-size: 1.1rem !important;
-                font-weight: 700 !important;
-                color: #2c3e50 !important;
-                margin-bottom: 0.4rem !important;
-                text-align: center !important;
-                background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 25%, #CDDC39 50%, #4CAF50 75%, #8BC34A 100%) !important;
-                -webkit-background-clip: text !important;
-                -webkit-text-fill-color: transparent !important;
-                background-clip: text !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                font-size: 1.1rem !important;
-                font-weight: 700 !important;
-                letter-spacing: 0.3px !important;
-            }
-            
-            .ceremony-time {
-                font-size: 0.85rem !important;
-                color: #6c757d !important;
-                text-align: center !important;
-                margin-bottom: 0.8rem !important;
-            }
-            
-            .ceremony-venue {
-                font-size: 1rem !important;
-                color: #2c3e50 !important;
-                text-align: center !important;
-                line-height: 1.3 !important;
-                background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%) !important;
-                -webkit-background-clip: text !important;
-                -webkit-text-fill-color: transparent !important;
-                background-clip: text !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                font-size: 1rem !important;
-                font-weight: 600 !important;
-            }
-            
-            .invitation-message {
-                font-style: italic !important;
-                color: #495057 !important;
-                text-align: center !important;
-                line-height: 1.4 !important;
-                margin-bottom: 1rem !important;
-                font-size: 0.85rem !important;
-            }
-            
-            .closing-section {
-                text-align: center !important;
-                margin-top: 1rem !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-            
-            .closing-text {
-                font-size: 0.85rem !important;
-                color: #6c757d !important;
-                margin-bottom: 0.4rem !important;
-            }
-            
-            .family-signature {
-                font-size: 0.95rem !important;
-                font-weight: 600 !important;
-                color: #2c3e50 !important;
-                margin-bottom: 0.8rem !important;
-            }
-            
-            .event-location {
-                font-size: 0.75rem !important;
-                color: #6c757d !important;
-                line-height: 1.3 !important;
-                margin-top: 0.8rem !important;
-            }
-            
-            .decoration-elements {
-                display: none !important;
-            }
-        }
-
-        /* Content Centering and Spacing */
-        .invitation-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-content {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .left-section, .right-section {
-            flex-shrink: 0;
         }
 
         /* Mobile Responsive */
@@ -1591,111 +623,50 @@
                 width: 95%;
                 max-width: 600px;
                 height: auto;
-                min-height: 400px;
-                margin: 10px;
-                border-radius: 15px;
+                min-height: 500px;
                 flex-direction: column;
             }
             
-            /* Mobile background elements adjustments */
-            .bg-element {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-            
-            /* Adjust positions for mobile */
-            .bg-element-1 { top: 10%; left: 5%; }
-            .bg-element-2 { top: 40%; left: 2%; }
-            .bg-element-3 { top: 70%; left: 8%; }
-            .bg-element-4 { top: 25%; left: 20%; }
-            .bg-element-5 { top: 15%; right: 20%; }
-            .bg-element-6 { top: 55%; right: 25%; }
-            .bg-element-7 { bottom: 15%; right: 5%; }
-            .bg-element-8 { top: 45%; right: 2%; }
-            .bg-element-9 { bottom: 35%; left: 30%; }
-            
             .card-header {
-                padding: 1rem;
-                width: 100%;
-                flex-direction: row;
-                min-height: 60px;
+                height: 60px;
+                padding: 0.8rem;
             }
             
             .header-title {
                 font-size: 1.8rem;
-                flex: 1;
-            }
-            
-            .header-symbols {
-                flex-direction: row;
-                gap: 2rem;
-                position: static;
-                pointer-events: auto;
             }
             
             .card-content {
                 flex-direction: column;
-                padding: 1.5rem;
-                gap: 1.5rem;
-                min-height: 0;
+                padding: 1rem;
+                gap: 1rem;
             }
             
             .left-section {
+                flex: none;
                 order: 1;
             }
             
             .right-section {
+                flex: none;
                 order: 2;
-                flex: 1;
             }
             
             .photo-section {
-                width: 160px;
-                height: 160px;
+                width: 140px;
+                height: 140px;
             }
             
-            .deceased-title {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
+            .deceased-name {
+                font-size: 1.5rem;
             }
             
             .content-paragraph {
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
-            }
-
-            .highlighted-name {
-                font-size: 1.1rem;
-                font-weight: 700;
-            }
-            
-            .ceremony-details {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .ceremony-date, .ceremony-time, .ceremony-venue {
-                font-size: 0.9rem;
-            }
-            
-            .invitation-message {
-                font-size: 0.85rem;
-                margin-bottom: 1rem;
-            }
-            
-            .closing-section {
-                margin-top: 1rem;
-            }
-            
-            .family-signature {
-                font-size: 1rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .event-location {
                 font-size: 0.8rem;
-                line-height: 1.3;
+            }
+            
+            .ceremony-date, .ceremony-venue {
+                font-size: 0.85rem;
             }
             
             .print-controls {
@@ -1705,276 +676,77 @@
                 transform: translateX(-50%);
                 top: auto;
                 right: auto;
-                margin-bottom: 0;
-                justify-content: center;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                border-radius: 25px;
-                padding: 10px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            }
-            
-            .print-btn, .download-btn {
-                padding: 10px 20px;
-                font-size: 13px;
             }
         }
-        
+
         /* Extra Small Mobile */
         @media (max-width: 480px) {
             .invitation-card {
                 width: 98%;
                 margin: 5px;
-                border-radius: 12px;
-                flex-direction: column;
-            }
-            
-            .card-header {
-                padding: 0.8rem;
-                width: 100%;
-                flex-direction: row;
             }
             
             .header-title {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             
-            .header-symbols {
-                gap: 1.5rem;
-                flex-direction: row;
+            .photo-section {
+                width: 120px;
+                height: 120px;
             }
             
-            .lamp-symbol {
+            .deceased-name {
                 font-size: 1.2rem;
             }
             
-            .card-content {
-                padding: 0.25rem;
-                gap: 1.5rem;
-            }
-            
-            .photo-section {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .deceased-name {
-                font-size: 1.1rem;
-            }
-            
-            .deceased-dates-text {
-                font-size: 0.8rem;
-            }
-            
-            .deceased-title {
-                font-size: 1rem;
-            }
-            
             .content-paragraph {
-                font-size: 0.85rem;
-            }
-
-            .highlighted-name {
-                font-size: 1rem;
-                font-weight: 700;
-            }
-            
-            .ceremony-details {
-                padding: 0.8rem;
-            }
-            
-            .ceremony-date, .ceremony-time, .ceremony-venue {
-                font-size: 0.85rem;
-            }
-            
-            .invitation-message {
-                font-size: 0.8rem;
-            }
-            
-            .closing-text {
-                font-size: 0.9rem;
-            }
-            
-            .family-signature {
-                font-size: 0.9rem;
-            }
-            
-            .event-location {
                 font-size: 0.75rem;
-            }
-            
-            .print-controls {
-                bottom: 15px;
-                padding: 8px;
-            }
-            
-            .print-btn, .download-btn {
-                padding: 8px 16px;
-                font-size: 12px;
-            }
-        }
-
-        /* Medium screens - maintain header at top */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .invitation-card {
-                width: 95%;
-                max-width: 800px;
-                height: 450px;
-            }
-            
-            /* Tablet background elements adjustments */
-            .bg-element {
-                width: 55px;
-                height: 55px;
-                font-size: 1.3rem;
-            }
-            
-            .card-header {
-                width: 100%;
-                padding: 0.75rem;
-                min-height: 70px;
-            }
-            
-            .header-title {
-                font-size: 2.2rem;
-            }
-            
-            .photo-section {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .deceased-name {
-                font-size: 1rem;
-            }
-            
-            .deceased-dates-text {
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Large screens - optimize for header at top layout */
-        @media (min-width: 1025px) {
-            .invitation-card {
-                width: 900px;
-                height: 500px;
-            }
-        }
-
-        /* Ultra-wide screens */
-        @media (min-width: 1400px) {
-            .invitation-card {
-                width: 1000px;
-                height: 550px;
-            }
-            
-            .card-header {
-                width: 100%;
-                padding: 2rem;
-                min-height: 100px;
-            }
-            
-            .header-title {
-                font-size: 3rem;
-            }
-            
-            .photo-section {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .deceased-name {
-                font-size: 1.3rem;
-            }
-            
-            .deceased-dates-text {
-                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Elements (same as index.html) -->
+    <!-- Background Elements -->
     <div class="background-elements">
-        <div class="bg-element bg-element-1">
-            <i class="fas fa-seedling"></i>
-        </div>
-        <div class="bg-element bg-element-2">
-            <i class="fas fa-tractor"></i>
-        </div>
-        <div class="bg-element bg-element-3">
-            <i class="fas fa-sun"></i>
-        </div>
-        <div class="bg-element bg-element-4">
-            <i class="fas fa-leaf"></i>
-        </div>
-        <div class="bg-element bg-element-5">
-            <i class="fas fa-award"></i>
-        </div>
-        <div class="bg-element bg-element-6">
-            <i class="fas fa-heart"></i>
-        </div>
-        <div class="bg-element bg-element-7">
-            <i class="fas fa-home"></i>
-        </div>
-        <div class="bg-element bg-element-8">
-            <i class="fas fa-handshake"></i>
-        </div>
-        <div class="bg-element bg-element-9">
-            <i class="fas fa-tree"></i>
-        </div>
+        <div class="bg-element bg-element-1"><i class="fas fa-seedling"></i></div>
+        <div class="bg-element bg-element-2"><i class="fas fa-tractor"></i></div>
+        <div class="bg-element bg-element-3"><i class="fas fa-sun"></i></div>
+        <div class="bg-element bg-element-4"><i class="fas fa-leaf"></i></div>
+        <div class="bg-element bg-element-5"><i class="fas fa-award"></i></div>
+        <div class="bg-element bg-element-6"><i class="fas fa-heart"></i></div>
+        <div class="bg-element bg-element-7"><i class="fas fa-home"></i></div>
+        <div class="bg-element bg-element-8"><i class="fas fa-handshake"></i></div>
+        <div class="bg-element bg-element-9"><i class="fas fa-tree"></i></div>
     </div>
 
     <div class="print-controls">
         <button class="print-btn" onclick="window.print()">
             <i class="fas fa-print"></i> ప్రింట్ చేయండి
         </button>
-        <!-- <button class="download-btn" onclick="downloadCard()">
-            <i class="fas fa-download"></i> డౌన్‌లోడ్ చేయండి
-        </button> -->
     </div>
 
     <div class="invitation-card">
-        <!-- Ornate Decorative Border Elements -->
+        <!-- Decorative Border Elements -->
         <div class="corner-decoration corner-tl">
             <div class="swirl"></div>
-            <div class="swirl-extra"></div>
         </div>
         <div class="corner-decoration corner-tr">
             <div class="swirl"></div>
-            <div class="swirl-extra"></div>
         </div>
         <div class="corner-decoration corner-bl">
             <div class="swirl"></div>
-            <div class="swirl-extra"></div>
         </div>
         <div class="corner-decoration corner-br">
             <div class="swirl"></div>
-            <div class="swirl-extra"></div>
         </div>
         
-        <!-- Corner Leaf Motifs -->
-        <div class="corner-leaf top-left"></div>
-        <div class="corner-leaf top-right"></div>
-        <div class="corner-leaf bottom-left"></div>
-        <div class="corner-leaf bottom-right"></div>
-        
-        <!-- Connecting Border Lines -->
+        <!-- Border Lines -->
         <div class="border-line top"></div>
         <div class="border-line bottom"></div>
         <div class="border-line left"></div>
         <div class="border-line right"></div>
         
-        <!-- Decorative Dots -->
-        <div class="decorative-dots top-left"></div>
-        <div class="decorative-dots top-right"></div>
-        <div class="decorative-dots bottom-left"></div>
-        <div class="decorative-dots bottom-right"></div>
-        <div class="decorative-dots mid-top"></div>
-        <div class="decorative-dots mid-bottom"></div>
-        <div class="decorative-dots mid-left"></div>
-        <div class="decorative-dots mid-right"></div>
-        
+        <!-- Header -->
         <div class="card-header">
             <div class="header-symbols">
                 <div class="lamp-symbol">
@@ -1987,12 +759,13 @@
             </div>
         </div>
 
+        <!-- Main Content -->
         <div class="card-content">
             <!-- Left Section - Photo -->
             <div class="left-section">
                 <div class="photo-section">
                     <div class="photo-placeholder" id="photo-placeholder">
-                        <img src="manohar.jpeg" alt="Dandu Manohar Reddy" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="manohar2.jpeg" alt="Dandu Manohar Reddy" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <input type="file" id="photo-upload" accept="image/*" style="display: none;" onchange="uploadPhoto(event)">
                     <button class="upload-btn" onclick="document.getElementById('photo-upload').click()">
@@ -2013,50 +786,35 @@
             <!-- Right Section - Text Content -->
             <div class="right-section">
                 <div class="main-content">
-                    
-                       
-                    
-                    
                     <div class="content-paragraph">
-                        తేది : 19-08-2025 మంగళవారం రోజున సాయంత్రం 6:25 గంటలకు మా తండ్రి గారు
-                            <span class="highlighted-name">శ్రీ దండు మనోహర్ రెడ్డి గారు</span>
-                         స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.
+                        <div class="date-line">తేది : 19-08-2025 మంగళవారం రోజున సాయంత్రం 6:25 గంటలకు</div>
+                        <div class="father-line">మా తండ్రి గారు</div>
+                        <div class="name-line"><span class="highlighted-name">శ్రీ దండు మనోహర్ రెడ్డి గారు</span></div>
+                        <div class="message-line">స్వర్గస్తులైనారని తెలుపుటకు చింతిస్తున్నాము.</div>
                     </div>
                     
                     <div class="ceremony-details">
-                        <div class="ceremony-date">
-                            తేది 04-09-2025 గురువారం రోజున 
-                        </div>
-                       
-                        <div class="ceremony-venue">
-                            వారి పెద్దకర్మ జరుపబడును
-                        </div>
+                        <div class="ceremony-date">తేది 04-09-2025 గురువారం రోజున</div>
+                        <div class="ceremony-venue">వారి పెద్దకర్మ జరుపబడును</div>
                     </div>
                     
                     <div class="invitation-message">
                         కావున తామెల్లరూ విచ్చేసి వారి ఆత్మకు శాంతి చేకూర్చాలని తెలియజేయడమైనది.
                     </div>
-                </div>
-                
-                <div class="closing-section">
-                    <div class="closing-text">ఇట్లు</div>
-                    <div class="family-signature">వారి కుమారులు</div>
-                    <div class="event-location">
-                        కార్య స్థలము : శ్రీ రామ్ నగర్ కాలనీ, అక్కంపేట, మనుబోలు (మండలం), నెల్లూరు జిల్లా, ఆంధ్రప్రదేశ్
+                    <div style="margin-top: 4rem;">
+                        <div class="closing-text">ఇట్లు</div>
+                        <div class="family-signature">వారి కుమారులు</div>
+                        <div class="event-location">
+                            <strong>కార్య స్థలము :</strong> శ్రీ రామ్ నగర్ కాలనీ, అక్కంపేట, మనుబోలు (మండలం), నెల్లూరు జిల్లా.
+                        </div>
                     </div>
                 </div>
+                
+               
             </div>
-        </div>
-
-        <div class="decoration-elements">
-            <div class="decoration-element decoration-1"></div>
-            <div class="decoration-element decoration-2"></div>
-            <div class="decoration-element decoration-3"></div>
-            <div class="decoration-element decoration-4"></div>
         </div>
     </div>
 
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
         // Function to upload and display photo
         function uploadPhoto(event) {
@@ -2071,36 +829,7 @@
             }
         }
 
-        function downloadCard() {
-            const card = document.querySelector('.invitation-card');
-            const printControls = document.querySelector('.print-controls');
-            
-            // Hide controls temporarily
-            printControls.style.display = 'none';
-            
-            html2canvas(card, {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                width: card.offsetWidth,
-                height: card.offsetHeight
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'pedda-karma-invitation.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                
-                // Show controls again
-                printControls.style.display = 'flex';
-            }).catch(err => {
-                console.error('Error generating image:', err);
-                alert('Download failed. Please use the print option instead.');
-                printControls.style.display = 'flex';
-            });
-        }
-
-        // Add interactive effects and dynamic resizing
+        // Add interactive effects
         document.addEventListener('DOMContentLoaded', function() {
             const card = document.querySelector('.invitation-card');
             
@@ -2113,43 +842,6 @@
                 this.style.transform = 'translateY(0) scale(1)';
                 this.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
             });
-
-            // Dynamic resizing based on viewport
-            function adjustCardSize() {
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-                
-                if (viewportWidth <= 768) {
-                    // Mobile - switch to vertical layout
-                    card.style.flexDirection = 'column';
-                    card.style.width = '95%';
-                    card.style.maxWidth = '600px';
-                    card.style.height = 'auto';
-                    card.style.minHeight = '400px';
-                } else if (viewportWidth <= 1024) {
-                    // Tablet - medium horizontal layout
-                    card.style.flexDirection = 'column';
-                    card.style.width = '95%';
-                    card.style.maxWidth = '800px';
-                    card.style.height = '450px';
-                } else if (viewportWidth <= 1400) {
-                    // Desktop - standard horizontal layout
-                    card.style.flexDirection = 'column';
-                    card.style.width = '900px';
-                    card.style.height = '500px';
-                } else {
-                    // Ultra-wide - large horizontal layout
-                    card.style.flexDirection = 'column';
-                    card.style.width = '1000px';
-                    card.style.height = '550px';
-                }
-            }
-
-            // Initial adjustment
-            adjustCardSize();
-
-            // Adjust on window resize
-            window.addEventListener('resize', adjustCardSize);
 
             // Add smooth scaling for photo section
             const photoSection = document.querySelector('.photo-section');
