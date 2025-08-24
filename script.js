@@ -379,68 +379,120 @@ async function loadAvailablePhotos() {
             }
         }, timeoutDuration);
         
-        // First, try to load known photos immediately for faster experience
-        const knownPhotos = [
-            'assets/photos/photo1.jpeg',
-            'assets/photos/photo2.jpeg', 
-            'assets/photos/photo3.jpeg',
-            'assets/photos/photo4.jpeg',
-            'assets/photos/photo5.jpeg'
-        ];
+        // Dynamic photo detection - automatically find all photos in the assets/photos folder
+        console.log('🚀 Scanning for available photos dynamically...');
+        updateLoadingProgress(10, 'Scanning for photos...');
         
-        console.log('🚀 Loading known photos immediately...');
-        updateLoadingProgress(10, 'Loading known photos...');
+        // Try to detect photos dynamically by testing common patterns
+        const photoPatterns = [];
+        let maxPhotoNumber = 50; // Try up to 50 photos to be safe
         
-        // Try to load known photos first
+        // First, try to find photos with sequential numbering (most common pattern)
+        for (let i = 1; i <= maxPhotoNumber; i++) {
+            photoPatterns.push(`assets/photos/photo${i}.jpeg`);
+            photoPatterns.push(`assets/photos/photo${i}.jpg`);
+            photoPatterns.push(`assets/photos/photo${i}.png`);
+            photoPatterns.push(`assets/photos/photo${i}.webp`);
+        }
+        
+        // Also try common variations and alternative naming patterns
+        photoPatterns.push('assets/photos/photo.jpeg');
+        photoPatterns.push('assets/photos/photo.jpg');
+        photoPatterns.push('assets/photos/photo.png');
+        photoPatterns.push('assets/photos/photo.webp');
+        
+        // Try with different naming conventions
+        for (let i = 1; i <= maxPhotoNumber; i++) {
+            photoPatterns.push(`assets/photos/image${i}.jpeg`);
+            photoPatterns.push(`assets/photos/image${i}.jpg`);
+            photoPatterns.push(`assets/photos/image${i}.png`);
+            photoPatterns.push(`assets/photos/img${i}.jpeg`);
+            photoPatterns.push(`assets/photos/img${i}.jpg`);
+            photoPatterns.push(`assets/photos/img${i}.png`);
+        }
+        
+        console.log(`🔍 Testing ${photoPatterns.length} possible photo patterns...`);
+        
         const availablePhotos = [];
         let loadedCount = 0;
+        let testedCount = 0;
         
-        for (let i = 0; i < knownPhotos.length; i++) {
-            const photoPath = knownPhotos[i];
-            try {
-                // Update progress
-                const progress = 10 + ((i + 1) / knownPhotos.length) * 40; // 10% to 50%
-                updateLoadingProgress(progress, `Loading photo ${i + 1} of ${knownPhotos.length}...`);
+        // Test photo patterns in batches for better performance
+        const batchSize = 10; // Test 10 photos at a time
+        for (let batchStart = 0; batchStart < photoPatterns.length; batchStart += batchSize) {
+            const batchEnd = Math.min(batchStart + batchSize, photoPatterns.length);
+            const batch = photoPatterns.slice(batchStart, batchEnd);
+            
+            // Test batch of photos concurrently
+            const batchPromises = batch.map(async (photoPath, batchIndex) => {
+                const globalIndex = batchStart + batchIndex;
+                testedCount++;
                 
-                // Create a test image to check if the file exists
-                const testImg = new Image();
-                await new Promise((resolve, reject) => {
-                    const imageTimeout = setTimeout(() => {
-                        reject(new Error('Image load timeout'));
-                    }, isMobile ? 3000 : 5000); // 3s for mobile, 5s for desktop
+                try {
+                    // Update progress - scanning phase
+                    const progress = 10 + (testedCount / photoPatterns.length) * 30; // 10% to 40%
+                    updateLoadingProgress(progress, `Testing photo pattern ${testedCount} of ${photoPatterns.length}...`);
                     
-                    testImg.onload = () => {
-                        clearTimeout(imageTimeout);
-                        availablePhotos.push({
-                            src: photoPath,
-                            alt: getPhotoAlt(photoPath),
-                            title: getPhotoTitle(photoPath),
-                            description: getPhotoDescription(photoPath),
-                            category: 'family',
-                            crop: 'top'
-                        });
-                        loadedCount++;
-                        photosLoaded++;
-                        updatePhotosLoaded();
-                        resolve();
-                    };
-                    testImg.onerror = () => {
-                        clearTimeout(imageTimeout);
-                        console.log(`Photo not available: ${photoPath}`);
-                        photosLoaded++;
-                        updatePhotosLoaded();
-                        reject();
-                    };
-                    testImg.src = photoPath;
-                });
-            } catch (error) {
-                console.log(`Failed to load photo: ${photoPath}`);
+                    // Create a test image to check if the file exists
+                    const testImg = new Image();
+                    return new Promise((resolve, reject) => {
+                        const imageTimeout = setTimeout(() => {
+                            reject(new Error('Image load timeout'));
+                        }, isMobile ? 2000 : 3000); // 2s for mobile, 3s for desktop
+                        
+                        testImg.onload = () => {
+                            clearTimeout(imageTimeout);
+                            const photoData = {
+                                src: photoPath,
+                                alt: getPhotoAlt(photoPath),
+                                title: getPhotoTitle(photoPath),
+                                description: getPhotoDescription(photoPath),
+                                category: 'family',
+                                crop: 'top'
+                            };
+                            console.log(`✅ Found photo: ${photoPath}`);
+                            resolve(photoData);
+                        };
+                        testImg.onerror = () => {
+                            clearTimeout(imageTimeout);
+                            // Don't log every missing photo to avoid spam
+                            if (globalIndex < 20) { // Only log first 20 for debugging
+                                console.log(`❌ Photo not available: ${photoPath}`);
+                            }
+                            reject();
+                        };
+                        testImg.src = photoPath;
+                    });
+                } catch (error) {
+                    return null; // Return null for failed photos
+                }
+            });
+            
+            // Wait for batch to complete
+            const batchResults = await Promise.allSettled(batchPromises);
+            
+            // Process batch results
+            batchResults.forEach((result, batchIndex) => {
+                if (result.status === 'fulfilled' && result.value) {
+                    availablePhotos.push(result.value);
+                    loadedCount++;
+                    photosLoaded++;
+                    updatePhotosLoaded();
+                } else {
+                    photosLoaded++;
+                    updatePhotosLoaded();
+                }
+            });
+            
+            // Small delay between batches to prevent overwhelming the browser
+            if (batchEnd < photoPatterns.length) {
+                await new Promise(resolve => setTimeout(resolve, 100));
             }
         }
         
         // If we have photos, proceed immediately
         if (availablePhotos.length > 0) {
-            console.log(`✅ Loaded ${availablePhotos.length} photos immediately`);
+            console.log(`✅ Found ${availablePhotos.length} photos dynamically`);
             
             // Clear the main loading timeout
             clearTimeout(loadingTimeout);
@@ -449,12 +501,12 @@ async function loadAvailablePhotos() {
             photoData = availablePhotos;
             
             // Final progress update
-            updateLoadingProgress(100, 'Finalizing gallery...');
+            updateLoadingProgress(100, `Finalizing gallery with ${availablePhotos.length} photos...`);
             
             // Load photos into gallery
             loadPhotos();
             
-            console.log(`Successfully loaded ${photoData.length} photos`);
+            console.log(`Successfully loaded ${photoData.length} photos dynamically`);
             
             // Complete loading
             completeLoading();
