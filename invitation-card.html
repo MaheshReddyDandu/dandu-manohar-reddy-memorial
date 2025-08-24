@@ -15,12 +15,198 @@
 
         body {
             font-family: 'Noto Sans Telugu', 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 120vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Add the same background patterns and effects from index.html */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            z-index: -2;
+            animation: backgroundFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-5px) rotate(-1deg); }
+            75% { transform: translateY(-15px) rotate(0.5deg); }
+        }
+
+        /* Add farming theme enhancement like in index.html */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(76, 175, 80, 0.1) 50%, transparent 70%);
+            animation: farmShine 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes farmShine {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Add floating background elements like in index.html */
+        .background-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Enhanced floating elements for farming theme (same as index.html) */
+        .bg-element i.fa-seedling {
+            color: #4CAF50;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        .bg-element i.fa-tractor {
+            color: #FF6F00;
+            text-shadow: 0 0 10px rgba(255, 111, 0, 0.5);
+        }
+
+        .bg-element i.fa-sun {
+            color: #FFC107;
+            text-shadow: 0 0 15px rgba(255, 193, 7, 0.7);
+        }
+
+        .bg-element i.fa-leaf {
+            color: #8BC34A;
+            text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
+        }
+
+        .bg-element i.fa-award {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .bg-element i.fa-heart {
+            color: #E91E63;
+            text-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+        }
+
+        .bg-element i.fa-home {
+            color: #795548;
+            text-shadow: 0 0 10px rgba(121, 85, 72, 0.5);
+        }
+
+        .bg-element i.fa-handshake {
+            color: #607D8B;
+            text-shadow: 0 0 10px rgba(96, 125, 139, 0.5);
+        }
+
+        .bg-element i.fa-tree {
+            color: #2E7D32;
+            text-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+        }
+
+        .bg-element-1 {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bg-element-2 {
+            top: 45%;
+            left: 5%;
+            animation-delay: 1s;
+        }
+
+        .bg-element-3 {
+            top: 75%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .bg-element-4 {
+            top: 30%;
+            left: 25%;
+            animation-delay: 3s;
+        }
+
+        .bg-element-5 {
+            top: 20%;
+            right: 25%;
+            animation-delay: 0.5s;
+        }
+
+        .bg-element-6 {
+            top: 60%;
+            right: 30%;
+            animation-delay: 1.5s;
+        }
+
+        .bg-element-7 {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 2.5s;
+        }
+
+        .bg-element-8 {
+            top: 50%;
+            right: 5%;
+            animation-delay: 3.5s;
+        }
+
+        .bg-element-9 {
+            bottom: 40%;
+            left: 35%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Additional subtle background enhancement */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="card-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23card-pattern)"/></svg>');
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .print-controls {
@@ -54,7 +240,7 @@
         .invitation-card {
             width: 900px;
             height: 500px;
-            background: white;
+            background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 50%, #fef5e7 100%);
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             overflow: hidden;
@@ -64,6 +250,77 @@
             flex-direction: column;
             transition: all 0.3s ease;
             transform-origin: center;
+        }
+
+        /* Enhanced content area backgrounds */
+        .ceremony-details {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8) 0%, rgba(255, 245, 238, 0.9) 100%);
+            border: 3px solid #D4AF37;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceremony-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+        }
+
+        /* Enhanced photo section background */
+        .photo-section {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid #D4AF37;
+            position: relative;
+            background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            transform-origin: center;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Enhanced left section background */
+        .left-section {
+            flex: 0 0 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-right: 0.25rem;
+            text-align: center;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%);
+            border-radius: 15px;
+            padding: 0.75rem;
+            border: 1px solid transparent;
+        }
+
+        /* Enhanced right section background */
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%);
+            border-radius: 15px;
+            padding: 0.75rem;
+            border: 1px solid transparent;
         }
 
         /* Ornate Decorative Border - Exact Design from Image */
@@ -582,6 +839,102 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             flex: 1;
             text-align: center;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF6B35 50%, #FFD700 75%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        @keyframes titleShine {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 165, 0, 0.6));
+                transform: scale(1.02);
+            }
+        }
+
+        /* Enhanced deceased name styling */
+        .deceased-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: nameGlow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes nameGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.7)) drop-shadow(0 0 25px rgba(118, 75, 162, 0.5));
+                transform: scale(1.01);
+            }
+        }
+
+        /* Enhanced ceremony details styling */
+        .ceremony-date {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 25%, #CDDC39 50%, #4CAF50 75%, #8BC34A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: ceremonyShine 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+            letter-spacing: 0.3px;
+        }
+
+        @keyframes ceremonyShine {
+            0%, 100% { 
+                filter: drop-shadow(0 0 6px rgba(76, 175, 80, 0.3));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 12px rgba(76, 175, 80, 0.6)) drop-shadow(0 0 20px rgba(139, 195, 74, 0.4));
+                transform: scale(1.01);
+            }
+        }
+
+        .ceremony-venue {
+            font-size: 1rem;
+            color: #2c3e50;
+            text-align: center;
+            line-height: 1.3;
+            background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: venueGlow 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.3));
+            font-weight: 600;
+        }
+
+        @keyframes venueGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.3));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 10px rgba(255, 152, 0, 0.5)) drop-shadow(0 0 18px rgba(255, 193, 7, 0.4));
+                transform: scale(1.01);
+            }
         }
 
         .header-symbols {
@@ -632,7 +985,7 @@
         .card-content {
             flex: 1;
             display: flex;
-            padding: 1.5rem;
+            padding: 0.25rem;
             gap: 1.5rem;
             flex-direction: row;
             justify-content: center;
@@ -640,14 +993,18 @@
         }
 
         .left-section {
-            flex: 0 0 280px;
+            flex: 0 0 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-right: 1.5rem;
+            padding-right: 0.25rem;
             text-align: center;
             margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%);
+            border-radius: 15px;
+            padding: 0.75rem;
+            border: 1px solid transparent;
         }
 
         .photo-section {
@@ -657,13 +1014,14 @@
             overflow: hidden;
             border: 6px solid #D4AF37;
             position: relative;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
             transition: all 0.3s ease;
             transform-origin: center;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
         }
 
         .photo-placeholder {
@@ -711,11 +1069,18 @@
         }
 
         .deceased-name {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #2c3e50;
             margin-bottom: 0.6rem;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: nameGlow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
+            letter-spacing: 0.5px;
         }
 
         .deceased-dates-text {
@@ -729,9 +1094,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 1.5rem;
-            max-width: 400px;
+            gap: 1rem;
+            max-width: 500px;
             margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%);
+            border-radius: 15px;
+            padding: 0.75rem;
+            border: 1px solid transparent;
         }
 
         .main-content {
@@ -744,48 +1113,48 @@
         }
 
         .deceased-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-align: center;
-            border-bottom: 3px solid #D4AF37;
-            padding-bottom: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border-bottom: 2px solid #D4AF37;
+            padding-bottom: 0.4rem;
         }
 
         .content-paragraph {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            margin-bottom: 1rem;
+            line-height: 1.6;
             color: #2c3e50;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-align: justify;
-            padding: 0.5rem;
         }
 
         .highlighted-name {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #1a252f;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .ceremony-details {
-            background: rgba(212, 175, 55, 0.15);
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8) 0%, rgba(255, 245, 238, 0.9) 100%);
             border: 3px solid #D4AF37;
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        .ceremony-date {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.4rem;
-            text-align: center;
+        .ceremony-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
         }
 
         .ceremony-time {
@@ -796,10 +1165,19 @@
         }
 
         .ceremony-venue {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: #2c3e50;
             text-align: center;
             line-height: 1.3;
+            background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+            print-color-adjust: exact;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .invitation-message {
@@ -841,57 +1219,7 @@
         }
 
         .decoration-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .decoration-element {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(212, 175, 55, 0.2);
-            border-radius: 50%;
-            animation: decorationFloat 8s ease-in-out infinite;
-        }
-
-        .decoration-1 {
-            top: 15%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .decoration-2 {
-            top: 25%;
-            right: 5%;
-            animation-delay: 2s;
-        }
-
-        .decoration-3 {
-            bottom: 20%;
-            left: 8%;
-            animation-delay: 4s;
-        }
-
-        .decoration-4 {
-            bottom: 30%;
-            right: 8%;
-            animation-delay: 6s;
-        }
-
-        @keyframes decorationFloat {
-            0%, 100% { 
-                transform: translateY(0px) scale(0.8);
-                opacity: 0.3;
-            }
-            50% { 
-                transform: translateY(-15px) scale(1);
-                opacity: 0.6;
-            }
+            display: none;
         }
 
         /* Print Styles */
@@ -937,6 +1265,10 @@
                 overflow: visible !important;
                 justify-content: center !important;
                 align-items: center !important;
+                background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 50%, #fef5e7 100%) !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             .invitation-card::before {
@@ -967,6 +1299,13 @@
                 margin: 0 !important;
                 flex: 1 !important;
                 text-align: center !important;
+                background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF6B35 50%, #FFD700 75%, #FFA500 100%) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                background-clip: text !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             .header-symbols {
@@ -993,7 +1332,7 @@
                 flex: 1 !important;
                 display: flex !important;
                 flex-direction: row !important;
-                padding: 1.5rem !important;
+                padding: 0.25rem !important;
                 gap: 1.5rem !important;
                 overflow: visible !important;
                 justify-content: center !important;
@@ -1001,14 +1340,21 @@
             }
             
             .left-section {
-                flex: 0 0 280px !important;
+                flex: 0 0 320px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                padding-right: 1.5rem !important;
+                padding-right: 0.25rem !important;
                 text-align: center !important;
                 margin: 0 auto !important;
+                background: linear-gradient(135deg, rgba(255, 248, 220, 0.3) 0%, rgba(255, 245, 238, 0.4) 100%) !important;
+                border-radius: 15px !important;
+                padding: 0.75rem !important;
+                border: 1px solid transparent !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             .photo-section {
@@ -1018,6 +1364,10 @@
                 overflow: hidden !important;
                 border: 6px solid #D4AF37 !important;
                 margin-bottom: 1.5rem !important;
+                background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%) !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             .photo-placeholder {
@@ -1040,11 +1390,20 @@
             }
             
             .deceased-name {
-                font-size: 1.2rem !important;
+                font-size: 1.3rem !important;
                 font-weight: 700 !important;
                 color: #2c3e50 !important;
                 margin-bottom: 0.6rem !important;
                 text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                background-clip: text !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                font-size: 1.3rem !important;
+                letter-spacing: 0.5px !important;
             }
             
             .deceased-dates-text {
@@ -1058,9 +1417,16 @@
                 display: flex !important;
                 flex-direction: column !important;
                 justify-content: center !important;
-                gap: 1.5rem !important;
-                max-width: 400px !important;
+                gap: 1rem !important;
+                max-width: 500px !important;
                 margin: 0 auto !important;
+                background: linear-gradient(135deg, rgba(255, 248, 220, 0.2) 0%, rgba(255, 245, 238, 0.3) 100%) !important;
+                border-radius: 15px !important;
+                padding: 0.75rem !important;
+                border: 1px solid transparent !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             .main-content {
@@ -1097,22 +1463,42 @@
             }
             
             .ceremony-details {
-                background: rgba(212, 175, 55, 0.1) !important;
-                border: 2px solid #D4AF37 !important;
-                border-radius: 8px !important;
-                padding: 1rem !important;
-                margin-bottom: 1rem !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                background: linear-gradient(135deg, rgba(255, 248, 220, 0.8) 0%, rgba(255, 245, 238, 0.9) 100%);
+                border: 3px solid #D4AF37;
+                border-radius: 12px;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .ceremony-details::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
             }
             
             .ceremony-date {
-                font-size: 0.95rem !important;
-                font-weight: 600 !important;
+                font-size: 1.1rem !important;
+                font-weight: 700 !important;
                 color: #2c3e50 !important;
                 margin-bottom: 0.4rem !important;
                 text-align: center !important;
+                background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 25%, #CDDC39 50%, #4CAF50 75%, #8BC34A 100%) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                background-clip: text !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                font-size: 1.1rem !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.3px !important;
             }
             
             .ceremony-time {
@@ -1123,10 +1509,19 @@
             }
             
             .ceremony-venue {
-                font-size: 0.85rem !important;
+                font-size: 1rem !important;
                 color: #2c3e50 !important;
                 text-align: center !important;
                 line-height: 1.3 !important;
+                background: linear-gradient(135deg, #FF9800 0%, #FFC107 25%, #FFEB3B 50%, #FF9800 75%, #FFC107 100%) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                background-clip: text !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                font-size: 1rem !important;
+                font-weight: 600 !important;
             }
             
             .invitation-message {
@@ -1201,6 +1596,24 @@
                 border-radius: 15px;
                 flex-direction: column;
             }
+            
+            /* Mobile background elements adjustments */
+            .bg-element {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            /* Adjust positions for mobile */
+            .bg-element-1 { top: 10%; left: 5%; }
+            .bg-element-2 { top: 40%; left: 2%; }
+            .bg-element-3 { top: 70%; left: 8%; }
+            .bg-element-4 { top: 25%; left: 20%; }
+            .bg-element-5 { top: 15%; right: 20%; }
+            .bg-element-6 { top: 55%; right: 25%; }
+            .bg-element-7 { bottom: 15%; right: 5%; }
+            .bg-element-8 { top: 45%; right: 2%; }
+            .bg-element-9 { bottom: 35%; left: 30%; }
             
             .card-header {
                 padding: 1rem;
@@ -1336,8 +1749,8 @@
             }
             
             .card-content {
-                padding: 1.2rem;
-                gap: 1.2rem;
+                padding: 0.25rem;
+                gap: 1.5rem;
             }
             
             .photo-section {
@@ -1409,9 +1822,16 @@
                 height: 450px;
             }
             
+            /* Tablet background elements adjustments */
+            .bg-element {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+            
             .card-header {
                 width: 100%;
-                padding: 1.2rem;
+                padding: 0.75rem;
                 min-height: 70px;
             }
             
@@ -1474,6 +1894,37 @@
     </style>
 </head>
 <body>
+    <!-- Background Elements (same as index.html) -->
+    <div class="background-elements">
+        <div class="bg-element bg-element-1">
+            <i class="fas fa-seedling"></i>
+        </div>
+        <div class="bg-element bg-element-2">
+            <i class="fas fa-tractor"></i>
+        </div>
+        <div class="bg-element bg-element-3">
+            <i class="fas fa-sun"></i>
+        </div>
+        <div class="bg-element bg-element-4">
+            <i class="fas fa-leaf"></i>
+        </div>
+        <div class="bg-element bg-element-5">
+            <i class="fas fa-award"></i>
+        </div>
+        <div class="bg-element bg-element-6">
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="bg-element bg-element-7">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="bg-element bg-element-8">
+            <i class="fas fa-handshake"></i>
+        </div>
+        <div class="bg-element bg-element-9">
+            <i class="fas fa-tree"></i>
+        </div>
+    </div>
+
     <div class="print-controls">
         <button class="print-btn" onclick="window.print()">
             <i class="fas fa-print"></i> ప్రింట్ చేయండి
@@ -1574,7 +2025,7 @@
                     
                     <div class="ceremony-details">
                         <div class="ceremony-date">
-                            తేది 04-09-2025 గురువారం రోజున
+                            తేది 04-09-2025 గురువారం రోజున 
                         </div>
                        
                         <div class="ceremony-venue">
